@@ -1,0 +1,15 @@
+{
+  "name": "app-backend",
+  "version": "0.0.0",
+  "description": "The backend API for the Coding Garden community app.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": "https://github.com/joshuaferr1s/app-backend.git",
+  "author": "Joshua Ferris <josh.ferris14@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
