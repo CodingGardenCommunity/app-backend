@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node index.js"
   },
-  "repository": "https://github.com/joshuaferr1s/app-backend.git",
-  "author": "Joshua Ferris <josh.ferris14@gmail.com>",
+  "repository": "https://github.com/CodingGardenCommunity/app-backend.git",
+  "author": "Coding Garden Community App",
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.4"
