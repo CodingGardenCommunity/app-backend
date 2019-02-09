@@ -4,7 +4,7 @@
   "description": "The backend API for the Coding Garden community app.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js (https://github.com/CodingGardenCommunity)"
   },
   "repository": "https://github.com/CodingGardenCommunity/app-backend.git",
   "author": "Coding Garden Community App",
