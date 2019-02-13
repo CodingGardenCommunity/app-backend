@@ -10,6 +10,7 @@
   "author": "Coding Garden Community App",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "local-web-server": ">=2.6.1"
   }
 }
