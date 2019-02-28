@@ -6,11 +6,16 @@ please visit <https://google.com>.
 
 ## Running the API locally
 
+There are multiple ways to run the API locally:
+
+- [Via Yarn](#via-yarn)
+- [Via Docker](#via-docker)
+
 ### Prerequisites
 
 N/A. However in the future the API will need access to a MongoDB database.
 
-### Via yarn
+### Via Yarn
 
 We use the yarn package manager to run this project. If you haven't already
 please set up [NodeJS >= 10.15.0](https://nodejs.org/en/download/) and [yarn >=
