@@ -2,10 +2,10 @@
     "name": "app-backend",
     "version": "0.0.0",
     "description": "The backend API for the Coding Garden community app.",
-    "main": "index.js",
+    "main": "src/index.js",
     "scripts": {
-        "start": "node index.js",
-        "lint": "eslint **/*.js"
+        "start": "node src/index.js",
+        "lint": "eslint src/**/*.js"
     },
     "repository": "https://github.com/CodingGardenCommunity/app-backend.git",
     "author": "Coding Garden Community App",
