@@ -1,15 +1,23 @@
 {
-  "name": "app-backend",
-  "version": "0.0.0",
-  "description": "The backend API for the Coding Garden community app.",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "repository": "https://github.com/CodingGardenCommunity/app-backend.git",
-  "author": "Coding Garden Community App",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.16.4"
-  }
+    "name": "app-backend",
+    "version": "0.0.0",
+    "description": "The backend API for the Coding Garden community app.",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "lint": "eslint **/*.js"
+    },
+    "repository": "https://github.com/CodingGardenCommunity/app-backend.git",
+    "author": "Coding Garden Community App",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.16.4"
+    },
+    "devDependencies": {
+        "babel-eslint": "^10.0.1",
+        "eslint": "^5.14.1",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-plugin-import": "^2.16.0"
+    }
 }
