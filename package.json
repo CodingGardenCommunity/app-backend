@@ -1,6 +1,6 @@
 {
     "name": "app-backend",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "The backend API for the Coding Garden community app.",
     "main": "src/index.js",
     "scripts": {
