@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- stable
+cache: yarn
+stages:
+  - test
+jobs:
+  include:
+    - stage: test
+      script: yarn run lint
