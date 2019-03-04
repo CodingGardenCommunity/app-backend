@@ -1,0 +1,121 @@
+#%RAML 1.0
+title: Coding Garden Community App API
+baseUri: https://app.coding.garden/api
+version: v1
+mediaType: application/vnd.api+json
+
+/faq:
+  get:
+    responses: 
+      200:
+        body:
+         example: |
+            {
+              "data": [{
+                "type": "faq",
+                "id": "1",
+                "attributes": {
+                  "question": "What break timer do you use?",
+                  "answer": "It's called Time Out by Dejal. It is only available for Mac. For Windows, checkout Eye Leo. I have it setup for a 10 second micro break every 10 minutes and a 5 minute break every 60 minutes."
+                }
+              }, {
+                "type": "faq",
+                "id": "2",
+                "attributes": {
+                  "question": "Will the livestream be available as a video?",
+                  "answer": "Yes! Every livestream is immediately available to watch after the stream is over. The URL is will be the same. Longer streams take time to process, but will show up on the Coding Garden videos page after a few hours."
+                }
+              }]
+            }
+  /{faqId}:
+    uriParameters:
+      faqId:
+        type: integer
+    get:
+      responses:
+        200:
+          body:
+            example: |
+              {
+                "data": {
+                  "type": "faq",
+                  "id": "2",
+                  "attributes": {
+                    "question": "Will the livestream be available as a video?",
+                    "answer": "Yes! Every livestream is immediately available to watch after the stream is over. The URL is will be the same. Longer streams take time to process, but will show up on the Coding Garden videos page after a few hours."
+                  }
+                }
+              }
+        404:
+          body:
+            example: |
+              {
+                "errors": [{
+                  "code": "e24",
+                  "title": "Resource not found",
+                  "detail": "There is no resource with type 'faq' and id '3'."
+                }]
+              }
+/contributors:
+  get:
+    responses: 
+      200:
+        body:
+         example: |
+            {
+              "data": [{
+                "type": "contributor",
+                "id": "1",
+                "attributes": {
+                  "username": "sbibow",
+                  "first-name": "Semjon",
+                  "last-name": "Bibow"
+                },
+                "relationships": {
+                  "contribution-area": {
+                    "links": {
+                      "self": "/contributors/1/relationships/contribution-areas",
+                      "related": "/contributors/1/contribution-areas"
+                    },
+                    "data": [
+                      { "type": "contribution-area", "id": "1" },
+                      { "type": "contribution-area", "id": "2" },
+                      { "type": "contribution-area", "id": "5" }
+                    ]
+                  }
+                }
+              }, {
+                "type": "contributor",
+                "id": "2",
+                "attributes": {
+                  "username": "Sharpie360",
+                  "first-name": "Sean",
+                  "last-name": "Becker"
+                },
+                "relationships": {
+                  "contribution-area": {
+                    "links": {
+                      "self": "/contributors/2/relationships/contribution-areas",
+                      "related": "/contributors/2/contribution-areas"
+                    },
+                    "data": [
+                      { "type": "contribution-area", "id": "1" },
+                      { "type": "contribution-area", "id": "3" },
+                      { "type": "contribution-area", "id": "4" }
+                    ]
+                  }
+                }
+              }],
+              "included": [
+                { "type": "contribution-area", "id": "1", "attributes": { "name": "Planning" } },
+                { "type": "contribution-area", "id": "2", "attributes": { "name": "DevOps" } },
+                { "type": "contribution-area", "id": "3", "attributes": { "name": "Frontend" } },
+                { "type": "contribution-area", "id": "4", "attributes": { "name": "Backend" } },
+                { "type": "contribution-area", "id": "5", "attributes": { "name": "Testing" } }
+              ]
+            }
+  /{userId}:
+    get:
+    
+/history:
+  get:
