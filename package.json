@@ -5,7 +5,7 @@
     "main": "src/index.js",
     "scripts": {
         "start": "node src/index.js",
-        "lint": "eslint src/**/*.js"
+        "lint": "eslint src/**/*.js --fix"
     },
     "repository": "https://github.com/CodingGardenCommunity/app-backend.git",
     "author": "Coding Garden Community App",
