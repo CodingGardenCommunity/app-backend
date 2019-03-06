@@ -1,5 +1,4 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/CodingGardenCommunity/app-backend.svg?branch=develop)](https://travis-ci.org/CodingGardenCommunity/app-backend)
 # Coding Garden Community App API
 
 This repository contains the source files and documentation for the API of the
@@ -19,7 +18,6 @@ N/A. However in the future the API will need access to a MongoDB database.
 
 ### Via Yarn
 
-We use the yarn package manager to run this project. If you haven't already
 please set up [NodeJS >= 10.15.0](https://nodejs.org/en/download/) and [yarn >=
 1.13.0](https://yarnpkg.com/en/docs/install).
 
