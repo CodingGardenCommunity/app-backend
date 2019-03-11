@@ -4,21 +4,26 @@
     "description": "The backend API for the Coding Garden community app.",
     "main": "src/index.js",
     "scripts": {
-        "start": "node src/index.js",
+        "start": "cross-env NODE_ENV=production node src/index.js",
+        "dev": "cross-env NODE_ENV=development nodemon src/index.js",
         "lint": "eslint src/**/*.js"
     },
     "repository": "https://github.com/CodingGardenCommunity/app-backend.git",
     "author": "Coding Garden Community App",
     "license": "MIT",
     "dependencies": {
+        "dotenv": "^6.2.0",
         "express": "^4.16.4",
+        "mongoose": "^5.4.17",
         "node-fetch": "^2.3.0"
     },
     "devDependencies": {
         "babel-eslint": "^10.0.1",
+        "cross-env": "^5.2.0",
         "eslint": "^5.14.1",
         "eslint-config-airbnb": "^17.1.0",
         "eslint-config-airbnb-base": "^13.1.0",
-        "eslint-plugin-import": "^2.16.0"
+        "eslint-plugin-import": "^2.16.0",
+        "nodemon": "^1.18.10"
     }
 }

@@ -1,10 +1,6 @@
 const router = require('express').Router();
-const fetch = require('node-fetch');
+const getContributors = require('./contributors.controller');
 
-router.get('/', async (req, res) => {
-  const response = await fetch('https://raw.githubusercontent.com/CodingGardenCommunity/contributors/master/contributors.json');
-  const data = await response.json();
-  res.json(data);
-});
+router.get('/', getContributors);
 
 module.exports = router;
