@@ -1,6 +1,7 @@
 const express = require('express');
+
 const { contributors, faq } = require('./routes');
-const { server } = require('./config');
+const { server: { port } } = require('./config');
 
 // ENV configuration
 require('dotenv').config();
@@ -10,7 +11,6 @@ require('./helpers/databaseConnection');
 
 // Initialize server
 const app = express();
-const { port } = server;
 
 // App middleware
 app.use(express.json());

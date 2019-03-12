@@ -1,9 +1,6 @@
 const router = require('express').Router();
+const getContributors = require('./contributors.controller');
 
-router.get('/', (req, res) => {
-  res.json({
-    message: 'Contributors 🌎',
-  });
-});
+router.get('/', getContributors);
 
 module.exports = router;
