@@ -1,4 +1,5 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/CodingGardenCommunity/app-backend.svg?branch=develop)](https://travis-ci.org/CodingGardenCommunity/app-backend)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) ![Travis (.org) branch](https://img.shields.io/travis/CodingGardenCommunity/app-backend/develop.svg) ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/CodingGardenCommunity/app-backend.svg) ![GitHub contributors](https://img.shields.io/github/contributors/CodingGardenCommunity/app-backend.svg) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/CodingGardenCommunity/app-backend.svg)
+
 # Coding Garden Community App API
 
 This repository contains the source files and documentation for the API of the
