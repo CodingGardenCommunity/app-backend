@@ -6,34 +6,36 @@ module.exports = async function getContributors(req, res) {
     const response = await fetch(contribURL);
     const data = await response.json();
     const finalResponse = {
-      data: data.map(({
-        name,
-        github: username,
-        image,
-        countryCode,
-        teamIds,
-      }, key) => ({
-        type: 'contributor',
-        id: key,
-        attributes: {
-          username,
+      data: data
+        .sort((a, b) => new Date(a.joined) - new Date(b.joined))
+        .map(({
           name,
+          github: username,
           image,
           countryCode,
-        },
-        relationships: {
-          contributionArea: {
-            links: {
-              self: `/contributors/${key}/relationships/contribution-areas`,
-              related: `/contributors/${key}/contribution-areas`,
-            },
-            data: teamIds.map(team => ({
-              type: 'contribution_area',
-              id: team,
-            })),
+          teamIds,
+        }, key) => ({
+          type: 'contributor',
+          id: key,
+          attributes: {
+            username,
+            name,
+            image,
+            countryCode,
           },
-        },
-      })),
+          relationships: {
+            contributionArea: {
+              links: {
+                self: `/contributors/${key}/relationships/contribution-areas`,
+                related: `/contributors/${key}/contribution-areas`,
+              },
+              data: teamIds.map(team => ({
+                type: 'contribution_area',
+                id: team,
+              })),
+            },
+          },
+        })),
       included: [
         { type: 'contribution-area', id: '1', attributes: { name: 'Planning' } },
         { type: 'contribution-area', id: '2', attributes: { name: 'DevOps' } },
