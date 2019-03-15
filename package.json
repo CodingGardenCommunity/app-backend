@@ -6,7 +6,9 @@
     "scripts": {
         "start": "cross-env NODE_ENV=production node src/index.js",
         "dev": "cross-env NODE_ENV=development nodemon src/index.js",
-        "lint": "eslint src/**/*.js"
+        "lint": "eslint src/**/*.js",
+        "now:secrets:mongo": "now secrets rm MONGO_SECRET --token=$NOW_TOKEN && now secret add MONGO_SECRET $MONGO_SECRET --token=$NOW_TOKEN",
+        "now:deploy": "now alias $(now --token=$NOW_TOKEN) $NOW_ALIAS --token=$NOW_TOKEN"
     },
     "repository": "https://github.com/CodingGardenCommunity/app-backend.git",
     "author": "Coding Garden Community App",
@@ -31,6 +33,7 @@
         "eslint-plugin-import": "^2.16.0",
         "eslint-plugin-react": "^7.12.4",
         "husky": "^1.3.1",
-        "nodemon": "^1.18.10"
+        "nodemon": "^1.18.10",
+        "now": "^14.1.0"
     }
 }
