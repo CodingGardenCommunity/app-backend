@@ -9,7 +9,7 @@ cache: yarn
 stages:
   - test
   - name: deploy
-    if: type = push
+    if: type = push \
       ( \
         branch = develop OR \
         branch =~ /^(v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)|CA-58)$/ OR \
