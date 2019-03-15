@@ -6,8 +6,29 @@ notifications:
 node_js:
 - stable
 cache: yarn
-script:
-  - yarn run lint
-after_success:
-  - yarn add -g now
-  - sh deploy.sh
+stages:
+  - test
+  - name: deploy
+    if: |
+      type = push AND \
+      fork = false AND \
+      ( \
+        branch = CA-58 OR \
+        branch = develop OR \
+        branch =~ /^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/ OR \
+        branch = master \
+      )
+jobs:
+  include:
+    - stage: test
+      script: npm run lint
+    - stage: deploy
+      name: "Deploy development to now.sh"
+      script: skip
+      env: MONGO_URI=$DEV_MONGO_URI MONGO_PASS=$DEV_MONGO_PASS NOW_ALIAS=api-dev.coding.garden
+      deploy:
+        provider: script
+        script: echo $MONGO_URI $MONGO_PASS $NOW_ALIAS
+        skip_cleanup: true
+        on:
+          branch: CA-58
