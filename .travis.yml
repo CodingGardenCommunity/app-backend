@@ -9,11 +9,15 @@ cache: yarn
 stages:
   - test
   - name: deploy
+    # Don't run on tags or forked repositories
     if: type = push AND fork = false
 jobs:
   include:
+    ### START TEST STAGE ###
     - stage: test
       script: yarn run lint
+    ### END TEST STAGE ###
+    ### START DEPLOY STAGE ###
     - stage: deploy
       name: "Deploy development to now.sh"
       if: branch = develop
@@ -23,8 +27,12 @@ jobs:
         provider: script
         script: yarn run now:secrets:mongo && yarn run now:deploy
         skip_cleanup: true
+        on:
+          # We already filter the job above, so deployment can run on every branch that matches the if above
+          all_branches: true
     - stage: deploy
       name: "Deploy staging to now.sh"
+      # RegEx for Semantic Versioning: The branch will be called vX.Y.Z for staging area
       if: branch =~ /^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/
       script: skip
       env: MONGO_URI=$INT_MONGO_URI MONGO_SECRET=$INT_MONGO_SECRET NOW_ALIAS=api-int.coding.garden
@@ -32,6 +40,8 @@ jobs:
         provider: script
         script: yarn run now:secrets:mongo && yarn run now:deploy
         skip_cleanup: true
+        on:
+          all_branches: true
     - stage: deploy
       name: "Deploy test to now.sh"
       if: branch = CA-58
@@ -41,6 +51,8 @@ jobs:
         provider: script
         script: yarn run now:secrets:mongo && yarn run now:deploy
         skip_cleanup: true
+        on:
+          all_branches: true
     - stage: deploy
       name: "Deploy production to now.sh"
       if: branch = master
@@ -50,3 +62,6 @@ jobs:
         provider: script
         script: yarn run now:secrets:mongo && yarn run now:deploy
         skip_cleanup: true
+        on:
+          all_branches: true
+    ### END DEPLOY STAGE ###
