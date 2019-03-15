@@ -10,6 +10,11 @@ stages:
   - test
   - name: deploy
     if: type = push
+      ( \
+        branch = develop OR \
+        branch =~ /^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/ OR \
+        branch = master \
+      )
 jobs:
   include:
     - stage: test
