@@ -12,7 +12,7 @@ stages:
     if: type = push
       ( \
         branch = develop OR \
-        branch =~ /^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/ OR \
+        branch =~ /^(v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)|CA-58)$/ OR \
         branch = master \
       )
 jobs:
@@ -40,7 +40,7 @@ jobs:
         on:
           repo: CodingGardenCommunity/app-backend
           all_branches: true
-          condition: $TRAVIS_BRANCH =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$
+          condition: $TRAVIS_BRANCH =~ ^(v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)|CA-58)$
     - name: "Deploy production to now.sh"
       script: skip
       env: MONGO_URI=$PRD_MONGO_URI MONGO_PASS=$PRD_MONGO_PASS NOW_ALIAS=api.coding.garden
