@@ -9,15 +9,7 @@ cache: yarn
 stages:
   - test
   - name: deploy
-    if: |
-      type = push AND \
-      fork = false AND \
-      ( \
-        branch = CA-58 OR \
-        branch = develop OR \
-        branch =~ /^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/ OR \
-        branch = master \
-      )
+    if: type = push
 jobs:
   include:
     - stage: test
@@ -31,4 +23,26 @@ jobs:
         script: echo $MONGO_URI $MONGO_PASS $NOW_ALIAS
         skip_cleanup: true
         on:
-          branch: CA-58
+          repo: CodingGardenCommunity/app-backend
+          branch: develop
+    - name: "Deploy staging to now.sh"
+      script: skip
+      env: MONGO_URI=$INT_MONGO_URI MONGO_PASS=$INT_MONGO_PASS NOW_ALIAS=api-int.coding.garden
+      deploy:
+        provider: script
+        script: echo $MONGO_URI $MONGO_PASS $NOW_ALIAS
+        skip_cleanup: true
+        on:
+          repo: CodingGardenCommunity/app-backend
+          all_branches: true
+          condition: $TRAVIS_BRANCH =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$
+    - name: "Deploy production to now.sh"
+      script: skip
+      env: MONGO_URI=$PRD_MONGO_URI MONGO_PASS=$PRD_MONGO_PASS NOW_ALIAS=api.coding.garden
+      deploy:
+        provider: script
+        script: echo $MONGO_URI $MONGO_PASS $NOW_ALIAS
+        skip_cleanup: true
+        on:
+          repo: CodingGardenCommunity/app-backend
+          branch: master
