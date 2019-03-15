@@ -10,4 +10,4 @@ script:
   - yarn run lint
 after_success:
   - yarn add -g now
-  - ./deploy.sh
+  - sh deploy.sh
