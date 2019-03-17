@@ -10,7 +10,6 @@
   }],
   "env": {
     "NODE_ENV": "${NODE_ENV}",
-    "MONGO_URI": "${MONGO_URI}",
-    "MONGO_SECRET": "@MONGO_SECRET"
+    "MONGO_URI": "${MONGO_URI}"
   }
 }

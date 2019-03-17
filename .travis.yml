@@ -25,7 +25,7 @@ jobs:
       env: MONGO_URI=$DEV_MONGO_URI MONGO_SECRET=$DEV_MONGO_SECRET NOW_ALIAS=api-dev.coding.garden
       deploy:
         provider: script
-        script: yarn run now:secrets:mongo && yarn run now:deploy
+        script: yarn run now:deploy
         skip_cleanup: true
         on:
           # We already filter the job above, so deployment can run on every branch that matches the if above
@@ -38,7 +38,7 @@ jobs:
       env: MONGO_URI=$INT_MONGO_URI MONGO_SECRET=$INT_MONGO_SECRET NOW_ALIAS=api-int.coding.garden
       deploy:
         provider: script
-        script: yarn run now:secrets:mongo && yarn run now:deploy
+        script: yarn run now:deploy
         skip_cleanup: true
         on:
           all_branches: true
@@ -49,7 +49,7 @@ jobs:
       env: MONGO_URI=$INT_MONGO_URI MONGO_SECRET=$INT_MONGO_SECRET NOW_ALIAS=api-test.coding.garden
       deploy:
         provider: script
-        script: yarn run now:secrets:mongo && yarn run now:deploy
+        script: yarn run now:deploy
         skip_cleanup: true
         on:
           all_branches: true
@@ -60,7 +60,7 @@ jobs:
       env: MONGO_URI=$PRD_MONGO_URI MONGO_SECRET=$PRD_MONGO_SECRET NOW_ALIAS=api.coding.garden
       deploy:
         provider: script
-        script: yarn run now:secrets:mongo && yarn run now:deploy
+        script: yarn run now:deploy
         skip_cleanup: true
         on:
           all_branches: true
