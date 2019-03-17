@@ -16,7 +16,12 @@ const app = express();
 app.use(express.json());
 
 // App routes
-app.get('/', (req, res) => res.json({ msg: 'Check out /contributors and /faq' }));
+app.get('/', (req, res) => res.json({ 
+  msg: 'Check out /contributors and /faq',
+  'mongo-url': process.env.MONGO_URL,
+  'mongo-secret': process.env.MONGO_SECRET,
+  'node-env': process.env.NODE_ENV,
+}));
 app.use('/contributors', contributors);
 app.use('/faq', faq);
 
