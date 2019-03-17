@@ -9,7 +9,7 @@ cache: yarn
 stages:
   - test
   - name: deploy
-    # Don't run on tags or forked repositories
+    # Don't deploy on tags or forked repositories
     if: type = push AND fork = false
 jobs:
   include:
@@ -36,17 +36,6 @@ jobs:
       if: branch =~ /^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/
       script: skip
       env: MONGO_URI=$INT_MONGO_URI MONGO_SECRET=$INT_MONGO_SECRET NOW_ALIAS=api-int.coding.garden
-      deploy:
-        provider: script
-        script: yarn run now:deploy
-        skip_cleanup: true
-        on:
-          all_branches: true
-    - stage: deploy
-      name: "Deploy test to now.sh"
-      if: branch = CA-58
-      script: skip
-      env: MONGO_URI=$INT_MONGO_URI MONGO_SECRET=$INT_MONGO_SECRET NOW_ALIAS=api-test.coding.garden
       deploy:
         provider: script
         script: yarn run now:deploy
