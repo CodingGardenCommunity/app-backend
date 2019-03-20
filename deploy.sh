@@ -70,6 +70,11 @@ if [ -z "$now_token" ]; then
   exit 1
 fi
 
+if [ "$1" != "development" ] && [ "$1" != "staging" ] && [ "$1" != "production" ]; then 
+  usage
+  exit 1
+fi
+
 yarn global add now@"$NOW_VERSION"
 
 deployment_url=$(now --token "$now_token" deploy -e MONGO_SECRET="$MONGO_SECRET")
