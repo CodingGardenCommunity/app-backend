@@ -22,10 +22,10 @@ jobs:
       name: "Deploy development to now.sh"
       if: branch = develop
       script: skip
-      env: MONGO_URI=$DEV_MONGO_URI MONGO_SECRET=$DEV_MONGO_SECRET NOW_ALIAS=api-dev.coding.garden
+      env: MONGO_SECRET=$DEV_MONGO_SECRET
       deploy:
         provider: script
-        script: yarn run now:deploy
+        script: bash ./deploy.sh development
         skip_cleanup: true
         on:
           # We already filter the job above, so deployment can run on every branch that matches the if above
@@ -35,10 +35,10 @@ jobs:
       # RegEx for Semantic Versioning: The branch will be called vX.Y.Z for staging area
       if: branch =~ /^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/
       script: skip
-      env: MONGO_URI=$INT_MONGO_URI MONGO_SECRET=$INT_MONGO_SECRET NOW_ALIAS=api-int.coding.garden
+      env: MONGO_SECRET=$INT_MONGO_SECRET
       deploy:
         provider: script
-        script: yarn run now:deploy
+        script: bash ./deploy.sh staging
         skip_cleanup: true
         on:
           all_branches: true
@@ -46,10 +46,10 @@ jobs:
       name: "Deploy production to now.sh"
       if: branch = master
       script: skip
-      env: MONGO_URI=$PRD_MONGO_URI MONGO_SECRET=$PRD_MONGO_SECRET NOW_ALIAS=api.coding.garden
+      env: MONGO_SECRET=$PRD_MONGO_SECRET
       deploy:
         provider: script
-        script: yarn run now:deploy
+        script: bash ./deploy.sh production
         skip_cleanup: true
         on:
           all_branches: true
