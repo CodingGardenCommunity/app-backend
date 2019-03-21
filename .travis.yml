@@ -19,38 +19,13 @@ jobs:
     ### END TEST STAGE ###
     ### START DEPLOY STAGE ###
     - stage: deploy
-      name: "Deploy development to now.sh"
-      if: branch = develop
+      name: "Deploy to now.sh"
+      if: branch = develop OR branch = staging OR branch = master
       script: skip
-      env: MONGO_SECRET=$DEV_MONGO_SECRET
       deploy:
         provider: script
-        script: bash ./deploy.sh development
+        script: bash ./deploy.sh
         skip_cleanup: true
         on:
           # We already filter the job above, so deployment can run on every branch that matches the if above
           all_branches: true
-    - stage: deploy
-      name: "Deploy staging to now.sh"
-      # RegEx for Semantic Versioning: The branch will be called vX.Y.Z for staging area
-      if: branch =~ /^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/
-      script: skip
-      env: MONGO_SECRET=$INT_MONGO_SECRET
-      deploy:
-        provider: script
-        script: bash ./deploy.sh staging
-        skip_cleanup: true
-        on:
-          all_branches: true
-    - stage: deploy
-      name: "Deploy production to now.sh"
-      if: branch = master
-      script: skip
-      env: MONGO_SECRET=$PRD_MONGO_SECRET
-      deploy:
-        provider: script
-        script: bash ./deploy.sh production
-        skip_cleanup: true
-        on:
-          all_branches: true
-    ### END DEPLOY STAGE ###
