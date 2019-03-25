@@ -61,45 +61,53 @@ mediaType: application/vnd.api+json
     responses: 
       200:
         body:
-         example: |
+          example: |
             {
               "data": [{
                 "type": "contributor",
-                "id": "1",
+                "id": "sbibow",
                 "attributes": {
                   "username": "sbibow",
-                  "first-name": "Semjon",
-                  "last-name": "Bibow"
+                  "name": "Semjon Bibow",
+                  "image": "https://avatars0.githubusercontent.com/u/5166002",
+                  "countryCode": "DEU",
+                  "active": true,
+                  "joined": "2018-12-16"
                 },
                 "relationships": {
                   "contribution-area": {
                     "links": {
-                      "self": "/contributors/1/relationships/contribution-areas",
-                      "related": "/contributors/1/contribution-areas"
+                      "self": "/contributors/sbibow/relationships/contribution-areas",
+                      "related": "/contributors/sbibow/contribution-areas"
                     },
                     "data": [
-                      { "type": "contribution-area", "id": "1" },
-                      { "type": "contribution-area", "id": "2" },
+                      { "type": "contribution-area", "id": "0" },
+                      { "type": "contribution-area", "id": "4" },
                       { "type": "contribution-area", "id": "5" }
                     ]
                   }
                 }
               }, {
                 "type": "contributor",
-                "id": "2",
+                "id": "Sharpie360",
                 "attributes": {
                   "username": "Sharpie360",
-                  "first-name": "Sean",
-                  "last-name": "Becker"
+                  "name": "Sean Becker",
+                  "image": "https://avatars0.githubusercontent.com/u/36274332",
+                  "countryCode": "USA",
+                  "active": true,
+                  "joined": "2018-12-16"
                 },
                 "relationships": {
                   "contribution-area": {
                     "links": {
-                      "self": "/contributors/2/relationships/contribution-areas",
-                      "related": "/contributors/2/contribution-areas"
+                      "self": "/contributors/Sharpie360/relationships/contribution-areas",
+                      "related": "/contributors/Sharpie360/contribution-areas"
                     },
                     "data": [
+                      { "type": "contribution-area", "id": "0" },
                       { "type": "contribution-area", "id": "1" },
+                      { "type": "contribution-area", "id": "2" },
                       { "type": "contribution-area", "id": "3" },
                       { "type": "contribution-area", "id": "4" }
                     ]
@@ -107,15 +115,104 @@ mediaType: application/vnd.api+json
                 }
               }],
               "included": [
-                { "type": "contribution-area", "id": "1", "attributes": { "name": "Planning" } },
-                { "type": "contribution-area", "id": "2", "attributes": { "name": "DevOps" } },
-                { "type": "contribution-area", "id": "3", "attributes": { "name": "Frontend" } },
-                { "type": "contribution-area", "id": "4", "attributes": { "name": "Backend" } },
+                { "type": "contribution-area", "id": "0", "attributes": { "name": "Planning" } },
+                { "type": "contribution-area", "id": "1", "attributes": { "name": "Design" } },
+                { "type": "contribution-area", "id": "2", "attributes": { "name": "Frontend" } },
+                { "type": "contribution-area", "id": "3", "attributes": { "name": "Backend" } },
+                { "type": "contribution-area", "id": "4", "attributes": { "name": "DevOps" } },
                 { "type": "contribution-area", "id": "5", "attributes": { "name": "Testing" } }
               ]
             }
   /{userId}:
     get:
+      responses: 
+        200:
+          body:
+            example: |
+              {
+                "data": {
+                  "type": "contributor",
+                  "id": "sbibow",
+                  "attributes": {
+                    "username": "sbibow",
+                    "name": "Semjon Bibow",
+                    "image": "https://avatars0.githubusercontent.com/u/5166002",
+                    "countryCode": "DEU",
+                    "active": true,
+                    "joined": "2018-12-16"
+                  },
+                  "relationships": {
+                    "contribution-area": {
+                      "links": {
+                        "self": "/contributors/sbibow/relationships/contribution-areas",
+                        "related": "/contributors/sbibow/contribution-areas"
+                      },
+                      "data": [
+                        { "type": "contribution-area", "id": "0" },
+                        { "type": "contribution-area", "id": "4" },
+                        { "type": "contribution-area", "id": "5" }
+                      ]
+                    }
+                  }
+                },
+                "included": [
+                  { "type": "contribution-area", "id": "0", "attributes": { "name": "Planning" } },
+                  { "type": "contribution-area", "id": "4", "attributes": { "name": "DevOps" } },
+                  { "type": "contribution-area", "id": "5", "attributes": { "name": "Testing" } }
+                ]
+              }
     
+    
+    /contribution-areas:
+      get:
+        responses: 
+          200:
+            body:
+              example: |
+                {
+                  "links": {
+                    "self": "/contributors/sbibow/relationships/contribution-areas",
+                    "related": "/contributors/sbibow/contribution-areas"
+                  },
+                  "data": [
+                    { "type": "contribution-area", "id": "0" },
+                    { "type": "contribution-area", "id": "4" },
+                    { "type": "contribution-area", "id": "5" }
+                  ]
+                }    
+    /relationships:
+      /contribution-areas:
+        get:
+          responses: 
+            200:
+              body:
+                example: |
+                  {
+                    "links": {
+                      "self": "/contributors/sbibow/relationships/contribution-areas",
+                      "related": "/contributors/sbibow/contribution-areas"
+                    },
+                    "data": [
+                      { "type": "contribution-area", "id": "0" },
+                      { "type": "contribution-area", "id": "4" },
+                      { "type": "contribution-area", "id": "5" }
+                    ]
+                  }
+/contribution-areas:
+  get:
+    responses: 
+      200:
+        body: 
+          example: |
+            {
+              "data": [
+                { "type": "contribution-area", "id": "0", "attributes": { "name": "Planning" } },
+                { "type": "contribution-area", "id": "1", "attributes": { "name": "Design" } },
+                { "type": "contribution-area", "id": "2", "attributes": { "name": "Frontend" } },
+                { "type": "contribution-area", "id": "3", "attributes": { "name": "Backend" } },
+                { "type": "contribution-area", "id": "4", "attributes": { "name": "DevOps" } },
+                { "type": "contribution-area", "id": "5", "attributes": { "name": "Testing" } }
+              ]
+            }
 /history:
   get:
