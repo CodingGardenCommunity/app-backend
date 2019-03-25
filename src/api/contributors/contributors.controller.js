@@ -5,8 +5,53 @@ module.exports = async function getContributors(req, res) {
   try {
     const response = await fetch(contribURL);
     const data = await response.json();
-    return res.json(data);
+    const finalResponse = {
+      data: data
+        .sort((a, b) => new Date(a.joined) - new Date(b.joined))
+        .sort((a, b) => b.active - a.active)
+        .map(({
+          name,
+          github: username,
+          image,
+          countryCode,
+          teamIds,
+          active,
+          joined,
+        }) => ({
+          type: 'contributor',
+          id: username,
+          attributes: {
+            username,
+            name,
+            image,
+            countryCode,
+            active,
+            joined,
+          },
+          relationships: {
+            contributionArea: {
+              links: {
+                self: `/contributors/${username}/relationships/contribution-areas`,
+                related: `/contributors/${username}/contribution-areas`,
+              },
+              data: teamIds.map(team => ({
+                type: 'contribution-area',
+                id: String(team),
+              })),
+            },
+          },
+        })),
+      included: [
+        { type: 'contribution-area', id: '0', attributes: { name: 'Planning' } },
+        { type: 'contribution-area', id: '1', attributes: { name: 'Design' } },
+        { type: 'contribution-area', id: '3', attributes: { name: 'Frontend' } },
+        { type: 'contribution-area', id: '4', attributes: { name: 'Backend' } },
+        { type: 'contribution-area', id: '2', attributes: { name: 'DevOps' } },
+        { type: 'contribution-area', id: '5', attributes: { name: 'Functional Testing' } },
+      ],
+    };
+    return res.json(finalResponse);
   } catch ({ message }) {
-    return res.status(400).json({ status: 400, message });
+    return res.status(500).json({ status: 500, message });
   }
 };
