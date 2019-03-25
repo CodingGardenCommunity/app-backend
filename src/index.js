@@ -21,4 +21,4 @@ app.use('/contributors', contributors);
 app.use('/faq', faq);
 
 // Run server
-app.listen(port, () => process.stdout.write(`\n\n\x1b[34m Server started on port ${port} \x1b[0m \n`));
+app.listen(port, () => process.stdout.write(`\n\n\x1b[34m Server started @ http://localhost:${port}/\x1b[0m \n`));
