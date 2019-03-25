@@ -34,7 +34,7 @@ module.exports = async function getContributors(req, res) {
                 related: `/contributors/${key}/contribution-areas`,
               },
               data: teamIds.map(team => ({
-                type: 'contribution_area',
+                type: 'contribution-area',
                 id: team,
               })),
             },
@@ -51,6 +51,6 @@ module.exports = async function getContributors(req, res) {
     };
     return res.json(finalResponse);
   } catch ({ message }) {
-    return res.status(400).json({ status: 400, message });
+    return res.status(500).json({ status: 500, message });
   }
 };
