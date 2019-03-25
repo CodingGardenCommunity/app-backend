@@ -36,7 +36,7 @@ module.exports = async function getContributors(req, res) {
               },
               data: teamIds.map(team => ({
                 type: 'contribution-area',
-                id: team,
+                id: String(team),
               })),
             },
           },
