@@ -8,6 +8,7 @@ module.exports = async function getContributors(req, res) {
     const finalResponse = {
       data: data
         .sort((a, b) => new Date(a.joined) - new Date(b.joined))
+        .sort((a, b) => b.active - a.active)
         .map(({
           name,
           github: username,
@@ -16,9 +17,9 @@ module.exports = async function getContributors(req, res) {
           teamIds,
           active,
           joined,
-        }, key) => ({
+        }) => ({
           type: 'contributor',
-          id: key,
+          id: username,
           attributes: {
             username,
             name,
@@ -30,8 +31,8 @@ module.exports = async function getContributors(req, res) {
           relationships: {
             contributionArea: {
               links: {
-                self: `/contributors/${key}/relationships/contribution-areas`,
-                related: `/contributors/${key}/contribution-areas`,
+                self: `/contributors/${username}/relationships/contribution-areas`,
+                related: `/contributors/${username}/contribution-areas`,
               },
               data: teamIds.map(team => ({
                 type: 'contribution-area',
