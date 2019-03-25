@@ -14,6 +14,8 @@ module.exports = async function getContributors(req, res) {
           image,
           countryCode,
           teamIds,
+          active,
+          joined,
         }, key) => ({
           type: 'contributor',
           id: key,
@@ -22,6 +24,8 @@ module.exports = async function getContributors(req, res) {
             name,
             image,
             countryCode,
+            active,
+            joined,
           },
           relationships: {
             contributionArea: {
