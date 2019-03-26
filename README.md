@@ -4,7 +4,7 @@
 
 This repository contains the source files and documentation for the API of the
 Coding Garden Community App. For general information about the Community App
-please visit <https://google.com>.
+please visit the [App Wiki](https://github.com/CodingGardenCommunity/app-wiki/wiki).
 
 ## Running the API locally
 
@@ -24,7 +24,7 @@ We use the yarn package manager to run this project. If you haven't already plea
 
 After setting up both tools you can install all dependencies by cloning this
 project and running `yarn install` in the local project's root directory.
-Starting the API can then be done by issuing this command: `yarn run start`. You
+Starting the API can then be done by issuing this command: `yarn run dev`. You
 can now visit <http://localhost:3000/> to view the API.
 
 ### Via Docker
