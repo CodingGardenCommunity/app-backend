@@ -1,14 +1,8 @@
 const router = require('express').Router();
-const {
-  getAllFAQs,
-  addFAQ,
-  deleteFAQ,
-  updateFAQ,
-} = require('./faq.controller');
+const { getFAQ } = require('./faq.controller');
 
-router.get('/', getAllFAQs);
-router.post('/add', addFAQ);
-router.delete('/:id', deleteFAQ);
-router.put('/:id', updateFAQ);
+router.get('/', getFAQ);
+router.get('/:id', getFAQ);
+
 
 module.exports = router;
