@@ -41,10 +41,9 @@ const faqData = [{
 ];
 
 function getFAQ(req, res) {
-  let response = faqData;
-  if ('id' in req.params) {
-    response = [faqData.find(({ id }) => id === Number(req.params.id))];
-  }
+  const response = 'id' in req.params
+    ? [faqData.find(({ id }) => id === Number(req.params.id))]
+    : faqData;
 
   const finalResponse = response
     .map(({ id, question, answer }) => ({
