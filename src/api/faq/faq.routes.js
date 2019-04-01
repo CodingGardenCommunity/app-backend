@@ -1,9 +1,8 @@
 const router = require('express').Router();
+const { getFAQ } = require('./faq.controller');
 
-router.get('/', (req, res) => {
-  res.json({
-    message: 'Frequently asked questions👋',
-  });
-});
+router.get('/', getFAQ);
+router.get('/:id', getFAQ);
+
 
 module.exports = router;
