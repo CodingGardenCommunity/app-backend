@@ -30,19 +30,18 @@ const faqData = [{
 },
 {
   id: 6,
-  question: 'What\'s the best way to contact you ?',
+  question: 'What\'s the best way to contact you?',
   answer: 'Join the discord. https://coding.garden/discord',
 },
 {
   id: 7,
   question: 'How do you add emojis in VS Code?',
-  answer: 'This is a feature of Mac OS X. Press CTRL+CMD+Space to bring up the emoji menu! On Windows 10 you can use CTRL+Period  ',
+  answer: 'This is a feature of Mac OS X. Press CTRL+CMD+Space to bring up the emoji menu! On Windows 10 you can use CTRL+Period',
 },
 ];
 
 function getFAQ(req, res) {
-  const response = 'id' in req.params
-    ? [faqData.find(({ id }) => id === Number(req.params.id))]
+  const response = 'id' in req.params ? [faqData.find(({ id }) => id === Number(req.params.id))]
     : faqData;
 
   const finalResponse = response
