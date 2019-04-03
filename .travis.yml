@@ -1,10 +1,31 @@
+sudo: false
+
 language: node_js
+notifications:
+  email: false
 node_js:
 - stable
 cache: yarn
 stages:
   - test
+  - name: deploy
+    # Don't deploy on tags or forked repositories
+    if: type = push AND fork = false
 jobs:
   include:
+    ### START TEST STAGE ###
     - stage: test
       script: yarn run lint
+    ### END TEST STAGE ###
+    ### START DEPLOY STAGE ###
+    - stage: deploy
+      name: "Deploy to now.sh"
+      if: branch = develop OR branch = staging OR branch = master
+      script: skip
+      deploy:
+        provider: script
+        script: bash ./deploy.sh
+        skip_cleanup: true
+        on:
+          # We already filter the job above, so deployment can run on every branch that matches the if above
+          all_branches: true
