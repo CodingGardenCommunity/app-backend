@@ -1,7 +1,5 @@
 #!/bin/bash
 
-NOW_VERSION="14.2.1"
-
 function usage() {
     echo "Usage: $(basename "$0") [option...] {development|staging|production}" >&2
     echo
@@ -146,5 +144,5 @@ fi
 
 echo "Deploying to $env environment with alias $DEPLOY_ALIAS"
 
-DEPLOYMENT_URL=$(npx now@"$NOW_VERSION" --token "$NOW_TOKEN" deploy -e NODE_ENV="$NODE_ENV" -e MONGO_URI="$MONGO_URI")
-npx now@"$NOW_VERSION" alias $DEPLOYMENT_URL $DEPLOY_ALIAS
+DEPLOYMENT_URL=$(npx now --token "$NOW_TOKEN" deploy -e NODE_ENV="$NODE_ENV" -e MONGO_URI="$MONGO_URI")
+npx now --token "$NOW_TOKEN" alias $DEPLOYMENT_URL $DEPLOY_ALIAS
