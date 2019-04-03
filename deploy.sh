@@ -137,6 +137,13 @@ if [ -z "$MONGO_URI" ]; then
   exit 1
 fi
 
+if [ -z "$NOW_TOKEN" ]; then
+  echo "Error: NOW_TOKEN is not set via environment variable or as argument"
+  echo
+  usage
+  exit 1
+fi
+
 echo "Deploying to $env environment with alias $DEPLOY_ALIAS"
 
 DEPLOYMENT_URL=$(npx now@"$NOW_VERSION" --token "$NOW_TOKEN" deploy -e NODE_ENV="$NODE_ENV" -e MONGO_URI="$MONGO_URI")
