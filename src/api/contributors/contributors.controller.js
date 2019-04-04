@@ -88,10 +88,7 @@ module.exports = async function getContributors(req, res) {
         },
       })),
       included: includedData
-        .filter(({ id }, i) => {
-          if (data[i].teamIds.includes(Number(id))) return true;
-          return false;
-        }),
+        .filter(({ id }, i) => (data[i].teamIds.includes(Number(id)))),
     };
     return res.json(finalResponse);
   } catch ({
