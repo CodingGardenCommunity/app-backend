@@ -16,21 +16,21 @@ const includedData = [{
 },
 {
   type: 'contribution-area',
-  id: '3',
+  id: '2',
   attributes: {
     name: 'Frontend',
   },
 },
 {
   type: 'contribution-area',
-  id: '4',
+  id: '3',
   attributes: {
     name: 'Backend',
   },
 },
 {
   type: 'contribution-area',
-  id: '2',
+  id: '4',
   attributes: {
     name: 'DevOps',
   },
@@ -88,7 +88,14 @@ module.exports = async function getContributors(req, res) {
         },
       })),
       included: includedData
-        .filter(({ id }, i) => (data[i].teamIds.includes(Number(id)))),
+        .filter(({
+          id,
+        }) => {
+          for (let i = 0; i < data.length; i += 1) {
+            if (data[i].teamIds.includes(Number(id))) return true;
+          }
+          return false;
+        }),
     };
     return res.json(finalResponse);
   } catch ({
