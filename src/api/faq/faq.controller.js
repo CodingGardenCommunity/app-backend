@@ -42,8 +42,13 @@ const faqData = [{
 
 function getFAQ(req, res) {
   try {
-    const response = 'id' in req.params ? [faqData.find(({ id }) => id === Number(req.params.id))]
-      : faqData;
+    let response;
+    if ('id' in req.params) {
+      if (Number(req.params.id) > faqData.length) throw new RangeError('There is no FAQ with the ID that you requested.');
+      response = [faqData.find(({ id }) => id === Number(req.params.id))];
+    } else {
+      response = faqData;
+    }
 
     const finalResponse = response
       .map(({ id, question, answer }) => ({
