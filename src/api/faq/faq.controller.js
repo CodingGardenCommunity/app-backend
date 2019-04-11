@@ -41,21 +41,31 @@ const faqData = [{
 ];
 
 function getFAQ(req, res) {
-  const response = 'id' in req.params ? [faqData.find(({ id }) => id === Number(req.params.id))]
-    : faqData;
+  try {
+    let response = faqData;
+    if ('id' in req.params) {
+      if (Number(req.params.id) > faqData.length) throw new RangeError('There is no FAQ with the ID that you requested.');
+      response = [faqData.find(({ id }) => id === Number(req.params.id))];
+    }
 
-  const finalResponse = response
-    .map(({ id, question, answer }) => ({
-      data: {
-        type: 'faq',
-        id,
-        attributes: {
-          question,
-          answer,
+    const finalResponse = response
+      .map(({ id, question, answer }) => ({
+        data: {
+          type: 'faq',
+          id,
+          attributes: {
+            question,
+            answer,
+          },
         },
-      },
-    }));
-  return res.json(finalResponse);
+      }));
+    return res.json(finalResponse);
+  } catch ({ message }) {
+    return res.status(500).json({
+      status: 500,
+      message,
+    });
+  }
 }
 
 module.exports = { getFAQ };
