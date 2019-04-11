@@ -48,7 +48,13 @@ module.exports = async function getContributors(req, res) {
   const contribURL = 'https://raw.githubusercontent.com/CodingGardenCommunity/contributors/master/contributors.json';
   try {
     const response = await fetch(contribURL);
-    const data = await response.json();
+    let data = await response.json();
+
+    if ('id' in req.params) {
+      const individualData = data.filter(({ github: id }) => id === req.params.id);
+      if (individualData.length > 0) data = individualData;
+      else throw new RangeError('There is no contributor with the ID that you requested.');
+    }
 
     const finalResponse = {
       data: data.sort((a, b) => {
