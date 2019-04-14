@@ -51,7 +51,9 @@ module.exports = async function getContributors(req, res) {
     let data = await response.json();
 
     if ('id' in req.params) {
-      const individualData = data.filter(({ github: id }) => id === req.params.id);
+      const individualData = data.filter(({
+        github: id,
+      }) => id === req.params.id);
       if (individualData.length > 0) data = individualData;
       else throw new RangeError('There is no contributor with the ID that you requested.');
     }
@@ -104,9 +106,16 @@ module.exports = async function getContributors(req, res) {
         }),
     };
     return res.json(finalResponse);
-  } catch ({
-    message,
-  }) {
+  } catch (error) {
+    const {
+      message,
+    } = error;
+    if (error instanceof RangeError) {
+      return res.status(404).json({
+        status: 404,
+        message,
+      });
+    }
     return res.status(500).json({
       status: 500,
       message,
