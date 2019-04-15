@@ -6,13 +6,12 @@ const FAQ = mongoose.model('faqs');
 
 async function getFAQ(req, res) {
   try {
-    const queryAll = FAQ.find({});
-    const faqData = await queryAll.exec();
-    let response = faqData;
+    let response;
     if ('id' in req.params) {
-      response = [faqData.find(({ id }) => id === req.params.id)];
-      if (response[0] === undefined) throw new RangeError('There is no FAQ with the ID that you requested.');
-    }
+      try {
+        response = [await FAQ.findById(req.params.id).exec()];
+      } catch ({ message }) { throw new ReferenceError(message); }
+    } else response = await FAQ.find({}).exec();
 
     const finalResponse = response
       .map(({
@@ -36,7 +35,7 @@ async function getFAQ(req, res) {
     const {
       message,
     } = error;
-    const status = error instanceof RangeError ? 404 : 500;
+    const status = error instanceof ReferenceError ? 404 : 500;
 
     return res.status(status).json({
       status,
