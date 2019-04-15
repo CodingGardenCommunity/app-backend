@@ -45,11 +45,17 @@ function getFAQ(req, res) {
     let response = faqData;
     if ('id' in req.params) {
       if (Number(req.params.id) > faqData.length) throw new RangeError('There is no FAQ with the ID that you requested.');
-      response = [faqData.find(({ id }) => id === Number(req.params.id))];
+      response = [faqData.find(({
+        id,
+      }) => id === Number(req.params.id))];
     }
 
     const finalResponse = response
-      .map(({ id, question, answer }) => ({
+      .map(({
+        id,
+        question,
+        answer,
+      }) => ({
         data: {
           type: 'faq',
           id,
@@ -60,7 +66,16 @@ function getFAQ(req, res) {
         },
       }));
     return res.json(finalResponse);
-  } catch ({ message }) {
+  } catch (error) {
+    const {
+      message,
+    } = error;
+    if (error instanceof RangeError) {
+      return res.status(404).json({
+        status: 404,
+        message,
+      });
+    }
     return res.status(500).json({
       status: 500,
       message,
@@ -68,4 +83,6 @@ function getFAQ(req, res) {
   }
 }
 
-module.exports = { getFAQ };
+module.exports = {
+  getFAQ,
+};
