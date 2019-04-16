@@ -36,7 +36,8 @@ const faqData = [{
   answer: 'This is a feature of Mac OS X. Press CTRL+CMD+Space to bring up the emoji menu! On Windows 10 you can use CTRL+Period',
 },
 ];
-(async () => {
+
+async function seedFAQs() {
   try {
     await FAQ.deleteMany({});
     await FAQ.insertMany(faqData);
@@ -46,4 +47,5 @@ const faqData = [{
   } finally {
     process.exit(0);
   }
-})();
+}
+module.exports = seedFAQs;
