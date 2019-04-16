@@ -9,6 +9,9 @@ const { server: { port, host } } = require('./config');
 // Database connection
 require('./helpers/databaseConnection');
 
+// Seed DB
+require('./tasks/seedFaq');
+
 // Initialize server
 const app = express();
 
