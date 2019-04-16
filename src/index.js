@@ -1,10 +1,10 @@
 const express = require('express');
 
-const { contributors, faq } = require('./routes');
-const { server: { port, host } } = require('./config');
-
 // ENV configuration
 require('dotenv').config();
+
+const { contributors, faq } = require('./routes');
+const { server: { port, host } } = require('./config');
 
 // Database connection
 require('./helpers/databaseConnection');
