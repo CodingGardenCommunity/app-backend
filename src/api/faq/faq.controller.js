@@ -1,8 +1,4 @@
-const mongoose = require('mongoose');
-
-require('./faq.model');
-
-const FAQ = mongoose.model('faqs');
+const FAQ = require('./faq.model');
 
 async function getFAQ(req, res) {
   try {
@@ -10,6 +6,7 @@ async function getFAQ(req, res) {
     if ('id' in req.params) {
       try {
         response = [await FAQ.findById(req.params.id).exec()];
+        if (response[0] === null) throw new ReferenceError('The requested ID does not exist.');
       } catch ({ message }) { throw new ReferenceError(message); }
     } else response = await FAQ.find({}).exec();
 
@@ -18,7 +15,8 @@ async function getFAQ(req, res) {
         id,
         question,
         answer,
-        dateUpdated,
+        createdAt,
+        updatedAt,
       }) => ({
         data: {
           type: 'faq',
@@ -26,7 +24,8 @@ async function getFAQ(req, res) {
           attributes: {
             question,
             answer,
-            dateUpdated,
+            createdAt,
+            updatedAt,
           },
         },
       }));

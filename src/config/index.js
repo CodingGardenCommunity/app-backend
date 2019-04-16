@@ -4,7 +4,6 @@ module.exports = {
     port: process.env.PORT || 3000,
   },
   database: {
-    uri: process.env.NODE_ENV === 'production'
-      ? process.env.MONGO_URI : 'mongodb://spiray:abc123abc123@ds139946.mlab.com:39946/codinggardencommunity',
+    uri: process.env.MONGO_URI || 'mongodb://localhost:27017/codinggardencommunity',
   },
 };

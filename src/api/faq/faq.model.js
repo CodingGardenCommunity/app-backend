@@ -11,11 +11,11 @@ const FAQSchema = new Schema({
     type: String,
     required: true,
   },
-  dateUpdated: {
-    type: Date,
-    default: Date.now,
-    required: true,
+}, {
+  timestamps: {
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
   },
 });
 
-mongoose.model('faqs', FAQSchema);
+module.exports = mongoose.model('faqs', FAQSchema);
