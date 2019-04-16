@@ -44,8 +44,6 @@ async function seedFAQs() {
     process.stdout.write('\n\n\x1b[32m DB Seeded with FAQ Data\x1b[0m \n');
   } catch ({ message }) {
     process.stdout.write(`\n\n\x1b[32m ${message}\x1b[0m \n`);
-  } finally {
-    process.exit(0);
   }
 }
 module.exports = seedFAQs;
