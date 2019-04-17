@@ -36,14 +36,14 @@ const faqData = [{
   answer: 'This is a feature of Mac OS X. Press CTRL+CMD+Space to bring up the emoji menu! On Windows 10 you can use CTRL+Period',
 },
 ];
-(async () => {
+
+async function seedFAQs() {
   try {
     await FAQ.deleteMany({});
     await FAQ.insertMany(faqData);
     process.stdout.write('\n\n\x1b[32m DB Seeded with FAQ Data\x1b[0m \n');
   } catch ({ message }) {
     process.stdout.write(`\n\n\x1b[32m ${message}\x1b[0m \n`);
-  } finally {
-    process.exit(0);
   }
-})();
+}
+module.exports = seedFAQs;
