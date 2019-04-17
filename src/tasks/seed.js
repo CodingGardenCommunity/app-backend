@@ -1,6 +1,8 @@
 const seedFAQs = require('./seedFaq');
 
-if (process.env.NODE_ENV === 'development') {
-  seedFAQs();
-  process.exit(0);
-}
+(async () => {
+  if (process.env.NODE_ENV === 'development') {
+    await seedFAQs();
+    process.exit(0);
+  }
+})();
