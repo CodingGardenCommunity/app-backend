@@ -8,7 +8,6 @@
         "dev": "cross-env NODE_ENV=development nodemon src/index.js",
         "seed": "node src/tasks/seed.js",
         "lint": "eslint src/**/*.js",
-        "postinstall": "npm run seed",
         "deploy": "./deploy.sh"
     },
     "repository": "https://github.com/CodingGardenCommunity/app-backend.git",
