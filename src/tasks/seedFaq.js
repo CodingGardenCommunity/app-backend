@@ -1,8 +1,5 @@
 const FAQ = require('../api/faq/faq.model');
 
-require('dotenv').config();
-require('../helpers/databaseConnection');
-
 const faqData = [{
   question: 'What break timer do you use?',
   answer: 'It\'s called Time Out by Dejal. It is only available for Mac. For Windows, checkout Eye Leo. I have it setup for a 10 second micro break every 10 minutes and a 5 minute break every 60 minutes.',
@@ -38,12 +35,8 @@ const faqData = [{
 ];
 
 async function seedFAQs() {
-  try {
-    await FAQ.deleteMany({});
-    await FAQ.insertMany(faqData);
-    process.stdout.write('\n\n\x1b[32m DB Seeded with FAQ Data\x1b[0m \n');
-  } catch ({ message }) {
-    process.stdout.write(`\n\n\x1b[32m ${message}\x1b[0m \n`);
-  }
+  await FAQ.deleteMany({});
+  await FAQ.insertMany(faqData);
+  process.stdout.write('\n\n\x1b[32m DB Seeded with FAQ Data\x1b[0m \n');
 }
 module.exports = seedFAQs;

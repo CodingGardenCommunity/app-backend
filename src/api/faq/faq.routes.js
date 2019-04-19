@@ -4,5 +4,4 @@ const { getFAQ } = require('./faq.controller');
 router.get('/', getFAQ);
 router.get('/:id', getFAQ);
 
-
 module.exports = router;
