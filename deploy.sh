@@ -144,5 +144,5 @@ fi
 
 echo "Deploying to $env environment with alias $DEPLOY_ALIAS"
 
-DEPLOYMENT_URL=$(npx now --token "$NOW_TOKEN" deploy -e NODE_ENV="$NODE_ENV" -e MONGO_URI="$MONGO_URI")
+DEPLOYMENT_URL=$(npx now --token "$NOW_TOKEN" deploy -e NODE_ENV="$NODE_ENV" -e MONGO_URI="$MONGO_URI" -e ADMIN_SECRET=@community-api-admin-secret)
 npx now --token "$NOW_TOKEN" alias $DEPLOYMENT_URL $DEPLOY_ALIAS

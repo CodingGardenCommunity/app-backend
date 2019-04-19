@@ -1,8 +1,13 @@
+require('../helpers/databaseConnection');
+
 const seedFAQs = require('./seedFaq');
 
 (async () => {
-  if (process.env.NODE_ENV === 'development') {
+  try {
     await seedFAQs();
+  } catch (error) {
+    console.log(error);
+  } finally {
     process.exit(0);
   }
 })();
