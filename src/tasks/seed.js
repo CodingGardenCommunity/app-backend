@@ -6,7 +6,7 @@ const seedFAQs = require('./seedFaq');
   try {
     await seedFAQs();
   } catch (error) {
-    console.log(error);
+    process.stdout.write(error);
   } finally {
     process.exit(0);
   }
