@@ -1,3 +1,4 @@
+const colors = require('colors');
 const FAQ = require('../api/faq/faq.model');
 
 const faqData = [{
@@ -37,6 +38,6 @@ const faqData = [{
 async function seedFAQs() {
   await FAQ.deleteMany({});
   await FAQ.insertMany(faqData);
-  process.stdout.write('\n\n\x1b[32m DB Seeded with FAQ Data\x1b[0m \n');
+  console.log(colors.yellow('DB Seeded with FAQ Data'));
 }
 module.exports = seedFAQs;

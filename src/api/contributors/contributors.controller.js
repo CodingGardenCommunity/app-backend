@@ -44,7 +44,7 @@ const includedData = [{
 },
 ];
 
-module.exports = async function getContributors(req, res) {
+module.exports = async function getContributors(req, res, next) {
   const contribURL = 'https://raw.githubusercontent.com/CodingGardenCommunity/contributors/master/contributors.json';
   try {
     const response = await fetch(contribURL);
@@ -107,18 +107,9 @@ module.exports = async function getContributors(req, res) {
     };
     return res.json(finalResponse);
   } catch (error) {
-    const {
-      message,
-    } = error;
     if (error instanceof RangeError) {
-      return res.status(404).json({
-        status: 404,
-        message,
-      });
+      res.status(404);
     }
-    return res.status(500).json({
-      status: 500,
-      message,
-    });
+    return next(error);
   }
 };
