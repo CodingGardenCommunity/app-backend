@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 require('dotenv').config();
 
-const schema = Joi.object({
+const options = {
   NODE_ENV: Joi.string().required()
     .default('development')
     .allow(['development', 'test', 'production']),
@@ -10,11 +10,18 @@ const schema = Joi.object({
   HOST: Joi.string().required().default('0.0.0.0'),
   MONGO_URI: Joi.string().required(),
   ADMIN_SECRET: Joi.string().required(),
-}).unknown(true);
+};
+
+if (process.env.NODE_ENV === 'test') {
+  options.TEST_MONGO_URI = Joi.string().required();
+}
+
+const schema = Joi.object(options).unknown(true);
 
 const { error, value: config } = Joi.validate(process.env, schema);
 
 if (error) {
+  // eslint-disable-next-line no-console
   console.error('Missing property in config.', error.message);
   process.exit(1);
 }

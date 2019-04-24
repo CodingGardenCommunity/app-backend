@@ -105,11 +105,11 @@ module.exports = async function getContributors(req, res, next) {
           return false;
         }),
     };
-    return res.json(finalResponse);
+    res.json(finalResponse);
   } catch (error) {
     if (error instanceof RangeError) {
       res.status(404);
     }
-    return next(error);
+    next(error);
   }
 };

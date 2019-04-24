@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
-const { MONGO_URI } = require('../config');
+const { NODE_ENV, TEST_MONGO_URI, MONGO_URI } = require('../config');
 
-mongoose.connect(MONGO_URI, { useNewUrlParser: true });
+const URI = NODE_ENV === 'test' ? TEST_MONGO_URI : MONGO_URI;
+
+mongoose.connect(URI, { useNewUrlParser: true });

@@ -15,7 +15,7 @@ jobs:
   include:
     ### START TEST STAGE ###
     - stage: test
-      script: yarn run lint
+      script: yarn run lint && yarn run test
     ### END TEST STAGE ###
     ### START DEPLOY STAGE ###
     - stage: deploy

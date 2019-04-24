@@ -29,7 +29,7 @@ async function getFAQ(req, res, next) {
           },
         },
       }));
-    return res.json(finalResponse);
+    res.json(finalResponse);
   } catch (error) {
     if (error instanceof ReferenceError) {
       res.status(404);

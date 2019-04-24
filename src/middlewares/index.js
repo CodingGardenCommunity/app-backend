@@ -17,12 +17,12 @@ function notFound(req, res, next) {
 
 // eslint-disable-next-line no-unused-vars
 function errorHandler(error, req, res, next) {
+  const { message, stack } = error;
   const status = res.statusCode === 200 ? 500 : res.statusCode;
-  res.status(status);
-  res.json({
-    message: error.message,
+  res.status(status).json({
+    message,
     status,
-    stack: process.env.NODE_ENV === 'production' ? '🥞' : error.stack,
+    stack: process.env.NODE_ENV === 'production' ? '🥞' : stack,
   });
 }
 

@@ -1,4 +1,4 @@
-const colors = require('colors');
+const colors = require('colors/safe');
 const FAQ = require('../api/faq/faq.model');
 
 const faqData = [{
@@ -38,6 +38,7 @@ const faqData = [{
 async function seedFAQs() {
   await FAQ.deleteMany({});
   await FAQ.insertMany(faqData);
+  // eslint-disable-next-line no-console
   console.log(colors.yellow('DB Seeded with FAQ Data'));
 }
 module.exports = seedFAQs;

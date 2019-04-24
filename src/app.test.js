@@ -3,15 +3,12 @@ const request = require('supertest');
 const app = require('./app');
 
 describe('GET /', () => {
-  it('Should respond with a message', () => {
+  it('Should respond with a message', async () => {
     const msg = 'Check out /contributors and /faq';
-    return request(app)
+    const response = await request(app)
       .get('/')
       .expect('Content-Type', /json/)
-      .expect(200)
-      .then((response) => {
-        // jest expecations...
-        expect(response.body.msg).toBe(msg);
-      });
+      .expect(200);
+    expect(response.body.msg).toBe(msg);
   });
 });
