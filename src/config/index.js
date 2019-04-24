@@ -3,11 +3,10 @@ const Joi = require('joi');
 require('dotenv').config();
 
 const options = {
-  NODE_ENV: Joi.string().required()
-    .default('development')
+  NODE_ENV: Joi.string().default('development')
     .allow(['development', 'test', 'production']),
-  PORT: Joi.string().required().default(3000),
-  HOST: Joi.string().required().default('0.0.0.0'),
+  PORT: Joi.string().default(3000),
+  HOST: Joi.string().default('0.0.0.0'),
   ADMIN_SECRET: Joi.string().required(),
 };
 
@@ -21,13 +20,10 @@ const schema = Joi.object(options).unknown(true);
 
 const { error, value: config } = Joi.validate(process.env, schema);
 
-console.log(config);
-console.log(process.env);
-
 if (error) {
   // eslint-disable-next-line no-console
   console.error('Missing property in config.', error.message);
-  // process.exit(1);
+  process.exit(1);
 }
 
 module.exports = config;
