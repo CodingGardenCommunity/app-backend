@@ -66,7 +66,8 @@ async function removeFAQ(req, res) {
   try {
     const { id: _id } = req.params;
     if (_id.length < 12) throw new ReferenceError('FAQ ID must be at least 12 characters..');
-    await FAQ.deleteOne({ _id });
+    const deletedFAQ = await FAQ.deleteOne({ _id });
+    if (deletedFAQ.deletedCount === 0) throw new ReferenceError('There is no FAQ to delete with that ID.');
     return res.json({ status: 200, message: 'FAQ removed successfully from DB.' });
   } catch (error) {
     const {
