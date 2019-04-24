@@ -48,12 +48,12 @@ async function addFAQ(req, res) {
     const { question, answer } = req.body;
     if (!question || !answer) throw new ReferenceError('Make sure your request includes a question and answer.');
     await new FAQ({ question, answer }).save();
-    return res.json({ message: 'FAQ added successfully to DB.' });
+    return res.json({ status: 200, message: 'FAQ added successfully to DB.' });
   } catch (error) {
     const {
       message,
     } = error;
-    const status = error instanceof ReferenceError ? 404 : 500;
+    const status = error instanceof ReferenceError ? 400 : 500;
 
     return res.status(status).json({
       status,
@@ -67,7 +67,7 @@ async function removeFAQ(req, res) {
     const { id: _id } = req.params;
     const deletedFAQ = await FAQ.deleteOne({ _id });
     if (deletedFAQ.deletedCount === 0) throw new ReferenceError('There is no FAQ to delete with that ID.');
-    return res.json({ message: 'FAQ removed successfully from DB.' });
+    return res.json({ status: 200, message: 'FAQ removed successfully from DB.' });
   } catch (error) {
     const {
       message,
