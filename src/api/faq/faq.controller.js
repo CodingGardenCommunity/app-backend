@@ -4,6 +4,8 @@ async function getFAQ(req, res) {
   try {
     let response;
     if ('id' in req.params) {
+      if (req.params.id.length < 12) throw new ReferenceError('FAQ ID must be at least 12 characters..');
+
       try {
         response = [await FAQ.findById(req.params.id).exec()];
         if (response[0] === null) throw new ReferenceError('The requested ID does not exist.');
