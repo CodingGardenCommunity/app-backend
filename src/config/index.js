@@ -8,12 +8,13 @@ const options = {
     .allow(['development', 'test', 'production']),
   PORT: Joi.string().required().default(3000),
   HOST: Joi.string().required().default('0.0.0.0'),
-  MONGO_URI: Joi.string().required(),
   ADMIN_SECRET: Joi.string().required(),
 };
 
 if (process.env.NODE_ENV === 'test') {
   options.TEST_MONGO_URI = Joi.string().required();
+} else {
+  options.MONGO_URI = Joi.string().required();
 }
 
 const schema = Joi.object(options).unknown(true);
