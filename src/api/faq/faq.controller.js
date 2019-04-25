@@ -1,6 +1,6 @@
 const FAQ = require('./faq.model');
 
-async function getFAQ(req, res) {
+async function getFAQ(req, res, next) {
   try {
     let response;
     if ('id' in req.params) {
@@ -30,17 +30,12 @@ async function getFAQ(req, res) {
           },
         },
       }));
-    return res.json(finalResponse);
+    res.json(finalResponse);
   } catch (error) {
-    const {
-      message,
-    } = error;
-    const status = error instanceof ReferenceError ? 404 : 500;
-
-    return res.status(status).json({
-      status,
-      message,
-    });
+    if (error instanceof ReferenceError) {
+      res.status(404);
+    }
+    next(error);
   }
 }
 

@@ -6,6 +6,9 @@ notifications:
 node_js:
 - stable
 cache: yarn
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH="$HOME/.yarn/bin:$PATH"
 stages:
   - test
   - name: deploy
@@ -15,7 +18,7 @@ jobs:
   include:
     ### START TEST STAGE ###
     - stage: test
-      script: yarn run lint
+      script: yarn run lint && yarn run test
     ### END TEST STAGE ###
     ### START DEPLOY STAGE ###
     - stage: deploy
