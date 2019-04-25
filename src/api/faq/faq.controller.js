@@ -4,8 +4,7 @@ async function getFAQ(req, res) {
   try {
     let response;
     if ('id' in req.params) {
-      if (!/^[a-fA-F0-9]{24}$/.test(req.params.id)) throw new ReferenceError('Invalid FAQ ID.');
-
+      if (!(/^[a-fA-F0-9]{24}$/.test(req.params.id))) throw new ReferenceError('Invalid FAQ ID.');
       try {
         response = [await FAQ.findById(req.params.id).exec()];
         if (response[0] === null) throw new ReferenceError('The requested ID does not exist.');
@@ -67,7 +66,7 @@ async function addFAQ(req, res) {
 async function removeFAQ(req, res) {
   try {
     const { id: _id } = req.params;
-    if (!/^[a-fA-F0-9]{24}$/.test(_id)) throw new ReferenceError('Invalid FAQ ID.');
+    if (!(/^[a-fA-F0-9]{24}$/.test(_id))) throw new ReferenceError('Invalid FAQ ID.');
     const deletedFAQ = await FAQ.deleteOne({ _id });
     if (deletedFAQ.deletedCount === 0) throw new ReferenceError('There is no FAQ to delete with that ID.');
     return res.json({ status: 200, message: 'FAQ removed successfully from DB.' });
