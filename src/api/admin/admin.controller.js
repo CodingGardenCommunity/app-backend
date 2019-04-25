@@ -1,14 +1,11 @@
 const seedFAQs = require('../../tasks/seedFaq');
 
-async function seed(req, res) {
+async function seed(req, res, next) {
   try {
     await seedFAQs();
     res.sendStatus(200);
   } catch (error) {
-    res.status(500);
-    res.json({
-      message: error.message,
-    });
+    next(error);
   }
 }
 

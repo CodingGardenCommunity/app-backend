@@ -30,3 +30,11 @@ can now visit <http://localhost:3000/> to view the API.
 ### Via Docker
 
 TBD
+
+### Setup
+
+Copy the `.env.sample` file and update accordingly:
+
+```sh
+cp .env.sample .env
+```

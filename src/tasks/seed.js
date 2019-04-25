@@ -6,6 +6,7 @@ const seedFAQs = require('./seedFaq');
   try {
     await seedFAQs();
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
   } finally {
     process.exit(0);
