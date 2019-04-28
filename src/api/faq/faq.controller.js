@@ -48,13 +48,15 @@ async function addFAQ(req, res, next) {
       answer,
     } = req.body;
     if (!question || !answer) throw new ReferenceError('Make sure your request includes a question and answer.');
-    await new FAQ({
+    const {
+      _id,
+    } = await new FAQ({
       question,
       answer,
     }).save();
     res.json({
       status: 200,
-      message: 'FAQ added successfully to DB.',
+      message: `FAQ with ID: ${_id} has been added successfully to the DB.`,
     });
   } catch (error) {
     if (error instanceof ReferenceError) res.status(404);
