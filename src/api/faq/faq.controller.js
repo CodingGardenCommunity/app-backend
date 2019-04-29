@@ -66,4 +66,8 @@ async function removeFAQ(req, res, next) {
   }
 }
 
-module.exports = { getFAQ, addFAQ, removeFAQ };
+module.exports = {
+  getFAQ,
+  addFAQ,
+  removeFAQ,
+};
