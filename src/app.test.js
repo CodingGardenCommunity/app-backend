@@ -4,7 +4,7 @@ const app = require('./app');
 
 describe('GET /', () => {
   it('Should respond with a message', async () => {
-    const msg = 'Check out /contributors and /faq';
+    const msg = 'Check out /contributors, /faq, and /history';
     const response = await request(app)
       .get('/')
       .expect('Content-Type', /json/)
