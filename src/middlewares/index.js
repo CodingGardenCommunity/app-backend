@@ -26,8 +26,4 @@ function errorHandler(error, req, res, next) {
   });
 }
 
-module.exports = {
-  isAdmin,
-  errorHandler,
-  notFound,
-};
+module.exports = { isAdmin, errorHandler, notFound };

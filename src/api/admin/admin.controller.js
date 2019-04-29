@@ -9,6 +9,4 @@ async function seed(req, res, next) {
   }
 }
 
-module.exports = {
-  seed,
-};
+module.exports = { seed };
