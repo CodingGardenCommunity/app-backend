@@ -1,8 +1,8 @@
-const seedFAQs = require('../../tasks/seedFaq');
+const { mainSeed } = require('../../tasks/seed');
 
 async function seed(req, res, next) {
   try {
-    await seedFAQs();
+    await mainSeed();
     res.sendStatus(200);
   } catch (error) {
     next(error);
