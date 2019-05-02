@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const controller = require('./admin.controller');
+const { seed } = require('./admin.controller');
 
-router.post('/seed', controller.seed);
+router.post('/seed', seed);
 
 module.exports = router;

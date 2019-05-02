@@ -1,9 +1,6 @@
 const colors = require('colors/safe');
 
-const {
-  PORT,
-  HOST,
-} = require('./config');
+const { PORT, HOST } = require('./config');
 const app = require('./app');
 
 // Run server
