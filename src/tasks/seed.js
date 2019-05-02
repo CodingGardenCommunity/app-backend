@@ -13,17 +13,6 @@ async function mainSeed() {
   }
 }
 
-(async () => {
-  try {
-    await mainSeed();
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error);
-  } finally {
-    process.exit(0);
-  }
-})();
-
 module.exports = {
   mainSeed,
 };
