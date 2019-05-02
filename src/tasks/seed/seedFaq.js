@@ -1,5 +1,5 @@
 const colors = require('colors/safe');
-const FAQ = require('../api/faq/faq.model');
+const FAQ = require('../../api/faq/faq.model');
 
 const faqData = [{
   question: 'What break timer do you use?',

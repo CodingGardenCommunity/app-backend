@@ -1,4 +1,4 @@
-const { mainSeed } = require('../../tasks/seed');
+const { mainSeed } = require('../../tasks/seed/seed');
 
 async function seed(req, res, next) {
   try {

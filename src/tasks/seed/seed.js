@@ -1,4 +1,4 @@
-require('../helpers/databaseConnection');
+require('../../helpers/databaseConnection');
 
 const seedFAQs = require('./seedFaq');
 const seedHistories = require('./seedHistory');
