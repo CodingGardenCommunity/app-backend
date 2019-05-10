@@ -82,3 +82,31 @@ describe('POST /faq', () => {
         );
       }));
 });
+
+
+describe('DELETE /faq/:id', () => {
+  it('With invalid id, should respond with invalid id message.',
+    () => request(app)
+      .delete(`/faq/${ids.invalid}`)
+      .expect(404)
+      .then((res) => {
+        expect(res.body.status).toBe(404);
+        expect(res.body.message).toBe('Invalid FAQ ID.');
+      }));
+  it('With non existant id, Should respond with non existent id message.',
+    () => request(app)
+      .delete(`/faq/${ids.nonexistant}`)
+      .expect(404)
+      .then((res) => {
+        expect(res.body.status).toBe(404);
+        expect(res.body.message).toBe('There is no FAQ to delete with that ID.');
+      }));
+  it('With valid id, should respond with success message.',
+    () => request(app)
+      .delete(`/faq/${ids.valid}`)
+      .expect(200)
+      .then((res) => {
+        expect(res.body.status).toBe(200);
+        expect(res.body.message).toBe('FAQ removed successfully from DB.');
+      }));
+});
