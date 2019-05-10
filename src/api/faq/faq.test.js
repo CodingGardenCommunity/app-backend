@@ -59,3 +59,26 @@ describe('GET /faq/:id', () => {
       .get(`/faq/${ids.valid}`)
       .expect(200));
 });
+
+
+describe('POST /faq', () => {
+  it('Without a body, should respond with a 404 status code and error message',
+    () => request(app)
+      .post('/faq')
+      .expect(404)
+      .then((res) => {
+        expect(res.body.status).toBe(404);
+        expect(res.body.message).toBe('Make sure your request includes a question and answer.');
+      }));
+  it('With a valid body, Should respond with a 200 status code',
+    () => request(app)
+      .post('/faq')
+      .send({ question: 'Test Question', answer: 'Test answer' })
+      .expect(200)
+      .then((res) => {
+        expect(res.body.status).toBe(200);
+        expect(res.body.message).toEqual(
+          expect.stringMatching(/^FAQ with ID: ([a-f0-9]{24}) has been added successfully to the DB\.$/),
+        );
+      }));
+});
