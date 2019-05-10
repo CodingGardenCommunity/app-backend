@@ -3,21 +3,21 @@ const { connection } = require('mongoose');
 
 const app = require('../../app');
 const FAQ = require('./faq.model');
+const { prePopulate } = require('../../helpers/testHelpers');
 
 const ids = {
   invalid: 'invalid_id',
   nonexistent: 'aaaaaaaaaaaaaaaaaaaaaaaa',
 };
 
-async function prePopulate() {
-  const question = 'Populate Question';
-  const answer = 'Populate answer';
+const question = 'Populate Question';
+const answer = 'Populate answer';
+const doc = { question, answer };
 
-  const { _id } = await new FAQ({ question, answer }).save();
-  ids.valid = _id;
-}
 
-beforeAll(prePopulate);
+beforeAll(async () => {
+  ids.valid = await prePopulate(FAQ, doc);
+});
 afterAll(async () => {
   await FAQ.deleteMany({});
   connection.close();
