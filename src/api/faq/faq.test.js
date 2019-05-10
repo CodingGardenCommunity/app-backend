@@ -57,7 +57,7 @@ describe('GET /faq/:id', () => {
       expect(res.body.status).toBe(404);
       expect(res.body.message).toBe('Invalid FAQ ID.');
     });
-  it('With non existant id, Should respond with non existent id message.',
+  it('With non existent id, Should respond with non existent id message.',
     async () => {
       const res = await request(app)
         .get(`/faq/${ids.nonexistent}`)
@@ -107,7 +107,7 @@ describe('DELETE /faq/:id', () => {
       expect(res.body.status).toBe(404);
       expect(res.body.message).toBe('Invalid FAQ ID.');
     });
-  it('With non existant id, Should respond with non existent id message.',
+  it('With non existent id, Should respond with non existent id message.',
     async () => {
       const res = await request(app)
         .delete(`/faq/${ids.nonexistent}`)
