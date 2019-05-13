@@ -14,10 +14,10 @@ const question = 'Populate Question';
 const answer = 'Populate answer';
 const doc = { question, answer };
 
-
 beforeAll(async () => {
   ids.valid = await prePopulate(FAQ, doc);
 });
+
 afterAll(async () => {
   await FAQ.deleteMany({});
   connection.close();
@@ -29,14 +29,14 @@ describe('GET /faq', () => {
       .get('/faq')
       .expect('Content-Type', /json/)
       .expect(200));
-  it('Should respond with array.',
+  it('Should respond with an array',
     async () => {
       const res = await request(app)
         .get('/faq')
         .expect(200);
       expect(res.body).toEqual(expect.any(Array));
     });
-  it('Should respond with a non-empty array.',
+  it('Should respond with a non-empty array',
     async () => {
       const res = await request(app)
         .get('/faq')
@@ -48,25 +48,23 @@ describe('GET /faq', () => {
 
 
 describe('GET /faq/:id', () => {
-  it('With invalid id, should respond with invalid id message.',
+  it('With an invalid id, should respond with an invalid id message',
     async () => {
       const res = await request(app)
         .get(`/faq/${ids.invalid}`)
         .expect(404);
-
       expect(res.body.status).toBe(404);
       expect(res.body.message).toBe('Invalid FAQ ID.');
     });
-  it('With non existent id, Should respond with non existent id message.',
+  it('With a non existent id, should respond with a non existent id message',
     async () => {
       const res = await request(app)
         .get(`/faq/${ids.nonexistent}`)
         .expect(404);
-
       expect(res.body.status).toBe(404);
       expect(res.body.message).toBe('The requested ID does not exist.');
     });
-  it('With valid id, should respond with statuscode 200.',
+  it('With a valid id, should respond with a 200 status code',
     () => request(app)
       .get(`/faq/${ids.valid}`)
       .expect(200));
@@ -79,11 +77,10 @@ describe('POST /faq', () => {
       const res = await request(app)
         .post('/faq')
         .expect(404);
-
       expect(res.body.status).toBe(404);
       expect(res.body.message).toBe('Make sure your request includes a question and answer.');
     });
-  it('With a valid body, Should respond with a 200 status code',
+  it('With a valid body, should respond with a 200 status code',
     async () => {
       const res = await request(app)
         .post('/faq')
@@ -98,16 +95,15 @@ describe('POST /faq', () => {
 
 
 describe('DELETE /faq/:id', () => {
-  it('With invalid id, should respond with invalid id message.',
+  it('With an invalid id, should respond with an invalid id message',
     async () => {
       const res = await request(app)
         .delete(`/faq/${ids.invalid}`)
         .expect(404);
-
       expect(res.body.status).toBe(404);
       expect(res.body.message).toBe('Invalid FAQ ID.');
     });
-  it('With non existent id, Should respond with non existent id message.',
+  it('With a non existent id, should respond with a non existent id message',
     async () => {
       const res = await request(app)
         .delete(`/faq/${ids.nonexistent}`)
@@ -115,7 +111,7 @@ describe('DELETE /faq/:id', () => {
       expect(res.body.status).toBe(404);
       expect(res.body.message).toBe('There is no FAQ to delete with that ID.');
     });
-  it('With valid id, should respond with success message.',
+  it('With a valid id, should respond with a success message',
     async () => {
       const res = await request(app)
         .delete(`/faq/${ids.valid}`)
