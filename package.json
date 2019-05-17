@@ -8,7 +8,7 @@
         "dev": "cross-env NODE_ENV=development nodemon src/index.js",
         "test": "cross-env NODE_ENV=test jest --verbose --detectOpenHandles --forceExit",
         "lint": "eslint src/**/*.js",
-        "seed": "node src/tasks/seed.js",
+        "seed": "node src/tasks/seed/localDevSeed.js",
         "deploy": "./deploy.sh"
     },
     "repository": "https://github.com/CodingGardenCommunity/app-backend.git",

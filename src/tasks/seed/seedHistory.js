@@ -1,5 +1,5 @@
 const colors = require('colors/safe');
-const History = require('../api/history/history.model');
+const History = require('../../api/history/history.model');
 
 const historyData = [{
   type: 'milestone',
