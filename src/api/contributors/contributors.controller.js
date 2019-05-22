@@ -1,22 +1,45 @@
 const fetch = require('node-fetch');
 
 /**
- * @api {get} /contributors/ Get all Contributors
+ * @api {get} /contributors Get all Contributors
  * @apiName GetContributors
  * @apiGroup Contributor
- * @apiExample Example Usage:
+ * @apiExample {curl} Example Usage:
  * curl -i https://api-dev.coding.garden/contributors
  *
- * @apiSuccess {String} type Data Type.
- * @apiSuccess {String} id Record ID in DB.
- * @apiSuccess {Object} attributes Contributor Data.
- * @apiSuccess {String} attributes.username Contributor ID.
- * @apiSuccess {String} attributes.name Contributor Name.
- * @apiSuccess {String} attributes.image Contributor Avatar URL.
- * @apiSuccess {String} attributes.countryCode Contributor Country Code.
- * @apiSuccess {Boolean} attributes.active Contributor Active.
- * @apiSuccess {Date} attributes.joined Contributor Joined Project.
- * @apiSuccess {Number[]} attributes.teamIds Contributor Project Teams.
+ * @apiSuccess {Object[]} response Contributor List.
+ * @apiSuccess {String} response.type Data Type.
+ * @apiSuccess {String} response.id Record ID from DB.
+ * @apiSuccess {Object} response.attributes Contributor Data.
+ * @apiSuccess {String} response.attributes.username Contributor ID.
+ * @apiSuccess {String} response.attributes.name Contributor Name.
+ * @apiSuccess {String} response.attributes.image Contributor Avatar URL.
+ * @apiSuccess {String} response.attributes.countryCode Contributor Country Code.
+ * @apiSuccess {Boolean} response.attributes.active Contributor Active.
+ * @apiSuccess {Date} response.attributes.joined Contributor Joined Project.
+ * @apiSuccess {Number[]} response.attributes.teamIds Contributor Project Teams.
+ */
+
+/**
+ * @api {get} /contributors/:id Get Contributor by ID
+ * @apiName GetContributorByID
+ * @apiGroup Contributor
+ * @apiExample {curl} Example Usage:
+ * curl -i https://api-dev.coding.garden/contributors/:id
+ *
+ * @apiParam {String} id The Contributor's ID.
+ *
+ * @apiSuccess {Object[]} response Contributor List.
+ * @apiSuccess {String} response.type Data Type.
+ * @apiSuccess {String} response.id Record ID from DB.
+ * @apiSuccess {Object} response.attributes Contributor Data.
+ * @apiSuccess {String} response.attributes.username Contributor ID.
+ * @apiSuccess {String} response.attributes.name Contributor Name.
+ * @apiSuccess {String} response.attributes.image Contributor Avatar URL.
+ * @apiSuccess {String} response.attributes.countryCode Contributor Country Code.
+ * @apiSuccess {Boolean} response.attributes.active Contributor Active.
+ * @apiSuccess {Date} response.attributes.joined Contributor Joined Project.
+ * @apiSuccess {Number[]} response.attributes.teamIds Contributor Project Teams.
  */
 
 module.exports = async function getContributors(req, res, next) {
