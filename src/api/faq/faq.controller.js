@@ -15,17 +15,19 @@ async function getFAQ(req, res, next) {
 
     const finalResponse = response
       .map(({
-        id, question, answer, createdAt, updatedAt,
+        id,
+        question,
+        answer,
+        createdAt,
+        updatedAt,
       }) => ({
-        data: {
-          type: 'faq',
-          id,
-          attributes: {
-            question,
-            answer,
-            createdAt,
-            updatedAt,
-          },
+        type: 'faq',
+        id,
+        attributes: {
+          question,
+          answer,
+          createdAt,
+          updatedAt,
         },
       }));
     res.json(finalResponse);

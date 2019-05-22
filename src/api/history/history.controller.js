@@ -27,21 +27,19 @@ async function getHistory(req, res, next) {
         createdAt,
         updatedAt,
       }) => ({
-        data: {
-          type: 'history',
-          id,
-          attributes: {
-            type,
-            name,
-            videoID,
-            title,
-            date,
-            description,
-            url,
-            thumbnail,
-            createdAt,
-            updatedAt,
-          },
+        type: 'history',
+        id,
+        attributes: {
+          type,
+          name,
+          videoID,
+          title,
+          date,
+          description,
+          url,
+          thumbnail,
+          createdAt,
+          updatedAt,
         },
       }));
     return res.json(finalResponse);
