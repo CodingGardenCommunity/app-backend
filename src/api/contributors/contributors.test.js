@@ -20,7 +20,11 @@ describe('GET /contributors/:id', () => {
   });
 
   it('Should respond with 404 status code for invalid id', async () => {
-    const { status, type, body: { message } } = await request(app).get('/contributors/someInvalidID');
+    const {
+      status,
+      type,
+      body: { message },
+    } = await request(app).get('/contributors/someInvalidID');
     expect(status).toEqual(404);
     expect(type).toEqual('application/json');
     expect(message).toEqual('There is no contributor with the ID that you requested.');

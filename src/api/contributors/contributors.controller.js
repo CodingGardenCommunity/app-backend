@@ -18,15 +18,7 @@ module.exports = async function getContributors(req, res, next) {
         if (!a.active && b.active) return 1;
         return new Date(a.joined) - new Date(b.joined);
       })
-      .map(({
-        name,
-        github: username,
-        image,
-        countryCode,
-        teamIds,
-        active,
-        joined,
-      }) => ({
+      .map(({ name, github: username, image, countryCode, teamIds, active, joined }) => ({
         type: 'contributor',
         id: username,
         attributes: {
