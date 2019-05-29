@@ -23,8 +23,17 @@ define({ "api": [
         ]
       }
     },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Un-Authorized\n{\n \"message\": \"Un-Authorized\",\n \"status\": 401,\n \"stack\": \"Error: Un-Authorized\\n    at isAdmin (C:\\\\app\\\\app-backend\\\\src\\\\middlewares\\\\index.js:7:19)\n at Layer.handle [as handle_request] (C:\\\\app\\\\app-backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\layer.js:95:5)\n at trim_prefix (C:\\\\app\\\\app-backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:317:13)\n at C:\\\\app\\\\app-backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:284:7\n at Function.process_params (C:\\\\app\\\\app-backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:335:12)\n at next (C:\\\\app\\\\app-backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:275:10)\n at Function.handle (C:\\\\app\\\\app-backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:174:3)\n at router (C:\\\\app\\\\app-backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:47:12)\n at Layer.handle [as handle_request] (C:\\\\app\\\\app-backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\layer.js:95:5)\n at trim_prefix (C:\\\\app\\\\app-backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:317:13)\n at C:\\\\app\\\\app-backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:284:7\n at Function.process_params (C:\\\\app\\\\app-backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:335:12)\n at next (C:\\\\app\\\\app-backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:275:10)\n at jsonParser (C:\\\\app\\\\app-backend\\\\node_modules\\\\body-parser\\\\lib\\\\types\\\\json.js:110:7)\n at Layer.handle [as handle_request] (C:\\\\app\\\\app-backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\layer.js:95:5)\n at trim_prefix (C:\\\\app\\\\app-backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:317:13)\"\n}",
+          "type": "json"
+        }
+      ]
+    },
     "version": "0.0.0",
-    "filename": "src/api/admin/admin.controller.js",
+    "filename": "src/api/admin/admin.routes.js",
     "groupTitle": "Admin"
   },
   {
@@ -33,13 +42,6 @@ define({ "api": [
     "title": "Get Contributor by ID",
     "name": "GetContributorByID",
     "group": "Contributor",
-    "examples": [
-      {
-        "title": "Example Usage:",
-        "content": "curl -i https://api-dev.coding.garden/contributors/:id",
-        "type": "curl"
-      }
-    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -134,10 +136,17 @@ define({ "api": [
             "description": "<p>Contributor Project Teams.</p>"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "[\n {\n  \"type\": \"contributor\",\n  \"id\": \"w3cj\",\n  \"attributes\": {\n   \"username\": \"w3cj\",\n   \"name\": \"CJ\",\n   \"image\": \"https://avatars1.githubusercontent.com/u/14241866\",\n   \"countryCode\": \"USA\",\n   \"active\": true,\n   \"joined\": \"2018-12-16\",\n   \"teamIds\": [\n    0,\n    1,\n    2,\n    3,\n    4\n   ]\n  }\n }\n]",
+          "type": "json"
+        }
+      ]
     },
     "version": "0.0.0",
-    "filename": "src/api/contributors/contributors.controller.js",
+    "filename": "src/api/contributors/contributors.routes.js",
     "groupTitle": "Contributor"
   },
   {
@@ -146,13 +155,6 @@ define({ "api": [
     "title": "Get all Contributors",
     "name": "GetContributors",
     "group": "Contributor",
-    "examples": [
-      {
-        "title": "Example Usage:",
-        "content": "curl -i https://api-dev.coding.garden/contributors",
-        "type": "curl"
-      }
-    ],
     "success": {
       "fields": {
         "Success 200": [
@@ -234,10 +236,29 @@ define({ "api": [
             "description": "<p>Contributor Project Teams.</p>"
           }
         ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "[\n {\n  \"type\": \"contributor\",\n  \"id\": \"w3cj\",\n  \"attributes\": {\n   \"username\": \"w3cj\",\n   \"name\": \"CJ\",\n   \"image\": \"https://avatars1.githubusercontent.com/u/14241866\",\n   \"countryCode\": \"USA\",\n   \"active\": true,\n   \"joined\": \"2018-12-16\",\n   \"teamIds\": [\n    0,\n    1,\n    2,\n    3,\n    4\n   ]\n  }\n },\n {\n  \"type\": \"contributor\",\n  \"id\": \"spiray\",\n  \"attributes\": {\n   \"username\": \"spiray\",\n   \"name\": \"YSpira\",\n   \"image\": \"https://avatars0.githubusercontent.com/u/26689583\",\n   \"countryCode\": \"USA\",\n   \"active\": true,\n   \"joined\": \"2018-12-16\",\n   \"teamIds\": [\n    0,\n    3\n   ]\n  }\n }\n ...\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InternalServerError",
+            "description": "<p>{string}</p>"
+          }
+        ]
       }
     },
     "version": "0.0.0",
-    "filename": "src/api/contributors/contributors.controller.js",
+    "filename": "src/api/contributors/contributors.routes.js",
     "groupTitle": "Contributor"
   }
 ] });
