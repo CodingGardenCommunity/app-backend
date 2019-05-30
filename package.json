@@ -9,14 +9,15 @@
         "test": "cross-env NODE_ENV=test jest --verbose --detectOpenHandles --forceExit",
         "lint": "eslint . --ext .js",
         "seed": "node src/tasks/seed/localDevSeed.js",
-        "deploy": "./deploy.sh"
+        "deploy": "./deploy.sh",
+        "format": "prettier --write src/**/*.js"
     },
     "repository": "https://github.com/CodingGardenCommunity/app-backend.git",
     "author": "Coding Garden Community App",
     "license": "MIT",
     "husky": {
         "hooks": {
-            "pre-commit": "yarn run lint && yarn run test"
+            "pre-commit": "yarn run lint && yarn run format && yarn run test"
         }
     },
     "apidoc": {
