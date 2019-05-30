@@ -28,7 +28,7 @@
         }
     },
     "jest": {
-        "testEnvironement": "node"
+        "testEnvironment": "node"
     },
     "dependencies": {
         "colors": "^1.3.3",
