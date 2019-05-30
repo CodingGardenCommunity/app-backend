@@ -7,7 +7,7 @@
         "start": "cross-env NODE_ENV=production node src/index.js",
         "dev": "cross-env NODE_ENV=development nodemon src/index.js",
         "test": "cross-env NODE_ENV=test jest --verbose --detectOpenHandles --forceExit",
-        "lint": "eslint src/**/*.js",
+        "lint": "eslint . --ext .js",
         "seed": "node src/tasks/seed/localDevSeed.js",
         "deploy": "./deploy.sh"
     },
