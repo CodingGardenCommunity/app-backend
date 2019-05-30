@@ -3,7 +3,8 @@ const Joi = require('joi');
 require('dotenv').config();
 
 const options = {
-  NODE_ENV: Joi.string().default('development')
+  NODE_ENV: Joi.string()
+    .default('development')
     .allow(['development', 'test', 'production']),
   PORT: Joi.string().default(3000),
   HOST: Joi.string().default('0.0.0.0'),
