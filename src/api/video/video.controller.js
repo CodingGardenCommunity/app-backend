@@ -1,4 +1,4 @@
-const Videos = require('./video.model');
+const Video = require('./video.model');
 
 async function getVideos(req, res, next) {
   try {
@@ -6,12 +6,12 @@ async function getVideos(req, res, next) {
     if ('id' in req.params) {
       if (!/^[a-fA-F0-9]{24}$/.test(req.params.id)) throw new ReferenceError('Invalid Video ID.');
       try {
-        response = [await Videos.findById(req.params.id).exec()];
+        response = [await Video.findById(req.params.id).exec()];
         if (response[0] === null) throw new ReferenceError('The requested ID does not exist.');
       } catch ({ message }) {
         throw new ReferenceError(message);
       }
-    } else response = await Videos.find({}).exec();
+    } else response = await Video.find({}).exec();
 
     const finalResponse = response.map(({ id, type, name, videoID, title, date, description, url, thumbnail, createdAt, updatedAt }) => ({
       type: 'video',
