@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const VideosSchema = new Schema(
+const VideoSchema = new Schema(
   {
     type: {
       type: String,
@@ -39,7 +39,7 @@ const VideosSchema = new Schema(
       createdAt: 'createdAt',
       updatedAt: 'updatedAt',
     },
-  },
+  }
 );
 
-module.exports = mongoose.model('videos', VideosSchema);
+module.exports = mongoose.model('videos', VideoSchema);
