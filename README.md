@@ -15,7 +15,9 @@ There are multiple ways to run the API locally:
 
 ### Prerequisites
 
-N/A. However in the future the API will need access to a MongoDB database.
+Go to [EditorConfig](https://editorconfig.org/#download) and see if you need to install a Plugin/Extension for your editor.
+
+In the future the API will need access to a MongoDB database.
 
 ### Via Yarn
 
