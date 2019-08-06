@@ -40,3 +40,8 @@ Copy the `.env.sample` file and update accordingly:
 ```sh
 cp .env.sample .env
 ```
+Fill the database with data
+
+```sh
+npm run seed
+```
