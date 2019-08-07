@@ -1,0 +1,152 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "CodingGarden Community",
+    "description": "CodingGarden Community back-end API Documentation",
+    "termsOfService": "http://api_url/terms/",
+    "contact": {
+      "name": "CodingGarden Community",
+      "email": "CodingGarden@example.com",
+      "url": "https://github.com/CodingGardenCommunity"
+    },
+    "license": {
+      "name": "The MIT License",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "Local server"
+    },
+    {
+      "url": "https://api_url_testing",
+      "description": "Testing server"
+    },
+    {
+      "url": "https://api_url_production",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Contributors"
+    }
+  ],
+
+  "paths": {
+    "/contributors": {
+      "get": {
+        "tags": ["Contributors"],
+        "summary": "Returns list of Contributors",
+        "description": "This end point returns list of kind contributors of CodingGarden Community App in long term active support order.",
+        "responses": {
+          "200": {
+            "description": "An array of contributor objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "example": [
+                    {
+                      "type": "contributor",
+                      "id": "w3cj",
+                      "attributes": {
+                        "username": "w3cj",
+                        "name": "CJ",
+                        "image": "https://avatars1.githubusercontent.com/u/14241866",
+                        "countryCode": "USA",
+                        "active": true,
+                        "joined": "2018-12-16",
+                        "teamIds": [0, 1, 2, 3, 4]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contributors/{id}": {
+      "get": {
+        "tags": ["Contributors"],
+
+        "summary": "Returns single contributor",
+        "description": "This end point returns single contributor of CodingGarden Community App based on `id`",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contributor `id`. It is same as GitHub `username`",
+            "schema": {
+              "type": "string",
+              "example": "w3cj"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A contributor object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "example": [
+                    {
+                      "type": "contributor",
+                      "id": "w3cj",
+                      "attributes": {
+                        "username": "w3cj",
+                        "name": "CJ",
+                        "image": "https://avatars1.githubusercontent.com/u/14241866",
+                        "countryCode": "USA",
+                        "active": true,
+                        "joined": "2018-12-16",
+                        "teamIds": [0, 1, 2, 3, 4]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contributor not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "There is no contributor with the ID that you requested",
+                  "status": 404
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
