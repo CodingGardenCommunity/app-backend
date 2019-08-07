@@ -7,7 +7,7 @@ describe('GET /contributors', () => {
     const { status, type, body } = await request(app).get('/contributors');
     expect(status).toEqual(200);
     expect(type).toEqual('application/json');
-    expect(body.length).toBeGreaterThanOrEqual(0);
+    expect(body.length).toBeGreaterThan(0);
     done();
   });
 });
