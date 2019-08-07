@@ -7,7 +7,7 @@ require('./helpers/databaseConnection');
 
 const { errorHandler, notFound } = require('./middlewares');
 
-const openApiDocumentation = require('../Swag/swag');
+const openApiDocumentation = require('../APIs.json');
 
 // Initialize server
 const app = express();
