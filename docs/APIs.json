@@ -6,7 +6,7 @@
     "description": "This documentation contains all information for the backend API of the Coding Garden Community App.",
     "contact": {
       "name": "The CodingGarden Community",
-      "url": "https://github.com/CodingGardenCommunity"
+      "url": "https://coding.garden/"
     },
     "license": {
       "name": "The MIT License",
@@ -19,11 +19,11 @@
       "description": "Local server"
     },
     {
-      "url": "https://api_url_testing",
-      "description": "Testing server"
+      "url": "https://api-dev.coding.garden/",
+      "description": "Development server"
     },
     {
-      "url": "https://api_url_production",
+      "url": "https://api.coding.garden/",
       "description": "Production server"
     }
   ],

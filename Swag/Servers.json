@@ -5,11 +5,11 @@
       "description": "Local server"
     },
     {
-      "url": "https://api_url_testing",
-      "description": "Testing server"
+      "url": "https://api-dev.coding.garden/",
+      "description": "Development server"
     },
     {
-      "url": "https://api_url_production",
+      "url": "https://api.coding.garden/",
       "description": "Production server"
     }
   ]

@@ -5,7 +5,7 @@ Run Server: <br>
 Then visit `<baseURL>/apiDocs/<version>` <br>
 Example: `http://localhost:3000/apiDocs/v1.0.0`
 
-If you don't know the version availability, simple visit - ex: `http://localhost:3000/apiDocs/` for versions list.
+If you don't know the version availability, simply visit - ex: `http://localhost:3000/apiDocs/` for versions list.
 
 > **Note:** If you are on local server, make sure the domain-name is actually `localhost` and not `127.0.0.1` to(avoid `cross-origin` blocks) use `Try it out` feature.
 
@@ -30,13 +30,13 @@ Following details/documentation/procedure is for building API Documentation for 
 `./Swag/MainSwag.json` is the file where all other doc files combine with the help of `$ref`s.
 
 **Finally, to build Doc:** <br>
-`npm run buildAPIDoc // > swagger-ui-watcher ./Swag/MainSwag.json --bundle=./APIs.json`
+`npm run buildAPIDoc // > swagger-ui-watcher ./Swag/MainSwag.json --bundle=./docs/APIs.json` <br>
+This generates `APIs.json` file at `./docs/` directory. <br>
 
 **Once that's done, update the version if needed:** <br>
-`src/docView/doc.routes.js // Version route - Rename the JSON files to reflect their versions etc.` <br>
-`src/docView/versions.html // Version list`
+`src/api/docs/doc.routes.js // Version route - Rename the JSON files to reflect their versions etc.` <br>
+`src/api/docs/versions.html // Version list`
 
-This generates `APIs.json` file at the root directory of the project. <br>
-`./src/app.js` `require`s `APIs.json` as the main Swagger file to serve API Docs in browser.
+`./src/app.js` `require`s `./docs/APIs.json` as the main Swagger file to serve API Docs in browser.
 
 ---
