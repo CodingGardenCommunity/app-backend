@@ -15,7 +15,6 @@ afterAll(async () => {
 
 describe('GET /apiDocs/', () => {
   it('Should display "Available versions" text on page', async () => {
-    browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     await page.goto(`http://localhost:${PORT}/apiDocs/`);
@@ -26,7 +25,6 @@ describe('GET /apiDocs/', () => {
 
 describe('GET /apiDocs/v1.0.0', () => {
   it('Should display "CodingGarden Community App APIs" text on page', async () => {
-    browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     await page.goto(`http://localhost:${PORT}/apiDocs/v1.0.0`);
