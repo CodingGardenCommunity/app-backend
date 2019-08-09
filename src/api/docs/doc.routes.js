@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const swaggerUi = require('swagger-ui-express');
+const { serve, setup } = require('swagger-ui-express');
 const { sendVersionMarkup } = require('./doc.controller');
 const openApiDocumentation = require('../../../docs/APIs.json');
 
@@ -7,9 +7,9 @@ const options = {
   // customCssUrl: '/custom.css' // If additional options are needed.
 };
 
-router.use('/', swaggerUi.serve);
+router.use('/', serve);
 
 router.get('/', sendVersionMarkup);
-router.get('/v1.0.0', swaggerUi.setup(openApiDocumentation, options));
+router.get('/v1.0.0', setup(openApiDocumentation, options));
 
 module.exports = router;
