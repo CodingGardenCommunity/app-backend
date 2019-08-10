@@ -1,10 +1,10 @@
 const puppeteer = require('puppeteer');
-const { PORT } = require('../../config');
+const { HOST, PORT } = require('../../config');
 const app = require('../../app').listen(PORT);
 
 let browser;
 let page;
-const BASE_URL = `http://localhost:${PORT}`;
+const BASE_URL = `http://${HOST}:${PORT}`;
 
 beforeAll(async () => {
   browser = await puppeteer.launch();

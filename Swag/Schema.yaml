@@ -1,0 +1,44 @@
+Error:
+  type: object
+  properties:
+    message:
+      type: string
+    status:
+      type: number
+Contributor:
+  type: object
+  properties:
+    id:
+      type: string
+      example: w3cj
+    attributes:
+      type: object
+      properties:
+        username:
+          type: string
+          example: w3cj
+        name:
+          type: string
+          example: CJ
+        image:
+          type: string
+          example: 'https://avatars1.githubusercontent.com/u/14241866'
+        countryCode:
+          type: string
+          example: USA
+        active:
+          type: boolean
+          example: true
+        joined:
+          type: string
+          example: '2018-12-16'
+        teamIds:
+          type: array
+          items:
+            type: number
+          example:
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
