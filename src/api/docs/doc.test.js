@@ -50,7 +50,7 @@ describe('GET API response through API Doc', () => {
       await page.waitForSelector('.response > .col > div > .highlight-code > .microlight');
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.log(e);
+      console.error(e);
     }
   });
 });
