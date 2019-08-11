@@ -7,10 +7,7 @@ let page;
 const BASE_URL = `http://localhost:${PORT}`;
 
 beforeAll(async () => {
-  browser = await puppeteer.launch({
-    headless: false,
-    devtools: true,
-  });
+  browser = await puppeteer.launch();
   page = await browser.newPage();
 });
 
