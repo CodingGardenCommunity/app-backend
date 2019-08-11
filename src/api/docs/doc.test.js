@@ -50,7 +50,8 @@ describe('GET API response through API Doc', () => {
       await page.waitForSelector('.response > .col > div > .highlight-code > .microlight');
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.log('TEST FAILED: Could not query /contributors API from Doc page.');
+      console.log(e);
+      // console.log('TEST FAILED: Could not query /contributors API from Doc page.');
     }
   });
 });
