@@ -7,7 +7,10 @@ let page;
 const BASE_URL = `http://localhost:${PORT}`;
 
 beforeAll(async () => {
-  browser = await puppeteer.launch();
+  browser = await puppeteer.launch({
+    headless: false,
+    devtools: true,
+  });
   page = await browser.newPage();
 });
 
@@ -32,25 +35,44 @@ describe('GET /apiDocs/v1.0.0', () => {
 
 describe('GET API response through API Doc', () => {
   it('Should be able to query /contributors API from Doc page.', async () => {
+    page = await browser.newPage();
     await page.goto(`${BASE_URL}/apiDocs/`);
 
     await page.waitForSelector('body > ul > li > a');
     await page.click('body > ul > li > a');
 
+    let errorStatus = 1;
+
+    await page.waitForSelector('div > span > #operations-Contributors-get_contributors > .opblock-summary > .opblock-summary-description');
+    await page.click('div > span > #operations-Contributors-get_contributors > .opblock-summary > .opblock-summary-description');
+
+    await page.waitForSelector('.opblock-body > .opblock-section > .opblock-section-header > .try-out > .btn');
+    await page.click('.opblock-body > .opblock-section > .opblock-section-header > .try-out > .btn');
+
+    await page.waitForSelector('#operations-Contributors-get_contributors > div > .opblock-body > .execute-wrapper > .btn');
+    await page.click('#operations-Contributors-get_contributors > div > .opblock-body > .execute-wrapper > .btn');
+
+    await page.setRequestInterception(true);
+
+    await page.on('response', res => {
+      if (
+        res.request().resourceType() === 'fetch' &&
+        res
+          .request()
+          .response()
+          .status() === 200
+      ) {
+        errorStatus = null;
+      }
+    });
+
     try {
-      await page.waitForSelector('div > span > #operations-Contributors-get_contributors > .opblock-summary > .opblock-summary-description');
-      await page.click('div > span > #operations-Contributors-get_contributors > .opblock-summary > .opblock-summary-description');
-
-      await page.waitForSelector('.opblock-body > .opblock-section > .opblock-section-header > .try-out > .btn');
-      await page.click('.opblock-body > .opblock-section > .opblock-section-header > .try-out > .btn');
-
-      await page.waitForSelector('#operations-Contributors-get_contributors > div > .opblock-body > .execute-wrapper > .btn');
-      await page.click('#operations-Contributors-get_contributors > div > .opblock-body > .execute-wrapper > .btn');
-
       await page.waitForSelector('.response > .col > div > .highlight-code > .microlight');
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.log(e);
+      console.error(e);
     }
+
+    await expect(errorStatus).toBeNull();
   });
 });
