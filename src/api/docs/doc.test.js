@@ -1,10 +1,10 @@
 const puppeteer = require('puppeteer');
-const { HOST, PORT } = require('../../config');
+const { PORT } = require('../../config');
 const app = require('../../app').listen(PORT);
 
 let browser;
 let page;
-const BASE_URL = `http://${HOST}:${PORT}`;
+const BASE_URL = `http://localhost:${PORT}`;
 
 beforeAll(async () => {
   browser = await puppeteer.launch();
@@ -50,7 +50,7 @@ describe('GET API response through API Doc', () => {
       await page.waitForSelector('.response > .col > div > .highlight-code > .microlight');
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.log('TEST FAILED: Could not query /contributors API from Doc page.');
+      console.log(e);
     }
   });
 });
