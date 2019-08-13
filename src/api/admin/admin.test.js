@@ -7,6 +7,6 @@ describe('GET /admin', () => {
     request(app)
       .get('/admin')
       .expect('Content-Type', /json/)
-      .expect(401, done);
+      .expect(404, done);
   });
 });
