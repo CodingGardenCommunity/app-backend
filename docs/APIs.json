@@ -109,6 +109,32 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Error: Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Request to <URL> failed",
+                    "status": 500,
+                    "stack": "FetchError: request to <URL> failed"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -211,12 +237,42 @@
                     },
                     "status": {
                       "type": "number"
+                    },
+                    "stack": {
+                      "type": "number"
                     }
                   }
                 },
                 "example": {
                   "message": "There is no contributor with the ID that you requested",
-                  "status": 404
+                  "status": 404,
+                  "stack": "RangeError: There is no contributor with the ID that you requested."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error: Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Request to <URL> failed",
+                    "status": 500,
+                    "stack": "FetchError: request to <URL> failed"
+                  }
                 }
               }
             }
@@ -276,6 +332,137 @@
                         }
                       }
                     }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error: Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Request to <URL> failed",
+                    "status": 500,
+                    "stack": "FetchError: request to <URL> failed"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "FAQ"
+        ],
+        "summary": "Add a new FAQ",
+        "operationId": "addFAQ",
+        "requestBody": {
+          "description": "FAQ object that needs to be added.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "question",
+                  "answer"
+                ],
+                "properties": {
+                  "question": {
+                    "type": "string"
+                  },
+                  "answer": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "question": "Is this just another question?",
+                "answer": "Yes, this is just another answer."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Added new FAQ entry",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "FAQ with ID: 5d52b3c020c9d50a98953447 has been added successfully to the DB."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Make sure your request includes a question and answer.",
+                  "status": 404,
+                  "stack": "ReferenceError: Make sure your request includes a question and answer."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error: Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Request to <URL> failed",
+                    "status": 500,
+                    "stack": "FetchError: request to <URL> failed"
                   }
                 }
               }
@@ -348,6 +535,148 @@
                         }
                       }
                     }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Requested FAQ item doesn't exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "The requested ID does not exist.",
+                  "status": 404,
+                  "stack": "ReferenceError: The requested ID does not exist."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error: Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Request to <URL> failed",
+                    "status": 500,
+                    "stack": "FetchError: request to <URL> failed"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "FAQ"
+        ],
+        "summary": "Delete a FAQ",
+        "description": "This end-point removes a FAQ entry based on provided `id`",
+        "operationId": "deleteFAQ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "FAQ id to delete",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "5d528db4091476273cce7d9d"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "FAQ entry deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "FAQ removed successfully from DB."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Could not find FAQ with that `id`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "There is no FAQ to delete with that ID."
+                    },
+                    "status": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "stack": {
+                      "type": "string",
+                      "example": "ReferenceError: There is no FAQ to delete with that ID."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error: Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Request to <URL> failed",
+                    "status": 500,
+                    "stack": "FetchError: request to <URL> failed"
                   }
                 }
               }

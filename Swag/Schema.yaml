@@ -5,6 +5,27 @@ Error:
       type: string
     status:
       type: number
+    stack:
+      type: number
+
+InternalServerError:
+  description: 'Error: Internal Server Error'
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+          status:
+            type: number
+          stack:
+            type: string
+        example:
+          message: Request to <URL> failed
+          status: 500
+          stack: 'FetchError: request to <URL> failed'
+
 Contributor:
   type: object
   properties:

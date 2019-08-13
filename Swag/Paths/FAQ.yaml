@@ -1,41 +1,151 @@
 AllFAQs:
-  get:
-      tags:
-        - FAQ
-      summary: Returns list of FAQs
-      operationId: getAllFAQs
-      description: This end point returns the list/collection of frequently asked questions(with answers) on/about CodingGarden Community.
-      responses:
-        '200':
-          description: An array of FAQ objects
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '../Schema.yaml#/FAQ'
+  tags:
+    - FAQ
+  summary: Returns list of FAQs
+  operationId: getAllFAQs
+  description: This end point returns the list/collection of frequently asked questions(with answers) on/about CodingGarden Community.
+  responses:
+    200:
+      description: An array of FAQ objects
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../Schema.yaml#/FAQ'
+    500:
+      $ref: '../Schema.yaml#/InternalServerError'
+
+AddFAQ:
+  tags:
+  - FAQ
+  summary: Add a new FAQ
+  operationId: addFAQ
+  requestBody:
+    description: FAQ object that needs to be added.
+    content:
+      application/json:
+        schema:
+          required:
+          - question
+          - answer
+          properties:
+              question:
+                type: string
+              answer:
+                type: string
+        example:
+          question: Is this just another question?
+          answer: Yes, this is just another answer.
+      
+  responses:
+    200:
+      description: Added new FAQ entry
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                type: number
+                example: 200
+              message:
+                type: string
+                example: 'FAQ with ID: 5d52b3c020c9d50a98953447 has been added successfully to the DB.'
+            
+    404:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: '../Schema.yaml#/Error'
+          example:
+            message: Make sure your request includes a question and answer.
+            status: 404
+            stack: 'ReferenceError: Make sure your request includes a question and answer.'
+    500:
+      $ref: '../Schema.yaml#/InternalServerError'
+                
 
 SingleFAQ:
-  get:
-      tags:
-        - FAQ
-      summary: Returns one FAQ object
-      operationId: getSingleFaqById
-      description: This end point returns only one FAQ(with answer) based on `id` from the collection of FAQs on/about CodingGarden Community.
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: Unique identifier for each FAQs. Refer Schema for an example.
-        schema:
-          type: string
-          example: 5d526753bf8d2f24f4f12236
-      responses:
-        '200':
-          description: One FAQ object
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '../Schema.yaml#/FAQ'
+  tags:
+    - FAQ
+  summary: Returns one FAQ object
+  operationId: getSingleFaqById
+  description: This end point returns only one FAQ(with answer) based on `id` from the collection of FAQs on/about CodingGarden Community.
+  parameters:
+  - name: id
+    in: path
+    required: true
+    description: Unique identifier for each FAQs. Refer Schema for an example.
+    schema:
+      type: string
+      example: 5d526753bf8d2f24f4f12236
+  responses:
+    200:
+      description: One FAQ object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../Schema.yaml#/FAQ'
+    404:
+      description: Requested FAQ item doesn't exist.
+      content:
+        application/json:
+          schema:
+            $ref: '../Schema.yaml#/Error'
+          example:
+            message: The requested ID does not exist.
+            status: 404
+            stack: 'ReferenceError: The requested ID does not exist.'
+              
+    500:
+      $ref: '../Schema.yaml#/InternalServerError'
+
+DeleteFAQ:
+  tags:
+  - FAQ
+  summary: Delete a FAQ
+  description: This end-point removes a FAQ entry based on provided `id`
+  operationId: deleteFAQ
+  parameters:
+  - name: id
+    in: path
+    description: FAQ id to delete
+    required: true
+    schema:
+      type: string
+      example: 5d528db4091476273cce7d9d
+  
+  responses:
+    200:
+      description: FAQ entry deleted.
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                type: number
+                example: 200
+              message:
+                type: string
+                example: FAQ removed successfully from DB.
+    404:
+      description: Could not find FAQ with that `id`
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                example: There is no FAQ to delete with that ID.
+              status:
+                type: number
+                example: 404
+              stack:
+                type: string
+                example: 'ReferenceError: There is no FAQ to delete with that ID.'
+    500:
+      $ref: '../Schema.yaml#/InternalServerError'
+      

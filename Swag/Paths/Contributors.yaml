@@ -1,21 +1,23 @@
 AllContributors:
-  get:
-    tags:
-      - Contributors
-    summary: Returns list of Contributors
-    operationId: getAllContributors
-    description: This end point returns list of kind contributors of CodingGarden Community App in long term active support order.
-    responses:
-      '200':
-        description: An array of contributor objects
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '../Schema.yaml#/Contributor'
+  tags:
+    - Contributors
+  summary: Returns list of Contributors
+  operationId: getAllContributors
+  description: This end point returns list of kind contributors of CodingGarden Community App in long term active support order.
+  responses:
+    200:
+      description: An array of contributor objects
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../Schema.yaml#/Contributor'
+    500:
+      $ref: '../Schema.yaml#/InternalServerError'
+      
+
 SingleContributor:
-  get:
     tags:
       - Contributors
     summary: Returns one contributor object
@@ -30,7 +32,7 @@ SingleContributor:
           type: string
           example: w3cj
     responses:
-      '200':
+      200:
         description: A contributor object
         content:
           application/json:
@@ -38,7 +40,7 @@ SingleContributor:
               type: array
               items:
                 $ref: '../Schema.yaml#/Contributor'
-      '404':
+      404:
         description: Contributor not found.
         content:
           application/json:
@@ -47,3 +49,7 @@ SingleContributor:
             example:
               message: There is no contributor with the ID that you requested
               status: 404
+              stack: "RangeError: There is no contributor with the ID that you requested."
+      500:
+        $ref: '../Schema.yaml#/InternalServerError'
+

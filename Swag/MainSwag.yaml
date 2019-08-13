@@ -7,11 +7,28 @@ tags:
   $ref: './Tags.yaml#/Tags'
 paths:
   /contributors:
-    $ref: './Paths/Contributors.yaml#/AllContributors'
-  '/contributors/{id}':
-    $ref: './Paths/Contributors.yaml#/SingleContributor'
+    get:
+      $ref: './Paths/Contributors.yaml#/AllContributors'
+      
+  /contributors/{id}:
+    get:
+      $ref: './Paths/Contributors.yaml#/SingleContributor'
 
   /faq:
-    $ref: './Paths/FAQ.yaml#/AllFAQs'
-  '/faq/{id}':
-    $ref: './Paths/FAQ.yaml#/SingleFAQ'
+    get:
+      $ref: './Paths/FAQ.yaml#/AllFAQs'
+    post:
+      $ref: './Paths/FAQ.yaml#/AddFAQ'
+
+  /faq/{id}:
+    get:
+      $ref: './Paths/FAQ.yaml#/SingleFAQ'
+    delete:
+      $ref: './Paths/FAQ.yaml#/DeleteFAQ'
+
+
+      
+    
+
+
+    
