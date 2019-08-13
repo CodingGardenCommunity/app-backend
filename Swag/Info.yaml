@@ -1,0 +1,12 @@
+Info:
+  version: v1
+  title: CodingGarden Community App APIs
+  description: 'This documentation contains all the information for the backend API of the Coding Garden Community App. <br><br> 
+                **Version:** `v1`. <br>
+                **Find other versions [here](/docs/versions).**'
+  contact:
+    name: The CodingGarden Community
+    url: 'https://coding.garden/'
+  license:
+    name: The MIT License
+    url: 'https://opensource.org/licenses/MIT'

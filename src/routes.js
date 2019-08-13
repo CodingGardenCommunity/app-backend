@@ -15,6 +15,6 @@ router.use('/faq', faq);
 router.use('/admin', isAdmin, admin);
 router.use('/history', history);
 router.use('/video', video);
-router.use('/apiDocs', documentation);
+router.use('/docs', documentation);
 
 module.exports = router;

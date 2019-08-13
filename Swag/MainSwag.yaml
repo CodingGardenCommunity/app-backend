@@ -1,0 +1,12 @@
+openapi: 3.0.1
+info:
+  $ref: './Info.yaml#/Info'
+servers:
+  $ref: './Servers.yaml#/Servers'
+tags:
+  $ref: './Tags.yaml#/Tags'
+paths:
+  /contributors:
+    $ref: './Paths/Contributors.yaml#/AllContributors'
+  '/contributors/{id}':
+    $ref: './Paths/Contributors.yaml#/SingleContributor'

@@ -2,10 +2,10 @@
 Run Server: <br>
 `npm run dev`
 
-Then visit `<baseURL>/apiDocs/<version>` <br>
-Example: `http://localhost:3000/apiDocs/v1.0.0`
+Then visit `<baseURL>/docs/<version>` <br>
+Example: `http://localhost:3000/docs/v1`
 
-If you don't know the version availability, simply visit - ex: `http://localhost:3000/apiDocs/` for versions list.
+If you don't know the version availability, simply visit - ex: `http://localhost:3000/docs/` for versions list.
 
 > **Note:** If you are on local server, make sure the domain-name is actually `localhost` and not `127.0.0.1` to(avoid `cross-origin` blocks) use `Try it out` feature.
 
@@ -20,17 +20,17 @@ Following details/documentation/procedure is for building API Documentation for 
    Install this globally: <br>
    `npm i -g swagger-ui-watcher`
 
-   `swagger-ui-watcher ./Swag/MainSwag.json` to watch and reload Doc changes while building.
+   `swagger-ui-watcher ./Swag/MainSwag.yaml` to watch and reload Doc changes while building.
 
 1. `swagger-ui-express` <br>
    This package is available as main project dependency. No need to install it separately.
 
 **Details:** <br>
-`./Swag` is the root directory of modular Swagger JSON files. <br>
-`./Swag/MainSwag.json` is the file where all other doc files combine with the help of `$ref`s.
+`./Swag` is the root directory of modular Swagger YAML files. <br>
+`./Swag/MainSwag.yaml` is the file where all other doc files combine with the help of `$ref`s.
 
 **Finally, to build Doc:** <br>
-`npm run buildAPIDoc // > swagger-ui-watcher ./Swag/MainSwag.json --bundle=./docs/APIs.json` <br>
+`npm run buildAPIDoc // > swagger-ui-watcher ./Swag/MainSwag.yaml --bundle=./docs/APIs.json` <br>
 This generates `APIs.json` file at `./docs/` directory. <br>
 
 **Once that's done, update the version if needed:** <br>
