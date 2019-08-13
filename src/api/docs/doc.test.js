@@ -4,7 +4,7 @@ const app = require('../../app').listen(PORT);
 
 let browser;
 let page;
-const BASE_URL = `http://localhost:${PORT}`;
+const BASE_URL = `http://localhost:${PORT}/apiDocs`;
 
 beforeAll(async () => {
   browser = await puppeteer.launch();
@@ -18,58 +18,36 @@ afterAll(async () => {
 
 describe('GET /apiDocs/', () => {
   it('Should display "Available versions" text on page.', async () => {
-    await page.goto(`${BASE_URL}/apiDocs/`);
+    await page.goto(`${BASE_URL}/`);
     await expect(page).toMatch('Available versions');
   });
 });
 
 describe('GET /apiDocs/v1.0.0', () => {
   it('Should display "CodingGarden Community App APIs" text on page.', async () => {
-    await page.goto(`${BASE_URL}/apiDocs/v1.0.0`);
+    await page.goto(`${BASE_URL}/v1.0.0`);
     await expect(page).toMatch('CodingGarden Community App APIs');
   });
 });
 
+const click = async (selector, p) => {
+  const element = await p.waitForSelector(selector);
+  await element.click();
+};
+
 describe('GET API response through API Doc', () => {
   it('Should be able to query /contributors API from Doc page.', async () => {
-    page = await browser.newPage();
-    await page.goto(`${BASE_URL}/apiDocs/`);
+    await page.goto(BASE_URL);
 
-    await page.waitForSelector('body > ul > li > a');
-    await page.click('body > ul > li > a');
+    await click('body > ul > li > a', page);
+    await click('#operations-Contributors-get_contributors', page);
+    await click('.opblock-body > .opblock-section > .opblock-section-header > .try-out > .btn', page);
+    await click('.opblock-body > .execute-wrapper > .btn', page);
 
-    let errorStatus = 1;
+    await page.waitForSelector('.live-responses-table tbody .response-col_status');
+    const statusCodeText = await page.$eval('.live-responses-table tbody .response-col_status', el => el.textContent);
+    const statusCode = parseInt(statusCodeText, 10);
 
-    await page.waitForSelector('div > span > #operations-Contributors-get_contributors > .opblock-summary > .opblock-summary-description');
-    await page.click('div > span > #operations-Contributors-get_contributors > .opblock-summary > .opblock-summary-description');
-
-    await page.waitForSelector('.opblock-body > .opblock-section > .opblock-section-header > .try-out > .btn');
-    await page.click('.opblock-body > .opblock-section > .opblock-section-header > .try-out > .btn');
-
-    await page.waitForSelector('#operations-Contributors-get_contributors > div > .opblock-body > .execute-wrapper > .btn');
-    await page.click('#operations-Contributors-get_contributors > div > .opblock-body > .execute-wrapper > .btn');
-
-    await page.setRequestInterception(true);
-
-    await page.on('response', res => {
-      if (
-        res.request().resourceType() === 'fetch' &&
-        res
-          .request()
-          .response()
-          .status() === 200
-      ) {
-        errorStatus = null;
-      }
-    });
-
-    try {
-      await page.waitForSelector('.response > .col > div > .highlight-code > .microlight');
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e);
-    }
-
-    await expect(errorStatus).toBeNull();
+    expect(statusCode).toBe(200);
   });
 });
