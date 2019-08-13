@@ -12,7 +12,7 @@ AllContributors:
             schema:
               type: array
               items:
-                $ref: '../Schema.json#/Contributor'
+                $ref: '../Schema.yaml#/Contributor'
 SingleContributor:
   get:
     tags:
@@ -35,13 +35,13 @@ SingleContributor:
             schema:
               type: array
               items:
-                $ref: '../Schema.json#/Contributor'
+                $ref: '../Schema.yaml#/Contributor'
       '404':
         description: Contributor not found.
         content:
           application/json:
             schema:
-              $ref: '../Schema.json#/Error'
+              $ref: '../Schema.yaml#/Error'
             example:
               message: There is no contributor with the ID that you requested
               status: 404

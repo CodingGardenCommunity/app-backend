@@ -1,7 +1,9 @@
 Info:
   version: 1.0.0
   title: CodingGarden Community App APIs
-  description: This documentation contains all information for the backend API of the Coding Garden Community App.
+  description: 'This documentation contains all the information for the backend API of the Coding Garden Community App. <br><br> 
+                **Version:** `v1`. <br>
+                **Find other versions [here](/docs/versions).**'
   contact:
     name: The CodingGarden Community
     url: 'https://coding.garden/'
