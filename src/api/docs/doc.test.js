@@ -40,7 +40,7 @@ describe('GET API response through API Doc', () => {
     await page.goto(BASE_URL);
 
     await click('body > ul > li > a', page);
-    await click('#operations-Contributors-get_contributors', page);
+    await click('#operations-Contributors-getAllContributors', page);
     await click('.opblock-body > .opblock-section > .opblock-section-header > .try-out > .btn', page);
     await click('.opblock-body > .execute-wrapper > .btn', page);
 

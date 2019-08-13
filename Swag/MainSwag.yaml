@@ -10,3 +10,8 @@ paths:
     $ref: './Paths/Contributors.yaml#/AllContributors'
   '/contributors/{id}':
     $ref: './Paths/Contributors.yaml#/SingleContributor'
+
+  /faq:
+    $ref: './Paths/FAQ.yaml#/AllFAQs'
+  '/faq/{id}':
+    $ref: './Paths/FAQ.yaml#/SingleFAQ'

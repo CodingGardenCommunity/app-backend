@@ -30,6 +30,9 @@
   "tags": [
     {
       "name": "Contributors"
+    },
+    {
+      "name": "FAQ"
     }
   ],
   "paths": {
@@ -39,6 +42,7 @@
           "Contributors"
         ],
         "summary": "Returns list of Contributors",
+        "operationId": "getAllContributors",
         "description": "This end point returns list of kind contributors of CodingGarden Community App in long term active support order.",
         "responses": {
           "200": {
@@ -50,6 +54,10 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "contributor"
+                      },
                       "id": {
                         "type": "string",
                         "example": "w3cj"
@@ -110,7 +118,8 @@
         "tags": [
           "Contributors"
         ],
-        "summary": "Returns single contributor",
+        "summary": "Returns one contributor object",
+        "operationId": "getSingleContributorById",
         "description": "This end point returns single contributor of CodingGarden Community App based on `id`",
         "parameters": [
           {
@@ -134,6 +143,10 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "contributor"
+                      },
                       "id": {
                         "type": "string",
                         "example": "w3cj"
@@ -204,6 +217,138 @@
                 "example": {
                   "message": "There is no contributor with the ID that you requested",
                   "status": 404
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/faq": {
+      "get": {
+        "tags": [
+          "FAQ"
+        ],
+        "summary": "Returns list of FAQs",
+        "operationId": "getAllFAQs",
+        "description": "This end point returns the list/collection of frequently asked questions(with answers) on/about CodingGarden Community.",
+        "responses": {
+          "200": {
+            "description": "An array of FAQ objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "faq"
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": "5d526753bf8d2f24f4f12236"
+                      },
+                      "attributes": {
+                        "required": [
+                          "question",
+                          "answer"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "question": {
+                            "type": "string",
+                            "example": "What break timer do you use?"
+                          },
+                          "answer": {
+                            "type": "string",
+                            "example": "It's called Time Out by Dejal. It is only available for Mac. For Windows, checkout Eye Leo. I have it setup for a 10 second micro break every 10 minutes and a 5 minute break every 60 minutes."
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "example": "2019-08-13T07:31:31.879Z"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "example": "2019-08-13T07:31:31.879Z"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/faq/{id}": {
+      "get": {
+        "tags": [
+          "FAQ"
+        ],
+        "summary": "Returns one FAQ object",
+        "operationId": "getSingleFaqById",
+        "description": "This end point returns only one FAQ(with answer) based on `id` from the collection of FAQs on/about CodingGarden Community.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for each FAQs. Refer Schema for an example.",
+            "schema": {
+              "type": "string",
+              "example": "5d526753bf8d2f24f4f12236"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "One FAQ object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "faq"
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": "5d526753bf8d2f24f4f12236"
+                      },
+                      "attributes": {
+                        "required": [
+                          "question",
+                          "answer"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "question": {
+                            "type": "string",
+                            "example": "What break timer do you use?"
+                          },
+                          "answer": {
+                            "type": "string",
+                            "example": "It's called Time Out by Dejal. It is only available for Mac. For Windows, checkout Eye Leo. I have it setup for a 10 second micro break every 10 minutes and a 5 minute break every 60 minutes."
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "example": "2019-08-13T07:31:31.879Z"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "example": "2019-08-13T07:31:31.879Z"
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }

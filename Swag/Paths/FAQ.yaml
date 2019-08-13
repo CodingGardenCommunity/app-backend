@@ -1,0 +1,41 @@
+AllFAQs:
+  get:
+      tags:
+        - FAQ
+      summary: Returns list of FAQs
+      operationId: getAllFAQs
+      description: This end point returns the list/collection of frequently asked questions(with answers) on/about CodingGarden Community.
+      responses:
+        '200':
+          description: An array of FAQ objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '../Schema.yaml#/FAQ'
+
+SingleFAQ:
+  get:
+      tags:
+        - FAQ
+      summary: Returns one FAQ object
+      operationId: getSingleFaqById
+      description: This end point returns only one FAQ(with answer) based on `id` from the collection of FAQs on/about CodingGarden Community.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for each FAQs. Refer Schema for an example.
+        schema:
+          type: string
+          example: 5d526753bf8d2f24f4f12236
+      responses:
+        '200':
+          description: One FAQ object
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '../Schema.yaml#/FAQ'

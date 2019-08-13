@@ -3,6 +3,7 @@ AllContributors:
     tags:
       - Contributors
     summary: Returns list of Contributors
+    operationId: getAllContributors
     description: This end point returns list of kind contributors of CodingGarden Community App in long term active support order.
     responses:
       '200':
@@ -17,7 +18,8 @@ SingleContributor:
   get:
     tags:
       - Contributors
-    summary: Returns single contributor
+    summary: Returns one contributor object
+    operationId: getSingleContributorById
     description: This end point returns single contributor of CodingGarden Community App based on `id`
     parameters:
       - name: id
