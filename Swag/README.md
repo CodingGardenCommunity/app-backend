@@ -2,10 +2,10 @@
 Run Server: <br>
 `npm run dev`
 
-Then visit `<baseURL>/apiDocs/<version>` <br>
-Example: `http://localhost:3000/apiDocs/v1.0.0`
+Then visit `<baseURL>/docs/<version>` <br>
+Example: `http://localhost:3000/docs/v1`
 
-If you don't know the version availability, simply visit - ex: `http://localhost:3000/apiDocs/` for versions list.
+If you don't know the version availability, simply visit - ex: `http://localhost:3000/docs/` for versions list.
 
 > **Note:** If you are on local server, make sure the domain-name is actually `localhost` and not `127.0.0.1` to(avoid `cross-origin` blocks) use `Try it out` feature.
 

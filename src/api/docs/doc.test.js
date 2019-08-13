@@ -4,7 +4,7 @@ const app = require('../../app').listen(PORT);
 
 let browser;
 let page;
-const BASE_URL = `http://localhost:${PORT}/apiDocs`;
+const BASE_URL = `http://localhost:${PORT}/docs`;
 
 beforeAll(async () => {
   browser = await puppeteer.launch();
@@ -16,16 +16,16 @@ afterAll(async () => {
   app.close();
 });
 
-describe('GET /apiDocs/', () => {
+describe('GET /docs/', () => {
   it('Should display "Available versions" text on page.', async () => {
-    await page.goto(`${BASE_URL}/`);
+    await page.goto(`${BASE_URL}/versions`);
     await expect(page).toMatch('Available versions');
   });
 });
 
-describe('GET /apiDocs/v1.0.0', () => {
+describe('GET /docs/v1', () => {
   it('Should display "CodingGarden Community App APIs" text on page.', async () => {
-    await page.goto(`${BASE_URL}/v1.0.0`);
+    await page.goto(`${BASE_URL}/v1`);
     await expect(page).toMatch('CodingGarden Community App APIs');
   });
 });
@@ -39,8 +39,7 @@ describe('GET API response through API Doc', () => {
   it('Should be able to query /contributors API from Doc page.', async () => {
     await page.goto(BASE_URL);
 
-    await click('body > ul > li > a', page);
-    await click('#operations-Contributors-getAllContributors', page);
+    await click('#operations-Contributors-get_contributors', page);
     await click('.opblock-body > .opblock-section > .opblock-section-header > .try-out > .btn', page);
     await click('.opblock-body > .execute-wrapper > .btn', page);
 
