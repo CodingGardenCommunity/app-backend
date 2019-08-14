@@ -1,0 +1,36 @@
+# GET /history responses
+EntireHistory:
+  200:
+    description: An array of milestone objects
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '../../Schema.yaml#/Milestone'
+  500:
+    $ref: '../../Schema.yaml#/InternalServerError'
+      
+# GET /history/{id} responses
+SingleMilestone:
+  200:
+    description: A milestone object
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '../../Schema.yaml#/Milestone'
+  404:
+    description: Milestone not found.
+    content:
+      application/json:
+        schema:
+          $ref: '../../Schema.yaml#/Error'
+        example:
+          message: There is no Milestone with the ID that you requested
+          status: 404
+          stack: "RangeError: There is no milestone with the ID that you requested."
+  500:
+    $ref: '../../Schema.yaml#/InternalServerError'
+
