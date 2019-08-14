@@ -30,6 +30,9 @@
   "tags": [
     {
       "name": "Contributors"
+    },
+    {
+      "name": "FAQ"
     }
   ],
   "paths": {
@@ -39,6 +42,7 @@
           "Contributors"
         ],
         "summary": "Returns list of Contributors",
+        "operationId": "getAllContributors",
         "description": "This end point returns list of kind contributors of CodingGarden Community App in long term active support order.",
         "responses": {
           "200": {
@@ -50,6 +54,10 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "contributor"
+                      },
                       "id": {
                         "type": "string",
                         "example": "w3cj"
@@ -101,6 +109,32 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Error: Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Request to <URL> failed",
+                    "status": 500,
+                    "stack": "FetchError: request to <URL> failed"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -110,7 +144,8 @@
         "tags": [
           "Contributors"
         ],
-        "summary": "Returns single contributor",
+        "summary": "Returns one contributor object",
+        "operationId": "getSingleContributorById",
         "description": "This end point returns single contributor of CodingGarden Community App based on `id`",
         "parameters": [
           {
@@ -134,6 +169,10 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "contributor"
+                      },
                       "id": {
                         "type": "string",
                         "example": "w3cj"
@@ -198,12 +237,515 @@
                     },
                     "status": {
                       "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
                     }
                   }
                 },
                 "example": {
                   "message": "There is no contributor with the ID that you requested",
-                  "status": 404
+                  "status": 404,
+                  "stack": "RangeError: There is no contributor with the ID that you requested."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error: Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Request to <URL> failed",
+                    "status": 500,
+                    "stack": "FetchError: request to <URL> failed"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/faq": {
+      "get": {
+        "tags": [
+          "FAQ"
+        ],
+        "summary": "Returns list of FAQs",
+        "operationId": "getAllFAQs",
+        "description": "This end point returns the list/collection of frequently asked questions(with answers) on/about CodingGarden Community and CJ.",
+        "responses": {
+          "200": {
+            "description": "An array of FAQ objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "faq"
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": "5d526753bf8d2f24f4f12236"
+                      },
+                      "attributes": {
+                        "required": [
+                          "question",
+                          "answer"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "question": {
+                            "type": "string",
+                            "example": "What break timer do you use?"
+                          },
+                          "answer": {
+                            "type": "string",
+                            "example": "It's called Time Out by Dejal. It is only available for Mac. For Windows, checkout Eye Leo. I have it setup for a 10 second micro break every 10 minutes and a 5 minute break every 60 minutes."
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "example": "2019-08-13T07:31:31.879Z"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "example": "2019-08-13T07:31:31.879Z"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error: Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Request to <URL> failed",
+                    "status": 500,
+                    "stack": "FetchError: request to <URL> failed"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "FAQ"
+        ],
+        "summary": "Add a new FAQ",
+        "operationId": "addFAQ",
+        "parameters": [
+          {
+            "name": "X-Admin-Secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "FAQ object that needs to be added.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "question",
+                  "answer"
+                ],
+                "properties": {
+                  "question": {
+                    "type": "string"
+                  },
+                  "answer": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "question": "Is this just another question?",
+                "answer": "Yes, this is just another answer."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Added new FAQ entry",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "FAQ with ID: 5d52b3c020c9d50a98953447 has been added successfully to the DB."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You are not authorized to perform this task.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Un-Authorized",
+                  "status": 401,
+                  "stack": "Error: Un-Authorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Make sure your request includes a question and answer.",
+                  "status": 404,
+                  "stack": "ReferenceError: Make sure your request includes a question and answer."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error: Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Request to <URL> failed",
+                    "status": 500,
+                    "stack": "FetchError: request to <URL> failed"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/faq/{id}": {
+      "get": {
+        "tags": [
+          "FAQ"
+        ],
+        "summary": "Returns one FAQ object",
+        "operationId": "getSingleFaqById",
+        "description": "This end point returns only one FAQ(with answer) based on `id` from the collection of FAQs on/about CodingGarden Community and CJ.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for each FAQs. Refer Schema for an example.",
+            "schema": {
+              "type": "string",
+              "example": "5d526753bf8d2f24f4f12236"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "One FAQ object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "faq"
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": "5d526753bf8d2f24f4f12236"
+                      },
+                      "attributes": {
+                        "required": [
+                          "question",
+                          "answer"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "question": {
+                            "type": "string",
+                            "example": "What break timer do you use?"
+                          },
+                          "answer": {
+                            "type": "string",
+                            "example": "It's called Time Out by Dejal. It is only available for Mac. For Windows, checkout Eye Leo. I have it setup for a 10 second micro break every 10 minutes and a 5 minute break every 60 minutes."
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "example": "2019-08-13T07:31:31.879Z"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "example": "2019-08-13T07:31:31.879Z"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Requested FAQ item doesn't exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "The requested ID does not exist.",
+                  "status": 404,
+                  "stack": "ReferenceError: The requested ID does not exist."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error: Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Request to <URL> failed",
+                    "status": 500,
+                    "stack": "FetchError: request to <URL> failed"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "FAQ"
+        ],
+        "summary": "Delete a FAQ",
+        "description": "This end-point removes a FAQ entry based on provided `id`",
+        "operationId": "deleteFAQ",
+        "parameters": [
+          {
+            "name": "X-Admin-Secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "FAQ id to delete",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "5d528db4091476273cce7d9d"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "FAQ entry deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "FAQ removed successfully from DB."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You are not authorized to perform this task.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Un-Authorized",
+                  "status": 401,
+                  "stack": "Error: Un-Authorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Could not find FAQ with that `id`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "There is no FAQ to delete with that ID."
+                    },
+                    "status": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "stack": {
+                      "type": "string",
+                      "example": "ReferenceError: There is no FAQ to delete with that ID."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error: Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Request to <URL> failed",
+                    "status": 500,
+                    "stack": "FetchError: request to <URL> failed"
+                  }
                 }
               }
             }

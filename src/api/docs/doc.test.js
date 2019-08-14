@@ -39,7 +39,7 @@ describe('GET API response through API Doc', () => {
   it('Should be able to query /contributors API from Doc page.', async () => {
     await page.goto(BASE_URL);
 
-    await click('#operations-Contributors-get_contributors', page);
+    await click('#operations-Contributors-getAllContributors', page);
     await click('.opblock-body > .opblock-section > .opblock-section-header > .try-out > .btn', page);
     await click('.opblock-body > .execute-wrapper > .btn', page);
 

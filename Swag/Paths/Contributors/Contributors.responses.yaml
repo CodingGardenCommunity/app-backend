@@ -1,0 +1,36 @@
+# GET /contributors responses
+AllContributors:
+  200:
+    description: An array of contributor objects
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '../../Schema.yaml#/Contributor'
+  500:
+    $ref: '../../Schema.yaml#/InternalServerError'
+      
+# GET /contributors/{id} responses
+SingleContributor:
+  200:
+    description: A contributor object
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '../../Schema.yaml#/Contributor'
+  404:
+    description: Contributor not found.
+    content:
+      application/json:
+        schema:
+          $ref: '../../Schema.yaml#/Error'
+        example:
+          message: There is no contributor with the ID that you requested
+          status: 404
+          stack: "RangeError: There is no contributor with the ID that you requested."
+  500:
+    $ref: '../../Schema.yaml#/InternalServerError'
+

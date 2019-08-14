@@ -5,9 +5,44 @@ Error:
       type: string
     status:
       type: number
+    stack:
+      type: string
+
+InternalServerError:
+  description: 'Error: Internal Server Error'
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+          status:
+            type: number
+          stack:
+            type: string
+        example:
+          message: Request to <URL> failed
+          status: 500
+          stack: 'FetchError: request to <URL> failed'
+
+UnAuthorized:
+  description: 'You are not authorized to perform this task.'
+  content:
+    application/json:
+      schema:
+        $ref: '#/Error'
+      example:
+        message: Un-Authorized
+        status: 401
+        stack: 'Error: Un-Authorized'
+
 Contributor:
   type: object
   properties:
+    "type":
+      type: string
+      example: contributor
     id:
       type: string
       example: w3cj
@@ -42,3 +77,31 @@ Contributor:
             - 2
             - 3
             - 4
+
+FAQ:
+  type: object
+  properties:
+    "type":
+      type: string
+      example: faq
+    id:
+      type: string
+      example: 5d526753bf8d2f24f4f12236
+    attributes:
+      required:
+      - question
+      - answer
+      type: object
+      properties:
+        question:
+          type: string
+          example: What break timer do you use?
+        answer:
+          type: string
+          example: It's called Time Out by Dejal. It is only available for Mac. For Windows, checkout Eye Leo. I have it setup for a 10 second micro break every 10 minutes and a 5 minute break every 60 minutes.
+        createdAt:
+          type: string
+          example: 2019-08-13T07:31:31.879Z
+        updatedAt:
+          type: string
+          example: 2019-08-13T07:31:31.879Z
