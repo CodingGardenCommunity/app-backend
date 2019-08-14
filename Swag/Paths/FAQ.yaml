@@ -21,6 +21,11 @@ AddFAQ:
   - FAQ
   summary: Add a new FAQ
   operationId: addFAQ
+  parameters:
+  - name: X-Admin-Secret
+    in: header
+    schema:
+      type: string
   requestBody:
     description: FAQ object that needs to be added.
     content:
@@ -110,6 +115,10 @@ DeleteFAQ:
   description: This end-point removes a FAQ entry based on provided `id`
   operationId: deleteFAQ
   parameters:
+  - name: X-Admin-Secret
+    in: header
+    schema:
+      type: string
   - name: id
     in: path
     description: FAQ id to delete
