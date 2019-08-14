@@ -10,23 +10,6 @@ const ids = {
   nonexistent: 'aaaaaaaaaaaaaaaaaaaaaaaa',
 };
 
-// type: {
-//   type: String,
-//   required: true,
-//   enum: ['milestone', 'video'],
-// },
-// name: {
-//   type: String,
-//   required: true,
-// },
-// date: {
-//   type: Date,
-//   required: true,
-// },
-// description: {
-//   type: String,
-//   required: true,
-
 const type = 'video';
 const name = 'Some name';
 const date = new Date();
