@@ -6,7 +6,7 @@ Error:
     status:
       type: number
     stack:
-      type: number
+      type: string
 
 InternalServerError:
   description: 'Error: Internal Server Error'
@@ -25,6 +25,17 @@ InternalServerError:
           message: Request to <URL> failed
           status: 500
           stack: 'FetchError: request to <URL> failed'
+
+UnAuthorized:
+  description: 'You are not authorized to perform this task.'
+  content:
+    application/json:
+      schema:
+        $ref: '#/Error'
+      example:
+        message: Un-Authorized
+        status: 401
+        stack: 'Error: Un-Authorized'
 
 Contributor:
   type: object

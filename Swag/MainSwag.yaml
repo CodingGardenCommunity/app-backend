@@ -8,23 +8,23 @@ tags:
 paths:
   /contributors:
     get:
-      $ref: './Paths/Contributors.yaml#/AllContributors'
+      $ref: './Paths/Contributors/Contributors.yaml#/AllContributors'
       
   /contributors/{id}:
     get:
-      $ref: './Paths/Contributors.yaml#/SingleContributor'
+      $ref: './Paths/Contributors/Contributors.yaml#/SingleContributor'
 
   /faq:
     get:
-      $ref: './Paths/FAQ.yaml#/AllFAQs'
+      $ref: './Paths/FAQ/FAQ.yaml#/AllFAQs'
     post:
-      $ref: './Paths/FAQ.yaml#/AddFAQ'
+      $ref: './Paths/FAQ/FAQ.yaml#/AddFAQ'
 
   /faq/{id}:
     get:
-      $ref: './Paths/FAQ.yaml#/SingleFAQ'
+      $ref: './Paths/FAQ/FAQ.yaml#/SingleFAQ'
     delete:
-      $ref: './Paths/FAQ.yaml#/DeleteFAQ'
+      $ref: './Paths/FAQ/FAQ.yaml#/DeleteFAQ'
 
 
 

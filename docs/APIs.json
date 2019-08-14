@@ -239,7 +239,7 @@
                       "type": "number"
                     },
                     "stack": {
-                      "type": "number"
+                      "type": "string"
                     }
                   }
                 },
@@ -425,6 +425,32 @@
               }
             }
           },
+          "401": {
+            "description": "You are not authorized to perform this task.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Un-Authorized",
+                  "status": 401,
+                  "stack": "Error: Un-Authorized"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Invalid input",
             "content": {
@@ -439,7 +465,7 @@
                       "type": "number"
                     },
                     "stack": {
-                      "type": "number"
+                      "type": "string"
                     }
                   }
                 },
@@ -563,7 +589,7 @@
                       "type": "number"
                     },
                     "stack": {
-                      "type": "number"
+                      "type": "string"
                     }
                   }
                 },
@@ -645,6 +671,32 @@
                       "example": "FAQ removed successfully from DB."
                     }
                   }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You are not authorized to perform this task.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Un-Authorized",
+                  "status": 401,
+                  "stack": "Error: Un-Authorized"
                 }
               }
             }
