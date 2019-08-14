@@ -151,4 +151,4 @@ Milestone:
         updatedAt:
           type: string
           example: '2019-08-14T05:49:03.844Z'
-        
+

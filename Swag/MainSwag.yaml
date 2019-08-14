@@ -33,10 +33,5 @@ paths:
   # /history/{id}: # Route doesn't exist as of now. Doc structure is in place.
   #   get:
       # $ref: './Paths/History/History.yaml#/SingleMilestone'
-
-
-
-
-
-
-
+      
+      

@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 
 // App routes
-app.get('/', (req, res) => res.json({ msg: 'Check out /contributors, /faq, /history and /video' }));
+app.get('/', (req, res) => res.json({ message: 'Check out /contributors, /faq, /history, /docs, and /video' }));
 app.use(routes);
 
 app.use(notFound);
