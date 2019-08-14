@@ -4,7 +4,7 @@ AllFAQs:
     - FAQ
   summary: Returns list of FAQs
   operationId: getAllFAQs
-  description: This end point returns the list/collection of frequently asked questions(with answers) on/about CodingGarden Community.
+  description: This end point returns the list/collection of frequently asked questions(with answers) on/about CodingGarden Community and CJ.
   responses:
     200:
       $ref: 'FAQ.responses.yaml#/AllFAQs/200'
@@ -54,7 +54,7 @@ SingleFAQ:
     - FAQ
   summary: Returns one FAQ object
   operationId: getSingleFaqById
-  description: This end point returns only one FAQ(with answer) based on `id` from the collection of FAQs on/about CodingGarden Community.
+  description: This end point returns only one FAQ(with answer) based on `id` from the collection of FAQs on/about CodingGarden Community and CJ.
   parameters:
   - name: id
     in: path
