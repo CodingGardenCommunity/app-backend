@@ -22,15 +22,15 @@ SingleMilestone:
           items:
             $ref: '../../Schema.yaml#/Milestone'
   404:
-    description: Milestone not found.
+    description: 'Error: Not Found'
     content:
       application/json:
         schema:
           $ref: '../../Schema.yaml#/Error'
         example:
-          message: There is no Milestone with the ID that you requested
+          message: Invalid History ID.
           status: 404
-          stack: "RangeError: There is no milestone with the ID that you requested."
+          stack: "RangeError: Invalid History ID."
   500:
     $ref: '../../Schema.yaml#/InternalServerError'
 
