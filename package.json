@@ -1,59 +1,59 @@
 {
-  "name": "app-backend",
-  "version": "0.1.0",
-  "description": "The backend API for the Coding Garden community app.",
-  "main": "src/index.js",
-  "jest": {
-    "testEnvironment": "node",
-    "preset": "jest-puppeteer"
-  },
-  "scripts": {
-    "start": "cross-env NODE_ENV=production node src/index.js",
-    "dev": "cross-env NODE_ENV=development nodemon src/index.js",
-    "test": "cross-env NODE_ENV=test jest --verbose --detectOpenHandles --forceExit",
-    "lint": "eslint . --ext .js",
-    "seed": "node src/tasks/seed/localDevSeed.js",
-    "deploy": "./deploy.sh",
-    "format": "prettier --write src/**/*.js",
-    "buildAPIDoc": "swagger-ui-watcher ./Swag/MainSwag.yaml --bundle=./docs/APIs.json"
-  },
-  "repository": "https://github.com/CodingGardenCommunity/app-backend.git",
-  "author": "Coding Garden Community App",
-  "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn run lint && yarn run format && yarn run test"
+    "name": "app-backend",
+    "version": "0.1.0",
+    "description": "The backend API for the Coding Garden community app.",
+    "main": "src/index.js",
+    "jest": {
+        "testEnvironment": "node",
+        "preset": "jest-puppeteer"
+    },
+    "scripts": {
+        "start": "cross-env NODE_ENV=production node src/index.js",
+        "dev": "cross-env NODE_ENV=development nodemon src/index.js",
+        "test": "cross-env NODE_ENV=test jest --verbose --detectOpenHandles --forceExit",
+        "lint": "eslint . --ext .js",
+        "seed": "node src/tasks/seed/localDevSeed.js",
+        "deploy": "./deploy.sh",
+        "format": "prettier --write src/**/*.js",
+        "buildAPIDoc": "swagger-ui-watcher ./Swag/MainSwag.yaml --bundle=./docs/APIs.json"
+    },
+    "repository": "https://github.com/CodingGardenCommunity/app-backend.git",
+    "author": "Coding Garden Community App",
+    "license": "MIT",
+    "husky": {
+        "hooks": {
+            "pre-commit": "yarn run lint && yarn run format && yarn run test"
+        }
+    },
+    "dependencies": {
+        "colors": "^1.3.3",
+        "dotenv": "^6.2.0",
+        "express": "^4.16.4",
+        "global": "^4.3.2",
+        "joi": "^14.3.1",
+        "mongoose": "^5.4.17",
+        "node-fetch": "^2.3.0",
+        "swagger-ui-express": "^4.0.7"
+    },
+    "devDependencies": {
+        "babel-eslint": "^10.0.1",
+        "cross-env": "^5.2.0",
+        "eslint": "^5.16.0",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-config-prettier": "^4.3.0",
+        "eslint-plugin-import": "^2.16.0",
+        "eslint-plugin-jest": "^22.6.4",
+        "eslint-plugin-prettier": "^3.1.0",
+        "eslint-plugin-promise": "^4.1.1",
+        "eslint-plugin-react": "^7.12.4",
+        "gulp": "^4.0.2",
+        "husky": "^1.3.1",
+        "jest": "^24.8.0",
+        "jest-puppeteer": "^4.3.0",
+        "nodemon": "^1.18.10",
+        "prettier": "^1.17.1",
+        "puppeteer": "^1.19.0",
+        "supertest": "^4.0.2"
     }
-  },
-  "dependencies": {
-    "colors": "^1.3.3",
-    "dotenv": "^6.2.0",
-    "express": "^4.16.4",
-    "global": "^4.3.2",
-    "joi": "^14.3.1",
-    "mongoose": "^5.4.17",
-    "node-fetch": "^2.3.0",
-    "swagger-ui-express": "^4.0.7"
-  },
-  "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "cross-env": "^5.2.0",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jest": "^22.6.4",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-react": "^7.12.4",
-    "gulp": "^4.0.2",
-    "husky": "^1.3.1",
-    "jest": "^24.8.0",
-    "jest-puppeteer": "^4.3.0",
-    "nodemon": "^1.18.10",
-    "prettier": "^1.17.1",
-    "puppeteer": "^1.19.0",
-    "supertest": "^4.0.2"
-  }
 }
