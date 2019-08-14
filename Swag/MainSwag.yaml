@@ -33,5 +33,12 @@ paths:
   # /history/{id}: # Route doesn't exist as of now. Doc structure is in place.
   #   get:
       # $ref: './Paths/History/History.yaml#/SingleMilestone'
+
+  /video:
+    get:
+      $ref: './Paths/Video/Video.yaml#/AllVideos'
       
-      
+  # /video/{id}: # Route doesn't exist as of now. Doc structure is in place.
+  #   get:
+  #     $ref: './Paths/Video/Video.yaml#/SingleVideo'
+

@@ -1,0 +1,36 @@
+# GET /video responses
+AllVideos:
+  200:
+    description: An array of video objects
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '../../Schema.yaml#/Video'
+  500:
+    $ref: '../../Schema.yaml#/InternalServerError'
+      
+# GET /video/{id} responses
+SingleVideo:
+  200:
+    description: A video object
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '../../Schema.yaml#/Video'
+  404:
+    description: Video not found.
+    content:
+      application/json:
+        schema:
+          $ref: '../../Schema.yaml#/Error'
+        example:
+          message: There is no video with the ID that you requested
+          status: 404
+          stack: "RangeError: There is no video with the ID that you requested."
+  500:
+    $ref: '../../Schema.yaml#/InternalServerError'
+

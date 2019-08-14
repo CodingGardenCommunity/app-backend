@@ -33,10 +33,12 @@
     },
     {
       "name": "FAQ"
-
     },
     {
       "name": "History"
+    },
+    {
+      "name": "Video"
     }
   ],
   "paths": {
@@ -781,6 +783,116 @@
                       "type": {
                         "type": "string",
                         "example": "history"
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": "5d53a0cfbb779e2988d67d10"
+                      },
+                      "attributes": {
+                        "required": [
+                          "name",
+                          "date",
+                          "description"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "example": "video"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "First video!"
+                          },
+                          "videoID": {
+                            "type": "string",
+                            "example": "WYa47JkZH_U&t=552s"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "2016-12-14T00:00:00.000Z"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "The description of the video..."
+                          },
+                          "url": {
+                            "type": "string",
+                            "example": "https://www.youtube.com/watch?v=WYa47JkZH_U&t=552s"
+                          },
+                          "thumbnail": {
+                            "type": "string",
+                            "example": "https://i.ytimg.com/vi/WYa47JkZH_U/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAXBaYYlSuEcmhpAH712ajkjMcOxA"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "example": "2019-08-14T05:49:03.844Z"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "example": "2019-08-14T05:49:03.844Z"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error: Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Request to <URL> failed",
+                    "status": 500,
+                    "stack": "FetchError: request to <URL> failed"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/video": {
+      "get": {
+        "tags": [
+          "Video"
+        ],
+        "summary": "Returns list of Videos.",
+        "operationId": "getAllVideo",
+        "description": "This end point returns list of Videos that CodingGarden Community has.",
+        "responses": {
+          "200": {
+            "description": "An array of video objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type"
+                    ],
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "video"
                       },
                       "id": {
                         "type": "string",
