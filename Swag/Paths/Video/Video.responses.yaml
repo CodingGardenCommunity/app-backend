@@ -22,15 +22,15 @@ SingleVideo:
           items:
             $ref: '../../Schema.yaml#/Video'
   404:
-    description: Video not found.
+    description: 'Error: Not Found'
     content:
       application/json:
         schema:
           $ref: '../../Schema.yaml#/Error'
         example:
-          message: There is no video with the ID that you requested
+          message: Invalid Video ID.
           status: 404
-          stack: "RangeError: There is no video with the ID that you requested."
+          stack: "RangeError: Invalid Video ID."
   500:
     $ref: '../../Schema.yaml#/InternalServerError'
 
