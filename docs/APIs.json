@@ -1023,7 +1023,7 @@
           "Video"
         ],
         "summary": "Returns list of Videos.",
-        "operationId": "getAllVideo",
+        "operationId": "getAllVideos",
         "description": "This endpoint returns a list of all the videos from The Coding Garden YouTube channel.",
         "responses": {
           "200": {
