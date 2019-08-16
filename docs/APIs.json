@@ -1024,7 +1024,7 @@
         ],
         "summary": "Returns list of Videos.",
         "operationId": "getAllVideo",
-        "description": "This end point returns list of Videos that CodingGarden Community has.",
+        "description": "This endpoint will ultimately be a feed of The Coding Garden YouTube channel videos.",
         "responses": {
           "200": {
             "description": "An array of video objects",
@@ -1134,7 +1134,7 @@
         ],
         "summary": "Returns single video object",
         "operationId": "getSingleVideoById",
-        "description": "This end point returns single video of CodingGarden Community based on `id`.",
+        "description": "This endpoint returns single video from The Coding Garden YouTube channel based on `id`.",
         "parameters": [
           {
             "name": "id",
