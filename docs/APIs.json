@@ -1024,7 +1024,7 @@
         ],
         "summary": "Returns list of Videos.",
         "operationId": "getAllVideo",
-        "description": "This endpoint will ultimately be a feed of The Coding Garden YouTube channel videos.",
+        "description": "This endpoint returns a list of all the videos from The Coding Garden YouTube channel.",
         "responses": {
           "200": {
             "description": "An array of video objects",
