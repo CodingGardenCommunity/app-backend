@@ -1,12 +1,18 @@
 {
-    "name": "app-backend",
-    "version": 2,
-    "builds": [{
-        "src": "src/index.js",
-        "use": "@now/node-server"
-    }],
-    "routes": [{
-        "src": "/(.*)",
-        "dest": "src/index.js"
-    }]
+  "name": "app-backend",
+  "version": 2,
+  "builds": [{
+    "src": "src/index.js",
+    "use": "@now/node-server"
+  }, {
+    "src": "src/public/**",
+    "use": "@now/static"
+  }],
+  "routes": [{
+    "src": "/docs/(swagger-ui-bundle.js|swagger-ui-standalone-preset.js)",
+    "dest": "src/public/$1"
+  }, {
+    "src": "/(.*)",
+    "dest": "src/index.js"
+  }]
 }
