@@ -1,3 +1,17 @@
+const cors = require('cors');
+
+const allowedOrigins = ['https://web.coding.garden', 'https://web-dev.coding.garden'];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
 function isAdmin(req, res, next) {
   const secret = req.get('X-Admin-Secret');
   if (secret === process.env.ADMIN_SECRET || process.env.NODE_ENV === 'test') {
@@ -30,4 +44,5 @@ module.exports = {
   isAdmin,
   errorHandler,
   notFound,
+  cors: cors(corsOptions),
 };

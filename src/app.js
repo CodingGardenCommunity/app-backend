@@ -4,10 +4,15 @@ const routes = require('./routes');
 // Database connection
 require('./helpers/databaseConnection');
 
-const { errorHandler, notFound } = require('./middlewares');
+const { errorHandler, notFound, cors } = require('./middlewares');
 
 // Initialize server
 const app = express();
+
+// Cors middleware
+if (process.env.NODE_ENV !== 'test') {
+  app.use(cors);
+}
 
 // App middleware
 app.use(express.json());
