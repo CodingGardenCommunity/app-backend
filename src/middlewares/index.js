@@ -4,7 +4,7 @@ const allowedOrigins = ['https://web.coding.garden', 'https://web-dev.coding.gar
 
 const corsOptions = {
   origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin)) {
+    if (process.env.NODE_ENV === 'development' || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
