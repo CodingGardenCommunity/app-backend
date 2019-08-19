@@ -3,7 +3,7 @@ const cors = require('cors');
 const allowedOrigins = ['https://web.coding.garden', 'https://web-dev.coding.garden'];
 
 const corsOptions = {
-  origin: (origin, callback) => {
+  origin(origin, callback) {
     if (process.env.NODE_ENV === 'development' || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
