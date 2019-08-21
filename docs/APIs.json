@@ -39,6 +39,9 @@
     },
     {
       "name": "Video"
+    },
+    {
+      "name": "Admin"
     }
   ],
   "paths": {
@@ -1242,6 +1245,89 @@
                   "message": "Invalid Video ID.",
                   "status": 404,
                   "stack": "RangeError: Invalid Video ID."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error: Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Request to <URL> failed",
+                    "status": 500,
+                    "stack": "FetchError: request to <URL> failed"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/seed": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Populate DB",
+        "operationId": "seed",
+        "parameters": [
+          {
+            "name": "X-Admin-Secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "text/plain response: OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "String",
+                  "example": "OK"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You are not authorized to perform this task.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "stack": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Un-Authorized",
+                  "status": 401,
+                  "stack": "Error: Un-Authorized"
                 }
               }
             }

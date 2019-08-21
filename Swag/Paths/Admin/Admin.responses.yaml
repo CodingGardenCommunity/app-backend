@@ -1,0 +1,14 @@
+
+# POST /admin/seed responses
+Seed:
+  200:
+    description: 'text/plain response: OK'
+    content:
+      text/plain:
+        schema:
+          type: String
+          example: OK
+  401:
+    $ref: '../../Schema.yaml#/UnAuthorized'
+  500:
+    $ref: '../../Schema.yaml#/InternalServerError'

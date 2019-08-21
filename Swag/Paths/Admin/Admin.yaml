@@ -1,0 +1,19 @@
+# POST /admin/seed
+Seed:
+  tags:
+  - Admin
+  summary: Populate DB
+  operationId: seed
+  parameters:
+  - name: X-Admin-Secret
+    in: header
+    schema:
+      type: string
+
+  responses:
+    200:
+      $ref: 'Admin.responses.yaml#/Seed/200'
+    401:
+      $ref: 'Admin.responses.yaml#/Seed/401'
+    500:
+      $ref: 'Admin.responses.yaml#/Seed/500'

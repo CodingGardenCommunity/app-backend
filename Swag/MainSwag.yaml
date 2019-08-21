@@ -41,6 +41,10 @@ paths:
   /video/{id}:
     get:
       $ref: './Paths/Video/Video.yaml#/SingleVideo'
+
+  /admin/seed:
+    post:
+      $ref: './Paths/Admin/Admin.yaml#/Seed'
       
       
 
