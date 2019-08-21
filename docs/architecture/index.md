@@ -1,3 +1,3 @@
 # Architecture documentation
 
-- [Design Decisions](/architecture/design-decisions.md)
+- [Design Decisions](/docs/architecture/design-decisions.md)

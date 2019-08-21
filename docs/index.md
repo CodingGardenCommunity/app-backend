@@ -6,5 +6,5 @@ visit the [App's Wiki](https://github.com/CodingGardenCommunity/app-wiki)
 
 ## Architecture
 
-See [architecture documentation](/architecture/index.md) for an overview of the APIs goals and design
+See [architecture documentation](/docs/architecture/index.md) for an overview of the APIs goals and design
 decisions.
