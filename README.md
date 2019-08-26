@@ -61,13 +61,13 @@ Once you have the [Prerequisites](#prerequisites) covered:
 1. Once you have MongoDB and `.env` file ready, seed the local database by running:
 
    ```sh
-   yarn run seed
+   $ yarn run seed
    ```
 
 1. To make sure everything is setup properly, run tests.
 
    ```sh
-   yarn run test
+   $ yarn run test
    ```
 
    If all tests pass, we can safely conclude that setup is complete and its working as expected. 🙌 Wooh!! <br>
@@ -77,7 +77,7 @@ Once you have the [Prerequisites](#prerequisites) covered:
    You can run -
 
    ```sh
-   yarn run dev
+   $ yarn run dev
    ```
 
    to start the server.
