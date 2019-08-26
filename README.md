@@ -70,7 +70,7 @@ Once you have the [Prerequisites](#prerequisites) covered:
    yarn run test
    ```
 
-   If all tests pass (they will), we can safely conclude that setup is complete and its working as expected. 🙌 Wooh!! <br>
+   If all tests pass, we can safely conclude that setup is complete and its working as expected. 🙌 Wooh!! <br>
    If not, don't worry. We are together on this mission!! Reach out to us on our [Discord server](https://discord.gg/bPBuk3N).
 
 1. Once that's done, tap your back. You are ready to start contributing 😃 <br>
