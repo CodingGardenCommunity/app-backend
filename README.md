@@ -8,12 +8,15 @@ please visit the [App Wiki](https://github.com/CodingGardenCommunity/app-wiki/wi
 
 ## Running the API locally
 
-> **NOTE:** If you find yourself in some trouble going through this, reach out to us on our [Discord server](https://github.com/CodingGardenCommunity/app-wiki/wiki/Getting-Involved).
+> **NOTE:** If you find yourself in some trouble going through this, reach out to us directly on our [Discord server](https://discord.gg/bPBuk3N).
 
 ### Prerequisites
 
 1. **NodeJS:** <br>
-   Please install [NodeJS >= 10.15.0](https://nodejs.org/en/download/), which also automatically installs the [npm](https://www.npmjs.org), Node Package Manager. If you already have them, you are good to go.
+   Please install [NodeJS >= 10.15.0](https://nodejs.org/en/download/). If you already have it, you're good to go.
+
+1. **Yarn:** <br>
+   Visit [Yarn download page](https://yarnpkg.com/en/docs/install#windows-stable). Select your Operating system and follow the instructions. It's as easy as eating a 🍰.
 
 1. **EditorConfig:** <br>
    Please visit [EditorConfig](https://editorconfig.org/) -> `Download a Plugin` section and scroll through to see if you need to install an additional Plugin/Extension for your code editor or IDE. If your IDE needs one, you should be able to find a link to that plugin/extension on that page.
@@ -23,28 +26,21 @@ please visit the [App Wiki](https://github.com/CodingGardenCommunity/app-wiki/wi
    **_More About EditorConfig:_** <br>
    EditorConfig helps maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs. The EditorConfig project consists of a file format for defining coding styles and a collection of text editor plugins that enable editors to read the file format and adhere to defined styles. EditorConfig files are easily readable and they work nicely with version control systems.
 
-There are multiple ways to run the API locally:
-
-- [Via Yarn or NPM](#via-yarn-or-npm)
-- [Via Docker](#via-docker)
-
 ---
-
-### Via Yarn or NPM
 
 Once you have the [Prerequisites](#prerequisites) covered:
 
 1. [Clone](https://help.github.com/articles/cloning-a-repository/) this repository from GitHub onto your local computer.
 
-   ```
+   ```sh
    $ git clone https://github.com/CodingGardenCommunity/app-backend.git
    ```
 
-1. Navigate into the project folder and install all of its necessary dependencies with NPM or Yarn.
+1. Navigate into the project folder and install all of its necessary dependencies with Yarn.
 
-   ```
+   ```sh
    $ cd app-backend
-   $ npm install // or yarn install
+   $ yarn install
    ```
 
 1. Install MongoDB and make sure it's running
@@ -62,32 +58,32 @@ Once you have the [Prerequisites](#prerequisites) covered:
 
    You don't need to change any values in `.env` file. The default values work well for development purposes.
 
-1. Once you have MongoDB and `.env` file ready, populate some data in your local Database to work with
+1. Once you have MongoDB and `.env` file ready, seed the local database by:
 
    ```sh
-   npm run seed
+   yarn run seed
    ```
 
 1. To make sure everything is setup properly, run tests.
 
    ```sh
-   npm run test
+   yarn run test
    ```
 
-   If all tests pass(they will), we can safely conclude that setup is complete and its working as expected. Wooh!!
+   If all tests pass (they will), we can safely conclude that setup is complete and its working as expected. 🙌 Wooh!! <br>
+   If not, don't worry. We are together on this mission!! Reach out to us on our [Discord server](https://discord.gg/bPBuk3N).
 
-1. Once that's done, tap your back. You are ready to start contributing :)
+1. Once that's done, tap your back. You are ready to start contributing 😃 <br>
+   You can run -
 
    ```sh
-   npm run dev // To start your local-development-server.
+   yarn run dev
    ```
+
+   to start the server.
 
 You can now visit <http://localhost:3000/> to view the APIs.
 
-Further, checkout [package.json](https://github.com/CodingGardenCommunity/app-backend/blob/develop/package.json) file to learn about(more) available scrips/commands.
+Further, checkout [package.json](https://github.com/CodingGardenCommunity/app-backend/blob/develop/package.json) file to learn about (more) available scrips/commands.
 
-### Via Docker
-
-TBD
-
-Happy coding! :)
+Happy coding! 🥂
