@@ -16,7 +16,7 @@ please visit the [App Wiki](https://github.com/CodingGardenCommunity/app-wiki/wi
    Please install [NodeJS >= 10.15.0](https://nodejs.org/en/download/). If you already have it, you're good to go.
 
 1. **Yarn:** <br>
-   Visit [Yarn download page](https://yarnpkg.com/en/docs/install#windows-stable). Select your Operating system and follow the instructions. It's as easy as eating a 🍰.
+   Visit [Yarn download page](https://yarnpkg.com/en/docs/install). Select your Operating system and follow the instructions. It's as easy as eating a 🍰.
 
 1. **EditorConfig:** <br>
    Please visit [EditorConfig](https://editorconfig.org/) -> `Download a Plugin` section and scroll through to see if you need to install an additional Plugin/Extension for your code editor or IDE. If your IDE needs one, you should be able to find a link to that plugin/extension on that page.
@@ -84,6 +84,6 @@ Once you have the [Prerequisites](#prerequisites) covered:
 
 You can now visit <http://localhost:3000/> to view the APIs.
 
-Further, checkout [package.json](https://github.com/CodingGardenCommunity/app-backend/blob/develop/package.json) file to learn about (more) available scrips/commands.
+Further, checkout [package.json](https://github.com/CodingGardenCommunity/app-backend/blob/develop/package.json) file to learn about (more) available scripts/commands.
 
 Happy coding! 🥂
