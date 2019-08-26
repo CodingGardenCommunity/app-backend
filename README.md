@@ -58,7 +58,7 @@ Once you have the [Prerequisites](#prerequisites) covered:
 
    You don't need to change any values in `.env` file. The default values work well for development purposes.
 
-1. Once you have MongoDB and `.env` file ready, seed the local database by:
+1. Once you have MongoDB and `.env` file ready, seed the local database by running:
 
    ```sh
    yarn run seed
