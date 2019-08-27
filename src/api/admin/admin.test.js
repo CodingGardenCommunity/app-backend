@@ -11,7 +11,7 @@ describe('GET /admin', () => {
   });
 });
 
-describe('GET /admin/seed', () => {
+describe('POST /admin/seed', () => {
   it('Should respond with a 200 status code', done => {
     request(app)
       .post('/admin/seed')
