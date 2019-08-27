@@ -5,12 +5,24 @@
   "main": "src/index.js",
   "jest": {
     "testEnvironment": "node",
-    "preset": "jest-puppeteer"
+    "preset": "jest-puppeteer",
+    "collectCoverageFrom": [
+      "!**node_modules**",
+      "src/api/**/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
   },
   "scripts": {
     "start": "cross-env NODE_ENV=production node src/index.js",
     "dev": "cross-env NODE_ENV=development nodemon src/index.js",
-    "test": "cross-env NODE_ENV=test jest --verbose --detectOpenHandles --forceExit",
+    "test": "cross-env NODE_ENV=test jest --verbose --coverage --detectOpenHandles --forceExit",
     "lint": "eslint . --ext .js",
     "seed": "node src/tasks/seed/localDevSeed.js",
     "deploy": "./deploy.sh",
