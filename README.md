@@ -53,7 +53,7 @@ Once you have the [Prerequisites](#prerequisites) covered:
    > **NOTE:** If you are using Windows Command Prompt, you need to use `copy` instead of `cp`. <br>
 
    ```sh
-   $ cp .env.example .env
+   $ cp .env.sample .env
    ```
 
    You don't need to change any values in `.env` file. The default values work well for development purposes.
