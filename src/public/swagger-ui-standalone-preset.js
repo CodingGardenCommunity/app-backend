@@ -3160,16 +3160,15 @@
           (this.predicate = e.predicate || null),
           (this.represent = e.represent || null),
           (this.defaultStyle = e.defaultStyle || null),
-          (this.styleAliases =
-            ((n = e.styleAliases || null),
-            (u = {}),
-            null !== n &&
-              Object.keys(n).forEach(function(t) {
-                n[t].forEach(function(e) {
-                  u[String(e)] = t;
-                });
-              }),
-            u)),
+          (this.styleAliases = ((n = e.styleAliases || null),
+          (u = {}),
+          null !== n &&
+            Object.keys(n).forEach(function(t) {
+              n[t].forEach(function(e) {
+                u[String(e)] = t;
+              });
+            }),
+          u)),
           -1 === o.indexOf(this.kind))
         )
           throw new r('Unknown kind "' + this.kind + '" is specified for "' + t + '" YAML type.');
@@ -3221,11 +3220,10 @@
           d = n.n(h),
           y = (n(171), n(172), n(36), n(107), n(48)),
           v = n.n(y),
-          w =
-            (n(175),
-            function(t) {
-              return p.a.Iterable.isIterable(t);
-            });
+          w = (n(175),
+          function(t) {
+            return p.a.Iterable.isIterable(t);
+          });
         function g(t) {
           return L(t) ? (w(t) ? t.toJS() : t) : {};
         }
@@ -8368,15 +8366,14 @@ object-assign
     function(t, e, n) {
       'use strict';
       var r = n(54),
-        i =
-          (n(40),
-          function(t) {
-            if (this.instancePool.length) {
-              var e = this.instancePool.pop();
-              return this.call(e, t), e;
-            }
-            return new this(t);
-          }),
+        i = (n(40),
+        function(t) {
+          if (this.instancePool.length) {
+            var e = this.instancePool.pop();
+            return this.call(e, t), e;
+          }
+          return new this(t);
+        }),
         o = function(t) {
           t instanceof this || r('25'), t.destructor(), this.instancePool.length < this.poolSize && this.instancePool.push(t);
         },
@@ -11598,22 +11595,21 @@ object-assign
         } catch (t) {}
       }
       var d,
-        y =
-          ((d = c(null)),
-          function(t) {
-            for (var e, n, r = 0; d[t + (r || '')]; ) ++r;
-            return (
-              (d[(t += r || '')] = !0),
-              l(
-                p,
-                (e = '@@' + t),
-                s.gs(null, function(t) {
-                  n || ((n = !0), l(this, e, s(t)), (n = !1));
-                })
-              ),
-              e
-            );
-          });
+        y = ((d = c(null)),
+        function(t) {
+          for (var e, n, r = 0; d[t + (r || '')]; ) ++r;
+          return (
+            (d[(t += r || '')] = !0),
+            l(
+              p,
+              (e = '@@' + t),
+              s.gs(null, function(t) {
+                n || ((n = !0), l(this, e, s(t)), (n = !1));
+              })
+            ),
+            e
+          );
+        });
       (o = function(t) {
         if (this instanceof o) throw new TypeError('Symbol is not a constructor');
         return i(t);
@@ -13985,38 +13981,37 @@ object-assign
         y = n.n(d),
         v = n(0),
         w = n.n(v),
-        g =
-          (n(133),
-          (function(t) {
-            function e() {
-              return s()(this, e), l()(this, h()(e).apply(this, arguments));
-            }
-            return (
-              y()(e, t),
-              c()(e, [
-                {
-                  key: 'render',
-                  value: function() {
-                    var t = this.props.getComponent,
-                      e = t('Container'),
-                      n = t('Row'),
-                      r = t('Col'),
-                      i = t('Topbar', !0),
-                      o = t('BaseLayout', !0),
-                      u = t('onlineValidatorBadge', !0);
-                    return w.a.createElement(
-                      e,
-                      { className: 'swagger-ui' },
-                      i ? w.a.createElement(i, null) : null,
-                      w.a.createElement(o, null),
-                      w.a.createElement(n, null, w.a.createElement(r, null, w.a.createElement(u, null)))
-                    );
-                  },
+        g = (n(133),
+        (function(t) {
+          function e() {
+            return s()(this, e), l()(this, h()(e).apply(this, arguments));
+          }
+          return (
+            y()(e, t),
+            c()(e, [
+              {
+                key: 'render',
+                value: function() {
+                  var t = this.props.getComponent,
+                    e = t('Container'),
+                    n = t('Row'),
+                    r = t('Col'),
+                    i = t('Topbar', !0),
+                    o = t('BaseLayout', !0),
+                    u = t('onlineValidatorBadge', !0);
+                  return w.a.createElement(
+                    e,
+                    { className: 'swagger-ui' },
+                    i ? w.a.createElement(i, null) : null,
+                    w.a.createElement(o, null),
+                    w.a.createElement(n, null, w.a.createElement(r, null, w.a.createElement(u, null)))
+                  );
                 },
-              ]),
-              e
-            );
-          })(w.a.Component)),
+              },
+            ]),
+            e
+          );
+        })(w.a.Component)),
         M = n(10),
         L = n.n(M),
         m = n(5),
@@ -14197,17 +14192,16 @@ object-assign
           return t.getIn(P()(e) ? e : [e]);
         },
         Q = n(1),
-        F =
-          ((O = {}),
-          j()(O, C, function(t, e) {
-            return t.merge(Object(Q.fromJS)(e.payload));
-          }),
-          j()(O, T, function(t, e) {
-            var n = e.payload,
-              r = t.get(n);
-            return t.set(n, !r);
-          }),
-          O),
+        F = ((O = {}),
+        j()(O, C, function(t, e) {
+          return t.merge(Object(Q.fromJS)(e.payload));
+        }),
+        j()(O, T, function(t, e) {
+          var n = e.payload,
+            r = t.get(n);
+          return t.set(n, !r);
+        }),
+        O),
         B = {
           getLocalConfig: function() {
             return I('---\nurl: "https://petstore.swagger.io/v2/swagger.json"\ndom_id: "#swagger-ui"\nvalidatorUrl: "https://online.swagger.io/validator"');

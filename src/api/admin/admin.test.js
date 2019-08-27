@@ -10,3 +10,11 @@ describe('GET /admin', () => {
       .expect(404, done);
   });
 });
+
+describe('GET /admin/seed', () => {
+  it('Should respond with a 200 status code', done => {
+    request(app)
+      .post('/admin/seed')
+      .expect(200, done);
+  });
+});
