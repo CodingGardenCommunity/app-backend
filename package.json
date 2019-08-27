@@ -27,7 +27,8 @@
     "seed": "node src/tasks/seed/localDevSeed.js",
     "deploy": "./deploy.sh",
     "format": "prettier --write src/**/*.js",
-    "buildAPIDoc": "swagger-ui-watcher ./Swag/MainSwag.yaml --bundle=./docs/APIs.json"
+    "buildAPIDoc": "swagger-ui-watcher ./Swag/MainSwag.yaml --bundle=./docs/APIs.json",
+    "coverage:open": "node src/tasks/openCoverage.js"
   },
   "repository": "https://github.com/CodingGardenCommunity/app-backend.git",
   "author": "Coding Garden Community App",
