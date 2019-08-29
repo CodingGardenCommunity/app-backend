@@ -34,6 +34,15 @@ describe('GET /video', () => {
       .expect(200, done));
 });
 
+describe('GET /video/fetch', () => {
+  // do proper testing later
+  it('Should respond with a 200 status code', done =>
+    request(app)
+      .get('/video/fetch')
+      .expect('Content-Type', /json/)
+      .expect(200, done));
+});
+
 describe('GET /video/:id', () => {
   it('With an invalid id, should respond with an invalid id message', async done => {
     const {
