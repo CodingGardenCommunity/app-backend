@@ -6,19 +6,24 @@ const { exec } = require('child_process');
 
 const file = 'coverage/lcov-report/index.html';
 
+function openFile() {
+  switch (platform()) {
+    case 'win32':
+      return exec(`start ${file}`);
+    case 'darwin':
+      return exec(`open ${file}`);
+    default:
+      return exec(`xdg-open ${file}`);
+  }
+}
+
 (async () => {
   try {
     await stat(file);
-    if (platform() === 'win32') exec(`start ${file}`);
-    else if (platform() === 'darwin') exec(`open ${file}`);
-    else exec(`xdg-open ${file}`);
+    openFile();
   } catch (err) {
     try {
-      exec('npm run test', () => {
-        if (platform() === 'win32') exec(`start ${file}`);
-        else if (platform() === 'darwin') exec(`open ${file}`);
-        else exec(`xdg-open ${file}`);
-      });
+      exec('npm run test', openFile);
     } catch (error) {
       process.stdout.write(err);
       process.exit(1);
