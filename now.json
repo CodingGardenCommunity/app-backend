@@ -4,8 +4,15 @@
   "builds": [{
     "src": "src/index.js",
     "use": "@now/node-server"
+  }, {
+    "src": "src/public/**",
+    "use": "@now/static"
   }],
   "routes": [{
-    "src": "/(.*)", "dest": "src/index.js"
+    "src": "/docs/(swagger-ui-bundle.js|swagger-ui-standalone-preset.js)",
+    "dest": "src/public/$1"
+  }, {
+    "src": "/(.*)",
+    "dest": "src/index.js"
   }]
 }

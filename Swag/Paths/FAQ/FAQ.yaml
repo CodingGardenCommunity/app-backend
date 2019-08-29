@@ -1,0 +1,102 @@
+# GET /faq
+AllFAQs:
+  tags:
+    - FAQ
+  summary: Returns list of FAQs
+  operationId: getAllFAQs
+  description: This end point returns the list/collection of frequently asked questions(with answers) on/about CodingGarden Community and CJ.
+  responses:
+    200:
+      $ref: 'FAQ.responses.yaml#/AllFAQs/200'
+    500:
+      $ref: 'FAQ.responses.yaml#/AllFAQs/500'
+
+# POST /faq
+AddFAQ:
+  tags:
+  - FAQ
+  summary: Add a new FAQ
+  operationId: addFAQ
+  parameters:
+  - name: X-Admin-Secret
+    in: header
+    schema:
+      type: string
+  requestBody:
+    description: FAQ object that needs to be added.
+    content:
+      application/json:
+        schema:
+          required:
+          - question
+          - answer
+          properties:
+              question:
+                type: string
+              answer:
+                type: string
+        example:
+          question: Is this just another question?
+          answer: Yes, this is just another answer.
+  responses:
+    200:
+      $ref: 'FAQ.responses.yaml#/AddFAQ/200'
+    401:
+      $ref: 'FAQ.responses.yaml#/AddFAQ/401'
+    404:
+      $ref: 'FAQ.responses.yaml#/AddFAQ/404'
+    500:
+      $ref: 'FAQ.responses.yaml#/AddFAQ/500'
+                
+# GET /faq/{id}
+SingleFAQ:
+  tags:
+    - FAQ
+  summary: Returns one FAQ object
+  operationId: getSingleFaqById
+  description: This end point returns only one FAQ(with answer) based on `id` from the collection of FAQs on/about CodingGarden Community and CJ.
+  parameters:
+  - name: id
+    in: path
+    required: true
+    description: Unique identifier for each FAQs. Refer Schema for an example.
+    schema:
+      type: string
+      example: 5d526753bf8d2f24f4f12236
+  responses:
+    200:
+      $ref: 'FAQ.responses.yaml#/SingleFAQ/200'
+    404:
+      $ref: 'FAQ.responses.yaml#/SingleFAQ/404'
+    500:
+      $ref: 'FAQ.responses.yaml#/SingleFAQ/500'
+
+# DELETE /faq/{id}
+DeleteFAQ:
+  tags:
+  - FAQ
+  summary: Delete a FAQ
+  description: This end-point removes a FAQ entry based on provided `id`
+  operationId: deleteFAQ
+  parameters:
+  - name: X-Admin-Secret
+    in: header
+    schema:
+      type: string
+  - name: id
+    in: path
+    description: FAQ id to delete
+    required: true
+    schema:
+      type: string
+      example: 5d528db4091476273cce7d9d
+  responses:
+    200:
+      $ref: 'FAQ.responses.yaml#/DeleteFAQ/200'
+    401:
+      $ref: 'FAQ.responses.yaml#/DeleteFAQ/401'
+    404:
+      $ref: 'FAQ.responses.yaml#/DeleteFAQ/404'
+    500:
+      $ref: 'FAQ.responses.yaml#/DeleteFAQ/500'
+      

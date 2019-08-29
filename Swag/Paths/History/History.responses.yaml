@@ -1,0 +1,36 @@
+# GET /history responses
+EntireHistory:
+  200:
+    description: An array of milestone objects
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '../../Schema.yaml#/Milestone'
+  500:
+    $ref: '../../Schema.yaml#/InternalServerError'
+      
+# GET /history/{id} responses
+SingleMilestone:
+  200:
+    description: A milestone object
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '../../Schema.yaml#/Milestone'
+  404:
+    description: 'Error: Not Found'
+    content:
+      application/json:
+        schema:
+          $ref: '../../Schema.yaml#/Error'
+        example:
+          message: Invalid History ID.
+          status: 404
+          stack: "RangeError: Invalid History ID."
+  500:
+    $ref: '../../Schema.yaml#/InternalServerError'
+

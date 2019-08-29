@@ -1,0 +1,36 @@
+# GET /history
+EntireHistory:
+  tags:
+    - History
+  summary: Returns list of milestones.
+  operationId: getEntireHistory
+  description: This end point returns list of milestones that CodingGarden Community has crossed over a long time ago in a galaxy far far away..
+  responses:
+    200:
+      $ref: 'History.responses.yaml#/EntireHistory/200'
+    500:
+      $ref: 'History.responses.yaml#/EntireHistory/500'
+
+# GET /history/{id}
+SingleMilestone:
+    tags:
+      - History
+    summary: Returns single milestone object
+    operationId: getSingleMilestoneById
+    description: This end point returns single Milestone event of CodingGarden Community based on `id` as they happened. True story.
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Milestone `id`.
+        schema:
+          type: string
+          example: 5d53a0cfbb779e2988d67d10
+    responses:
+      200:
+        $ref: 'History.responses.yaml#/SingleMilestone/200'
+      404:
+        $ref: 'History.responses.yaml#/SingleMilestone/404'
+      500:
+        $ref: 'History.responses.yaml#/SingleMilestone/500'
+

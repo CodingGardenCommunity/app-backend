@@ -1,0 +1,50 @@
+openapi: 3.0.1
+info:
+  $ref: './Info.yaml#/Info'
+servers:
+  $ref: './Servers.yaml#/Servers'
+tags:
+  $ref: './Tags.yaml#/Tags'
+paths:
+  /contributors:
+    get:
+      $ref: './Paths/Contributors/Contributors.yaml#/AllContributors'
+      
+  /contributors/{id}:
+    get:
+      $ref: './Paths/Contributors/Contributors.yaml#/SingleContributor'
+
+  /faq:
+    get:
+      $ref: './Paths/FAQ/FAQ.yaml#/AllFAQs'
+    post:
+      $ref: './Paths/FAQ/FAQ.yaml#/AddFAQ'
+
+  /faq/{id}:
+    get:
+      $ref: './Paths/FAQ/FAQ.yaml#/SingleFAQ'
+    delete:
+      $ref: './Paths/FAQ/FAQ.yaml#/DeleteFAQ'
+
+  /history:
+    get:
+      $ref: './Paths/History/History.yaml#/EntireHistory'
+      
+  /history/{id}:
+    get:
+      $ref: './Paths/History/History.yaml#/SingleMilestone'
+
+  /video:
+    get:
+      $ref: './Paths/Video/Video.yaml#/AllVideos'
+      
+  /video/{id}:
+    get:
+      $ref: './Paths/Video/Video.yaml#/SingleVideo'
+
+  /admin/seed:
+    post:
+      $ref: './Paths/Admin/Admin.yaml#/Seed'
+      
+      
+
