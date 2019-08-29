@@ -36,11 +36,21 @@ describe('GET /video', () => {
 
 describe('GET /video/fetch', () => {
   // do proper testing later
-  it('Should respond with a 200 status code', done =>
-    request(app)
-      .get('/video/fetch')
-      .expect('Content-Type', /json/)
-      .expect(200, done));
+  it('Should respond with an array', async done => {
+    const { body } = await request(app)
+      .get('/faq')
+      .expect(200);
+    expect(body).toEqual(expect.any(Array));
+    done();
+  });
+  it('Should respond with a non-empty array', async done => {
+    const { body } = await request(app)
+      .get('/faq')
+      .expect(200);
+    expect(body).toEqual(expect.any(Array));
+    expect(body.length).toBeGreaterThan(0);
+    done();
+  });
 });
 
 describe('GET /video/:id', () => {
