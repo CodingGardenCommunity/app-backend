@@ -1,5 +1,4 @@
 const Video = require('./video.model');
-const fetchLatestYoutubeVideos = require('../../helpers/youtubeFetcher');
 
 async function getVideos(req, res, next) {
   try {
@@ -36,14 +35,5 @@ async function getVideos(req, res, next) {
     return next(error);
   }
 }
-const fetchVideos = async (req, res, next) => {
-  const maxResults = req.query.maxResults || 10;
-  try {
-    const response = await fetchLatestYoutubeVideos(maxResults);
-    return res.json(response);
-  } catch (err) {
-    return next(new Error(err));
-  }
-};
 
-module.exports = { getVideos, fetchVideos };
+module.exports = { getVideos };

@@ -31,5 +31,4 @@ async function fetchLatestYoutubeVideos(maxResults) {
     return err;
   }
 }
-
 module.exports = fetchLatestYoutubeVideos;
