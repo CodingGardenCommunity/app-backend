@@ -1,31 +1,34 @@
-/* eslint-disable no-console */
-
 const { schedule } = require('node-cron');
-const fetchLatestYoutubeVideos = require('../helpers/fetchData');
+const { fetchLatestYoutubeVideos } = require('../helpers/fetchData');
 const Video = require('../api/video/video.model');
 
-// 59 * * * * - every hour.
-// * * * * * - every minute, just for testing porpuses
-
-schedule('* * * * *', async () => {
+schedule('59 * * * *', async () => {
   try {
-    const { date: lastDate } = await Video.findOne({}).sort({ createdAt: -1 });
-    // lastDate is the lasted upload video date registered in DB
-    const fetchedVideos = await fetchLatestYoutubeVideos({ publishedAfter: lastDate.toISOString() });
+    let log = false;
+    let { date: lastDate } = await Video.findOne({}).sort({ date: -1 });
+    lastDate = lastDate.toISOString();
+
+    const fetchedVideos = await fetchLatestYoutubeVideos({ publishedAfter: lastDate });
+    const now = new Date().toISOString();
 
     if (fetchedVideos.length > 0) {
       fetchedVideos.forEach(async newVideo => {
-        const video = new Video(newVideo);
-        await video.save((err, res) => {
-          if (err) throw err;
-          console.log(`Added new video from Youtube: ${res.name}.`);
-        });
+        if (newVideo.date !== lastDate) {
+          const { name } = await new Video(newVideo).save();
+          // eslint-disable-next-line no-console
+          console.log(`[CRON-JOB] Added new video from Youtube: ${name}, at ${now}`);
+        } else {
+          log = true;
+        }
       });
+      // eslint-disable-next-line no-console
+      if (log) console.log(`[CRON-JOB] No new videos found, at ${now}`);
     } else {
-      console.log('Nothing to add.');
+      // eslint-disable-next-line no-console
+      console.log(`[CRON-JOB] No new videos found, at ${now}`);
     }
   } catch (err) {
-    // Maybe implement a loggin system to save errors
-    console.error('ERROR:', err);
+    // eslint-disable-next-line no-console
+    console.error(`[CRON-JOB][ERROR] ${err}`);
   }
 });
