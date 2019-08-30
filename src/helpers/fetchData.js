@@ -9,7 +9,7 @@ async function fetchLatestYoutubeVideos(options) {
   try {
     const resp = await fetch(apiUrl);
     const { items } = await resp.json();
-    const video = items.map(({ id: { videoId: videoID }, snippet: { title, publishedAt: date, description, thumbnails: { high: { url: thumbnail } } } }) => {
+    return items.map(({ id: { videoId: videoID }, snippet: { title, publishedAt: date, description, thumbnails: { high: { url: thumbnail } } } }) => {
       return {
         type: 'video',
         name: title,
@@ -20,7 +20,6 @@ async function fetchLatestYoutubeVideos(options) {
         thumbnail,
       };
     });
-    return video;
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error(err);
@@ -28,4 +27,4 @@ async function fetchLatestYoutubeVideos(options) {
   }
 }
 
-module.exports = fetchLatestYoutubeVideos;
+module.exports = { fetchLatestYoutubeVideos };
