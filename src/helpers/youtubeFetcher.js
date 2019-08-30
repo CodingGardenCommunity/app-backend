@@ -6,7 +6,7 @@ async function fetchLatestYoutubeVideos(maxResults) {
   try {
     const resp = await fetch(apiUrl);
     const { items } = await resp.json();
-    return items.map(({ id: { videoID }, snippet: { title, publishedAt, description, thumbnails: { high: { url } } } }) => {
+    const video = items.map(({ id: { videoID }, snippet: { title, publishedAt: date, description, thumbnails: { high: { url: thumbnail } } } }) => {
       return {
         type: 'video',
         id: videoID,
@@ -15,16 +15,17 @@ async function fetchLatestYoutubeVideos(maxResults) {
           name: title,
           videoID,
           title,
-          date: publishedAt,
+          date,
           description,
           url: `https://www.youtube.com/watch?v=${videoID}`,
-          thumbnail: url,
+          thumbnail,
         },
       };
     });
+    return video;
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.log(err);
+    console.error(err);
     return [];
   }
 }
