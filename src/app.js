@@ -4,6 +4,9 @@ const routes = require('./routes');
 // Database connection
 require('./helpers/databaseConnection');
 
+// pollYoutube Cron Job
+require('../src/tasks/pollYoutube');
+
 const { errorHandler, notFound, cors } = require('./middlewares');
 
 // Initialize server
