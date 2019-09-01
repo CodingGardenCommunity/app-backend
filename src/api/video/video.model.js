@@ -6,8 +6,8 @@ const VideoSchema = new Schema(
   {
     type: {
       type: String,
-      required: true,
       enum: ['milestone', 'video'],
+      default: 'video',
     },
     name: {
       type: String,
