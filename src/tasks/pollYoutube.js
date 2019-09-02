@@ -3,7 +3,7 @@ const { schedule } = require('node-cron');
 const { fetchLatestYoutubeVideos } = require('../helpers/fetchData');
 const Video = require('../api/video/video.model');
 
-schedule('* * * * *', async () => {
+schedule('59 * * * *', async () => {
   try {
     const { date } = await Video.findOne({}).sort({ date: -1 });
     // Transforms date formart to the Youtube-API Standar.
