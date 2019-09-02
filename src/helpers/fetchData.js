@@ -4,7 +4,7 @@ const { YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID } = require('../config');
 async function fetchLatestYoutubeVideos({ maxResults, publishedAfter }) {
   const mrOpt = maxResults ? `maxResults=${maxResults}` : '';
   const paOpt = publishedAfter ? `publishedAfter=${publishedAfter}` : '';
-  const optUrl = [mrOpt, paOpt].join('&') || '';
+  const optUrl = [mrOpt, paOpt].filter(Boolean).join('&') || '';
   const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${YOUTUBE_CHANNEL_ID}&part=snippet&order=date&${optUrl}`;
   try {
     const resp = await fetch(apiUrl);
