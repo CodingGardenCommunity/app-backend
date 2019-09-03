@@ -16,9 +16,9 @@ async function fetchLatestYoutubeVideos({ maxResults, publishedAfter }) {
       return [];
     }
 
-    return items.map(({ id: { videoId: videoID }, snippet: { title, publishedAt: date, description, thumbnails: { high: { url: thumbnail } } } }) => {
+    return items.map(({ id: { videoId: videoID }, snippet: { title: name, publishedAt: date, description, thumbnails: { high: { url: thumbnail } } } }) => {
       return {
-        name: title,
+        name,
         date,
         description,
         url: `https://www.youtube.com/watch?v=${videoID}`,
