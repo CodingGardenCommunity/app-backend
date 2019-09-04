@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const fetch = require('node-fetch');
 const { YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID } = require('../config');
 
@@ -12,7 +13,6 @@ async function fetchLatestYoutubeVideos({ maxResults, publishedAfter }) {
 
     if (error) {
       error.errors.forEach(({ reason }) => {
-        // eslint-disable-next-line no-console
         console.error(`[fetch-error] ${reason}`);
       });
       return [];
@@ -31,7 +31,6 @@ async function fetchLatestYoutubeVideos({ maxResults, publishedAfter }) {
     }
     return [];
   } catch (err) {
-    // eslint-disable-next-line no-console
     console.error(`[error]: ${err}`);
     return [];
   }
