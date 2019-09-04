@@ -10,25 +10,29 @@ async function fetchLatestYoutubeVideos({ maxResults, publishedAfter }) {
     const resp = await fetch(apiUrl);
     const { items, error } = await resp.json();
 
-    if (error && error.errors[0].reason === 'keyInvalid') {
-      // eslint-disable-next-line no-console
-      console.log(`Invalid 'YOUTUBE_API_KEY'`);
+    if (error) {
+      error.errors.forEach(({ reason }) => {
+        // eslint-disable-next-line no-console
+        console.error(`[fetch-error] ${reason}`);
+      });
       return [];
     }
-
-    return items.map(({ id: { videoId: videoID }, snippet: { title: name, publishedAt: date, description, thumbnails: { high: { url: thumbnail } } } }) => {
-      return {
-        name,
-        date,
-        description,
-        url: `https://www.youtube.com/watch?v=${videoID}`,
-        videoID,
-        thumbnail,
-      };
-    });
+    if (items) {
+      return items.map(({ id: { videoId: videoID }, snippet: { title: name, publishedAt: date, description, thumbnails: { high: { url: thumbnail } } } }) => {
+        return {
+          name,
+          date,
+          description,
+          url: `https://www.youtube.com/watch?v=${videoID}`,
+          videoID,
+          thumbnail,
+        };
+      });
+    }
+    return [];
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.error(err);
+    console.error(`[error]: ${err}`);
     return [];
   }
 }
