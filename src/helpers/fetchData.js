@@ -17,6 +17,7 @@ async function fetchLatestYoutubeVideos({ maxResults, publishedAfter }) {
       });
       return [];
     }
+
     if (items) {
       return items.map(({ id: { videoId: videoID }, snippet: { title: name, publishedAt: date, description, thumbnails: { high: { url: thumbnail } } } }) => {
         return {
