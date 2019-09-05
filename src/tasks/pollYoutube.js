@@ -4,7 +4,7 @@ const { schedule } = require('node-cron');
 const { fetchLatestYoutubeVideos } = require('../helpers/fetchData');
 const Video = require('../api/video/video.model');
 
-schedule('59 * * * *', async () => {
+async function fetchVideosJob() {
   try {
     const { date } = await Video.findOne({}).sort({ date: -1 });
     // Transforms date format to the Youtube-API standard.
@@ -23,4 +23,7 @@ schedule('59 * * * *', async () => {
   } catch (err) {
     console.error(red(`[cron-job-error] ${err}`));
   }
-});
+}
+
+fetchVideosJob();
+schedule('59 * * * *', fetchVideosJob);
