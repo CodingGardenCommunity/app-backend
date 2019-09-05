@@ -5,7 +5,8 @@ const routes = require('./routes');
 require('./helpers/databaseConnection');
 
 // pollYoutube Cron Job
-require('../src/tasks/pollYoutube');
+// eslint-disable-next-line global-require
+if (process.env.NODE_ENV !== 'test') require('../src/tasks/pollYoutube');
 
 const { errorHandler, notFound, cors } = require('./middlewares');
 
@@ -14,7 +15,7 @@ const app = express();
 
 // App middleware
 if (process.env.NODE_ENV !== 'test') {
-  app.use(cors);
+    app.use(cors);
 }
 
 app.use(express.json());
