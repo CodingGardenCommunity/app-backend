@@ -1,6 +1,6 @@
 const cors = require('cors');
 
-const allowedOrigins = ['https://web.coding.garden', 'https://web-dev.coding.garden'];
+const allowedOrigins = ['https://web.codinggarden.community', 'https://web-dev.codinggarden.community'];
 
 const corsOptions = {
   origin(origin, callback) {

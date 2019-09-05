@@ -1,6 +1,7 @@
 {
   "name": "app-backend",
   "version": 2,
+  "scope": "coding-garden-community",
   "builds": [{
     "src": "src/index.js",
     "use": "@now/node-server"
