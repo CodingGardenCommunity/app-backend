@@ -15,7 +15,7 @@ const app = express();
 
 // App middleware
 if (process.env.NODE_ENV !== 'test') {
-    app.use(cors);
+  app.use(cors);
 }
 
 app.use(express.json());
