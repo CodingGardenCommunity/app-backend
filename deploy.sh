@@ -93,7 +93,7 @@ case "$env" in
       NODE_ENV=development
     fi
     if [ -z "$DEPLOY_ALIAS" ]; then
-      DEPLOY_ALIAS=api-dev.coding.garden
+      DEPLOY_ALIAS=api-dev.codinggarden.community
     fi
     if [ -z "$MONGO_URI" ]; then
       MONGO_URI=@community-app-db-dev
@@ -104,7 +104,7 @@ case "$env" in
       NODE_ENV=development
     fi
     if [ -z "$DEPLOY_ALIAS" ]; then
-      DEPLOY_ALIAS=api-staging.coding.garden
+      DEPLOY_ALIAS=api-staging.codinggarden.community
     fi
     if [ -z "$MONGO_URI" ]; then
       MONGO_URI=@community-app-db-staging
@@ -115,7 +115,7 @@ case "$env" in
       NODE_ENV=production
     fi
     if [ -z "$DEPLOY_ALIAS" ]; then
-      DEPLOY_ALIAS=api.coding.garden
+      DEPLOY_ALIAS=api.codinggarden.community
     fi
     if [ -z "$MONGO_URI" ]; then
       MONGO_URI=@community-app-db-prod

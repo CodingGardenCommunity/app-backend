@@ -1,7 +1,7 @@
 Servers:
   - url: 'http://localhost:3000/'
     description: Local server
-  - url: 'https://api-dev.coding.garden/'
+  - url: 'https://api-dev.codinggarden.community/'
     description: Development server
-  - url: 'https://api.coding.garden/'
+  - url: 'https://api.codinggarden.community/'
     description: Production server
