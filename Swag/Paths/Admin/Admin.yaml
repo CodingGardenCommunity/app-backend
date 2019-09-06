@@ -1,14 +1,14 @@
 # POST /admin/seed
 Seed:
   tags:
-  - Admin
+    - Admin
   summary: Populate DB
   operationId: seed
   parameters:
-  - name: X-Admin-Secret
-    in: header
-    schema:
-      type: string
+    - name: X-Admin-Secret
+      in: header
+      schema:
+        type: string
 
   responses:
     200:

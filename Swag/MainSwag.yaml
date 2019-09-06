@@ -16,15 +16,15 @@ paths:
 
   /faqs:
     get:
-      $ref: './Paths/FAQ/FAQ.yaml#/AllFAQs'
+      $ref: './Paths/FAQs/FAQs.yaml#/AllFAQs'
     post:
-      $ref: './Paths/FAQ/FAQ.yaml#/AddFAQ'
+      $ref: './Paths/FAQs/FAQs.yaml#/AddFAQ'
 
   /faqs/{id}:
     get:
-      $ref: './Paths/FAQ/FAQ.yaml#/SingleFAQ'
+      $ref: './Paths/FAQs/FAQs.yaml#/SingleFAQ'
     delete:
-      $ref: './Paths/FAQ/FAQ.yaml#/DeleteFAQ'
+      $ref: './Paths/FAQs/FAQs.yaml#/DeleteFAQ'
 
   /history:
     get:
@@ -36,11 +36,11 @@ paths:
 
   /videos:
     get:
-      $ref: './Paths/Video/Video.yaml#/AllVideos'
+      $ref: './Paths/Videos/Videos.yaml#/AllVideos'
 
   /videos/{id}:
     get:
-      $ref: './Paths/Video/Video.yaml#/SingleVideo'
+      $ref: './Paths/Videos/Videos.yaml#/SingleVideo'
 
   /admin/seed:
     post:
