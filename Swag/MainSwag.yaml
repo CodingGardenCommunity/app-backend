@@ -9,18 +9,18 @@ paths:
   /contributors:
     get:
       $ref: './Paths/Contributors/Contributors.yaml#/AllContributors'
-      
+
   /contributors/{id}:
     get:
       $ref: './Paths/Contributors/Contributors.yaml#/SingleContributor'
 
-  /faq:
+  /faqs:
     get:
       $ref: './Paths/FAQ/FAQ.yaml#/AllFAQs'
     post:
       $ref: './Paths/FAQ/FAQ.yaml#/AddFAQ'
 
-  /faq/{id}:
+  /faqs/{id}:
     get:
       $ref: './Paths/FAQ/FAQ.yaml#/SingleFAQ'
     delete:
@@ -29,22 +29,19 @@ paths:
   /history:
     get:
       $ref: './Paths/History/History.yaml#/EntireHistory'
-      
+
   /history/{id}:
     get:
       $ref: './Paths/History/History.yaml#/SingleMilestone'
 
-  /video:
+  /videos:
     get:
       $ref: './Paths/Video/Video.yaml#/AllVideos'
-      
-  /video/{id}:
+
+  /videos/{id}:
     get:
       $ref: './Paths/Video/Video.yaml#/SingleVideo'
 
   /admin/seed:
     post:
       $ref: './Paths/Admin/Admin.yaml#/Seed'
-      
-      
-

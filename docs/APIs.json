@@ -289,7 +289,7 @@
         }
       }
     },
-    "/faq": {
+    "/faqs": {
       "get": {
         "tags": [
           "FAQ"
@@ -515,7 +515,7 @@
         }
       }
     },
-    "/faq/{id}": {
+    "/faqs/{id}": {
       "get": {
         "tags": [
           "FAQ"
@@ -1020,7 +1020,7 @@
         }
       }
     },
-    "/video": {
+    "/videos": {
       "get": {
         "tags": [
           "Video"
@@ -1130,7 +1130,7 @@
         }
       }
     },
-    "/video/{id}": {
+    "/videos/{id}": {
       "get": {
         "tags": [
           "Video"
