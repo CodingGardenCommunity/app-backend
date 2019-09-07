@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { serve, setup } = require('swagger-ui-express');
-const { sendVersionMarkup, redirectToLatestAPIVersion } = require('./doc.controller');
+const { sendVersionMarkup, redirectToLatestAPIVersion } = require('./docs.controller');
 const openApiDocumentation = require('../../../docs/APIs.json');
 
 const options = {

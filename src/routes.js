@@ -6,7 +6,7 @@ const faq = require('./api/faq/faq.routes');
 const admin = require('./api/admin/admin.routes');
 const history = require('./api/history/history.routes');
 const video = require('./api/video/video.routes');
-const documentation = require('./api/docs/doc.routes');
+const documentation = require('./api/docs/docs.routes');
 
 const router = Router();
 
