@@ -1,5 +1,5 @@
 const colors = require('colors/safe');
-const Videos = require('../../api/video/video.model');
+const Videos = require('../../api/videos/videos.model');
 
 const videoData = [
   {

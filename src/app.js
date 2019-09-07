@@ -21,7 +21,7 @@ if (process.env.NODE_ENV !== 'test') {
 app.use(express.json());
 
 // App routes
-app.get('/', (req, res) => res.json({ message: 'Check out /contributors, /faqs, /history, /docs, and /video' }));
+app.get('/', (req, res) => res.json({ message: 'Check out /contributors, /faqs, /history, /docs, and /videos' }));
 app.use(routes);
 
 app.use(notFound);
