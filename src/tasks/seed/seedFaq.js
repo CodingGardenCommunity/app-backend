@@ -1,5 +1,5 @@
 const colors = require('colors/safe');
-const FAQ = require('../../api/faq/faq.model');
+const FAQ = require('../../api/faqs/faqs.model');
 
 const faqData = [
   {
