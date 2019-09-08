@@ -12,10 +12,15 @@ async function seed(req, res, next) {
 
 async function fetchVideos(req, res, next) {
   try {
-    // eslint-disable-next-line no-console
-    console.log('Manual fetch.');
-    await fetchVideosJob();
-    res.sendStatus(200);
+    const { message: info, error } = await fetchVideosJob();
+
+    const status = error ? 500 : 200;
+    const message = error || info;
+
+    res.status(status).json({
+      status,
+      message,
+    });
   } catch (error) {
     next(error);
   }
