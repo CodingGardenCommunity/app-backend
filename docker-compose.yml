@@ -4,10 +4,23 @@ services:
     container_name: app-backend
     restart: always
     build: .
+    volumes:
+      - ${pwd}:/usr/src/app-backend
+    working_dir: /usr/src/app-backend
     ports:
       - '80:3000'
     links:
       - mongo
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - MONGO_URI=${MONGO_URI}
+      - TEST_MONGO_URI=${TEST_MONGO_URI}
+      - ADMIN_SECRET=${ADMIN_SECRET}
+      - YOUTUBE_API_KEY=${YOUTUBE_API_KEY}
+      - YOUTUBE_CHANNEL_ID=${YOUTUBE_CHANNEL_ID}
+      - PORT=${PORT}
+      - HOST=${HOST}
+
   mongo:
     container_name: mongo
     image: mongo
