@@ -1,1 +1,1 @@
-yarn run seed && yarn run dev
+yarn run seed && yarn run dev:docker

@@ -13,8 +13,8 @@ services:
       - mongo
     environment:
       - NODE_ENV=${NODE_ENV}
-      - MONGO_URI=${MONGO_URI}
-      - TEST_MONGO_URI=${TEST_MONGO_URI}
+      - MONGO_URI=mongodb://mongo:27017/codinggardencommunity
+      - TEST_MONGO_URI=mongodb://mongo:27017/codinggardencommunity-test
       - ADMIN_SECRET=${ADMIN_SECRET}
       - YOUTUBE_API_KEY=${YOUTUBE_API_KEY}
       - YOUTUBE_CHANNEL_ID=${YOUTUBE_CHANNEL_ID}
