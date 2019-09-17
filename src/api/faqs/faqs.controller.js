@@ -1,6 +1,6 @@
-const FAQ = require('./faq.model');
+const FAQ = require('./faqs.model');
 
-async function getFAQ(req, res, next) {
+async function getFAQs(req, res, next) {
   try {
     let response;
     if ('id' in req.params) {
@@ -62,7 +62,7 @@ async function removeFAQ(req, res, next) {
 }
 
 module.exports = {
-  getFAQ,
+  getFAQs,
   addFAQ,
   removeFAQ,
 };
