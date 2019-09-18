@@ -9,42 +9,39 @@ paths:
   /contributors:
     get:
       $ref: './Paths/Contributors/Contributors.yaml#/AllContributors'
-      
+
   /contributors/{id}:
     get:
       $ref: './Paths/Contributors/Contributors.yaml#/SingleContributor'
 
-  /faq:
+  /faqs:
     get:
-      $ref: './Paths/FAQ/FAQ.yaml#/AllFAQs'
+      $ref: './Paths/FAQs/FAQs.yaml#/AllFAQs'
     post:
-      $ref: './Paths/FAQ/FAQ.yaml#/AddFAQ'
+      $ref: './Paths/FAQs/FAQs.yaml#/AddFAQ'
 
-  /faq/{id}:
+  /faqs/{id}:
     get:
-      $ref: './Paths/FAQ/FAQ.yaml#/SingleFAQ'
+      $ref: './Paths/FAQs/FAQs.yaml#/SingleFAQ'
     delete:
-      $ref: './Paths/FAQ/FAQ.yaml#/DeleteFAQ'
+      $ref: './Paths/FAQs/FAQs.yaml#/DeleteFAQ'
 
   /history:
     get:
       $ref: './Paths/History/History.yaml#/EntireHistory'
-      
+
   /history/{id}:
     get:
       $ref: './Paths/History/History.yaml#/SingleMilestone'
 
-  /video:
+  /videos:
     get:
-      $ref: './Paths/Video/Video.yaml#/AllVideos'
-      
-  /video/{id}:
+      $ref: './Paths/Videos/Videos.yaml#/AllVideos'
+
+  /videos/{id}:
     get:
-      $ref: './Paths/Video/Video.yaml#/SingleVideo'
+      $ref: './Paths/Videos/Videos.yaml#/SingleVideo'
 
   /admin/seed:
     post:
       $ref: './Paths/Admin/Admin.yaml#/Seed'
-      
-      
-

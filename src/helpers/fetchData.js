@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 const fetch = require('node-fetch');
-const Video = require('../api/video/video.model');
+
+const Video = require('../api/videos/videos.model');
 const { YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID } = require('../config');
 
 async function fetchLatestYoutubeVideos({ maxResults, publishedAfter }) {

@@ -1,4 +1,4 @@
-# GET /video responses
+# GET /videos responses
 AllVideos:
   200:
     description: An array of video objects
@@ -10,8 +10,8 @@ AllVideos:
             $ref: '../../Schema.yaml#/Video'
   500:
     $ref: '../../Schema.yaml#/InternalServerError'
-      
-# GET /video/{id} responses
+
+# GET /videos/{id} responses
 SingleVideo:
   200:
     description: A video object
@@ -30,7 +30,6 @@ SingleVideo:
         example:
           message: Invalid Video ID.
           status: 404
-          stack: "RangeError: Invalid Video ID."
+          stack: 'RangeError: Invalid Video ID.'
   500:
     $ref: '../../Schema.yaml#/InternalServerError'
-
