@@ -76,11 +76,7 @@ async function fetchVideosJob() {
     fetchedVideos.forEach(async newVideo => {
       if (newVideo.date !== lastDate) {
         savedVideos += 1;
-        try {
-          await new Video(newVideo).save();
-        } catch (error) {
-          throw error;
-        }
+        await new Video(newVideo).save();
       }
     });
     if (savedVideos === 0) {
