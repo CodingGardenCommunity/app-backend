@@ -1,8 +1,7 @@
 version: '3'
 services:
   app:
-    container_name: app-backend_dev
-    restart: always
+    container_name: app-backend_test
     build: .
     volumes:
       - .:/usr/src/app-backend
@@ -12,7 +11,7 @@ services:
     links:
       - mongo
     environment:
-      - NODE_ENV=${NODE_ENV}
+      - NODE_ENV=test
       - MONGO_URI=mongodb://mongo:27017/codinggardencommunity
       - TEST_MONGO_URI=mongodb://mongo:27017/codinggardencommunity-test
       - ADMIN_SECRET=${ADMIN_SECRET}

@@ -16,18 +16,18 @@ read_var() {
 
 runPreCommitHook() {
 
-local SETUP_TYPE=$(read_var NODE_ENV)
+local SETUP_TYPE=$(read_var SETUP_TYPE)
 
-if [ $NODE_ENV == "development" ]
+if [ $SETUP_TYPE == "docker" ]
 then
-  yarn run seed && yarn run dev:docker
-elif [ $NODE_ENV == "test" ]
+  docker-compose -f docker-compose-test.yml up --force-recreate
+elif [ $SETUP_TYPE == "manual" ]
 then
-  yarn install && yarn run lint && yarn run format && yarn run test
-  exit $?
+  yarn run lint && yarn run format && yarn run test
 else
-  echo "Oops, we have a problem here. NODE_ENV in .env must be 'development' or 'test'."
+  echo "Oops, we have a problem here. SETUP_TYPE in .env must be 'docker' or 'manual'."
 fi
 }
+
 
 runPreCommitHook
