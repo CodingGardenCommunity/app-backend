@@ -32,13 +32,13 @@
       "name": "Contributors"
     },
     {
-      "name": "FAQ"
+      "name": "FAQs"
     },
     {
       "name": "History"
     },
     {
-      "name": "Video"
+      "name": "Videos"
     },
     {
       "name": "Admin"
@@ -289,10 +289,10 @@
         }
       }
     },
-    "/faq": {
+    "/faqs": {
       "get": {
         "tags": [
-          "FAQ"
+          "FAQs"
         ],
         "summary": "Returns list of FAQs",
         "operationId": "getAllFAQs",
@@ -376,7 +376,7 @@
       },
       "post": {
         "tags": [
-          "FAQ"
+          "FAQs"
         ],
         "summary": "Add a new FAQ",
         "operationId": "addFAQ",
@@ -515,10 +515,10 @@
         }
       }
     },
-    "/faq/{id}": {
+    "/faqs/{id}": {
       "get": {
         "tags": [
-          "FAQ"
+          "FAQs"
         ],
         "summary": "Returns one FAQ object",
         "operationId": "getSingleFaqById",
@@ -640,7 +640,7 @@
       },
       "delete": {
         "tags": [
-          "FAQ"
+          "FAQs"
         ],
         "summary": "Delete a FAQ",
         "description": "This end-point removes a FAQ entry based on provided `id`",
@@ -1020,10 +1020,10 @@
         }
       }
     },
-    "/video": {
+    "/videos": {
       "get": {
         "tags": [
-          "Video"
+          "Videos"
         ],
         "summary": "Returns list of Videos.",
         "operationId": "getAllVideos",
@@ -1130,10 +1130,10 @@
         }
       }
     },
-    "/video/{id}": {
+    "/videos/{id}": {
       "get": {
         "tags": [
-          "Video"
+          "Videos"
         ],
         "summary": "Returns single video object",
         "operationId": "getSingleVideoById",

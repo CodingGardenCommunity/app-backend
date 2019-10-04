@@ -1,4 +1,4 @@
-# GET /faq responses
+# GET /faqs responses
 AllFAQs:
   200:
     description: An array of FAQ objects
@@ -11,7 +11,7 @@ AllFAQs:
   500:
     $ref: '../../Schema.yaml#/InternalServerError'
 
-# POST /faq responses
+# POST /faqs responses
 AddFAQ:
   200:
     description: Added new FAQ entry
@@ -39,8 +39,8 @@ AddFAQ:
           stack: 'ReferenceError: Make sure your request includes a question and answer.'
   500:
     $ref: '../../Schema.yaml#/InternalServerError'
-                
-# GET /faq/{id} responses
+
+# GET /faqs/{id} responses
 SingleFAQ:
   200:
     description: One FAQ object
@@ -63,7 +63,7 @@ SingleFAQ:
   500:
     $ref: '../../Schema.yaml#/InternalServerError'
 
-# DELETE /faq/{id} responses
+# DELETE /faqs/{id} responses
 DeleteFAQ:
   200:
     description: FAQ entry deleted.
@@ -96,4 +96,3 @@ DeleteFAQ:
               example: 'ReferenceError: There is no FAQ to delete with that ID.'
   500:
     $ref: '../../Schema.yaml#/InternalServerError'
-      

@@ -2,7 +2,7 @@ const request = require('supertest');
 const { connection } = require('mongoose');
 
 const app = require('../../app');
-const Video = require('./video.model');
+const Video = require('./videos.model');
 const { prePopulate } = require('../../helpers/testHelpers');
 
 const ids = {
@@ -26,20 +26,20 @@ afterAll(async () => {
   connection.close();
 });
 
-describe('GET /video', () => {
+describe('GET /videos', () => {
   it('Should respond with a 200 status code', done =>
     request(app)
-      .get('/video')
+      .get('/videos')
       .expect('Content-Type', /json/)
       .expect(200, done));
 });
 
-describe('GET /video/:id', () => {
+describe('GET /videos/:id', () => {
   it('With an invalid id, should respond with an invalid id message', async done => {
     const {
       body: { message },
     } = await request(app)
-      .get(`/video/${ids.invalid}`)
+      .get(`/videos/${ids.invalid}`)
       .expect(404);
     expect(message).toBe('Invalid Video ID.');
     done();
@@ -49,14 +49,14 @@ describe('GET /video/:id', () => {
     const {
       body: { message },
     } = await request(app)
-      .get(`/video/${ids.nonexistent}`)
+      .get(`/videos/${ids.nonexistent}`)
       .expect(404);
     expect(message).toBe('The requested ID does not exist.');
     done();
   });
 
   it('Should respond with a 200 status code for valid id', async done => {
-    const { status, body } = await request(app).get(`/video/${ids.valid}`);
+    const { status, body } = await request(app).get(`/videos/${ids.valid}`);
     expect(status).toEqual(200);
     expect(body[0].id).toBe(`${ids.valid}`);
     done();
@@ -66,7 +66,7 @@ describe('GET /video/:id', () => {
     const {
       status,
       body: { message },
-    } = await request(app).get('/video/someInvalidID');
+    } = await request(app).get('/videos/someInvalidID');
     expect(status).toEqual(404);
     expect(message).toEqual('Invalid Video ID.');
     done();
