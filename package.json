@@ -5,7 +5,6 @@
   "main": "src/index.js",
   "jest": {
     "testEnvironment": "node",
-    "preset": "jest-puppeteer",
     "collectCoverageFrom": [
       "!**node_modules**",
       "src/api/**/*.js"
@@ -28,14 +27,17 @@
     "deploy": "./deploy.sh",
     "format": "prettier --write src/**/*.js",
     "buildAPIDoc": "swagger-ui-watcher ./Swag/MainSwag.yaml --bundle=./docs/APIs.json",
-    "coverage:open": "node src/tasks/openCoverage.js"
+    "coverage:open": "node src/tasks/openCoverage.js",
+    "dev:docker": "cross-env NODE_ENV=development nodemon -L src/index.js",
+    "dev:docker:clean": "docker rm app-backend_dev && docker rmi app-backend_app",
+    "ttest": "sh preCommit.sh"
   },
   "repository": "https://github.com/CodingGardenCommunity/app-backend.git",
   "author": "Coding Garden Community App",
   "license": "MIT",
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run lint && yarn run format && yarn run test"
+      "pre-commit": "yarn run ttest"
     }
   },
   "dependencies": {
@@ -62,10 +64,8 @@
     "eslint-plugin-promise": "^4.2.1",
     "husky": "^3.0.5",
     "jest": "^24.9.0",
-    "jest-puppeteer": "^4.3.0",
     "nodemon": "^1.19.2",
     "prettier": "^1.18.2",
-    "puppeteer": "^1.20.0",
     "supertest": "^4.0.2"
   }
 }
