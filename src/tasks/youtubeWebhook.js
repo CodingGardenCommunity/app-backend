@@ -11,6 +11,8 @@ const { fetchVideosJob } = require('../helpers/fetchData');
 const url = NODE_ENV === 'production' ? 'https://api.codinggarden.community' : 'https://api-dev.codinggarden.community';
 const callbackUrl = `${url}/youtube-webhook`;
 
+let lastestVideoID;
+
 const pubsub = pubSubHubbub.createServer({
   callbackUrl,
   secret: YOUTUBE_WEBHOOK_SECRET,
@@ -25,8 +27,9 @@ pubsub.on('feed', data => {
     const { entry } = result.feed;
 
     if (entry && entry.length !== 0) {
-      const { 'yt:channelId': channelIDArray } = entry[0];
-      if (channelIDArray.includes(YOUTUBE_CHANNEL_ID)) {
+      const { 'yt:channelId': channelIDArray, 'yt:videoId': videoID } = entry[0];
+      if (channelIDArray.includes(YOUTUBE_CHANNEL_ID) && lastestVideoID !== videoID[0]) {
+        [lastestVideoID] = videoID;
         fetchVideosJob();
       }
     }
