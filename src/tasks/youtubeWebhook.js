@@ -5,11 +5,8 @@ const { parseString } = require('xml2js');
 const { YOUTUBE_CHANNEL_ID, NODE_ENV, YOUTUBE_WEBHOOK_SECRET } = require('../config');
 const { fetchVideosJob } = require('../helpers/fetchData');
 
-// const topic = `https://www.youtube.com/xml/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
-// const hub = 'https://pubsubhubbub.appspot.com/';
-
-const url = NODE_ENV === 'production' ? 'https://api.codinggarden.community' : 'https://api-dev.codinggarden.community';
-const callbackUrl = `${url}/youtube-webhook`;
+const deployURL = NODE_ENV === 'production' ? 'api' : 'api-dev';
+const callbackUrl = `https://${deployURL}.codinggarden.community/youtube-webhook`;
 
 let lastestVideoID;
 
@@ -27,8 +24,8 @@ pubsub.on('feed', data => {
     const { entry } = result.feed;
 
     if (entry && entry.length !== 0) {
-      const { 'yt:channelId': channelIDArray, 'yt:videoId': videoID } = entry[0];
-      if (channelIDArray.includes(YOUTUBE_CHANNEL_ID) && lastestVideoID !== videoID[0]) {
+      const { 'yt:channelId': channelID, 'yt:videoId': videoID } = entry[0];
+      if (YOUTUBE_CHANNEL_ID === channelID[0] && lastestVideoID !== videoID[0]) {
         [lastestVideoID] = videoID;
         fetchVideosJob();
       }
