@@ -2,7 +2,7 @@ const router = require('express').Router();
 const pubSubHubbub = require('pubsubhubbub');
 const { parseString } = require('xml2js');
 
-const { YOUTUBE_CHANNEL_ID, NODE_ENV, WEBHOOK_SECRET } = require('../config');
+const { YOUTUBE_CHANNEL_ID, NODE_ENV, YOUTUBE_WEBHOOK_SECRET } = require('../config');
 const { fetchVideosJob } = require('../helpers/fetchData');
 
 // const topic = `https://www.youtube.com/xml/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
@@ -13,7 +13,7 @@ const callbackUrl = `${url}/youtube-webhook`;
 
 const pubsub = pubSubHubbub.createServer({
   callbackUrl,
-  secret: WEBHOOK_SECRET,
+  secret: YOUTUBE_WEBHOOK_SECRET,
 });
 
 pubsub.on('feed', data => {
