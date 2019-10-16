@@ -2,18 +2,12 @@ const router = require('express').Router();
 const pubSubHubbub = require('pubsubhubbub');
 const { parseString } = require('xml2js');
 
-const { YOUTUBE_CHANNEL_ID, NODE_ENV, YOUTUBE_WEBHOOK_SECRET } = require('../config');
+const { YOUTUBE_CHANNEL_ID, YOUTUBE_WEBHOOK_SECRET: secret } = require('../config');
 const { fetchVideosJob } = require('../helpers/fetchData');
-
-const deployUrl = NODE_ENV === 'production' ? 'api' : 'api-dev';
-const callbackUrl = `https://${deployUrl}.codinggarden.community/youtube-webhook`;
 
 let lastestVideoID;
 
-const pubsub = pubSubHubbub.createServer({
-  callbackUrl,
-  secret: YOUTUBE_WEBHOOK_SECRET,
-});
+const pubsub = pubSubHubbub.createServer({ secret });
 
 const fetchVideos = () => setTimeout(fetchVideosJob, 30000);
 
