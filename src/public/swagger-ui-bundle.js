@@ -4924,15 +4924,16 @@ object-assign
           (this.predicate = t.predicate || null),
           (this.represent = t.represent || null),
           (this.defaultStyle = t.defaultStyle || null),
-          (this.styleAliases = ((n = t.styleAliases || null),
-          (a = {}),
-          null !== n &&
-            Object.keys(n).forEach(function(e) {
-              n[e].forEach(function(t) {
-                a[String(t)] = e;
-              });
-            }),
-          a)),
+          (this.styleAliases =
+            ((n = t.styleAliases || null),
+            (a = {}),
+            null !== n &&
+              Object.keys(n).forEach(function(e) {
+                n[e].forEach(function(t) {
+                  a[String(t)] = e;
+                });
+              }),
+            a)),
           -1 === i.indexOf(this.kind))
         )
           throw new r('Unknown kind "' + this.kind + '" is specified for "' + e + '" YAML type.');
@@ -10243,14 +10244,15 @@ object-assign
     function(e, t, n) {
       'use strict';
       var r = n(21),
-        o = (n(15),
-        function(e) {
-          if (this.instancePool.length) {
-            var t = this.instancePool.pop();
-            return this.call(t, e), t;
-          }
-          return new this(e);
-        }),
+        o =
+          (n(15),
+          function(e) {
+            if (this.instancePool.length) {
+              var t = this.instancePool.pop();
+              return this.call(t, e), t;
+            }
+            return new this(e);
+          }),
         i = function(e) {
           e instanceof this || r('25'), e.destructor(), this.instancePool.length < this.poolSize && this.instancePool.push(e);
         },
@@ -15194,26 +15196,27 @@ object-assign
         i = n.n(o),
         a = n(1),
         s = n(74);
-      t.default = ((r = {}),
-      i()(r, s.UPDATE_LAYOUT, function(e, t) {
-        return e.set('layout', t.payload);
-      }),
-      i()(r, s.UPDATE_FILTER, function(e, t) {
-        return e.set('filter', t.payload);
-      }),
-      i()(r, s.SHOW, function(e, t) {
-        var n = t.payload.shown,
-          r = Object(a.fromJS)(t.payload.thing);
-        return e.update('shown', Object(a.fromJS)({}), function(e) {
-          return e.set(r, n);
-        });
-      }),
-      i()(r, s.UPDATE_MODE, function(e, t) {
-        var n = t.payload.thing,
-          r = t.payload.mode;
-        return e.setIn(['modes'].concat(n), (r || '') + '');
-      }),
-      r);
+      t.default =
+        ((r = {}),
+        i()(r, s.UPDATE_LAYOUT, function(e, t) {
+          return e.set('layout', t.payload);
+        }),
+        i()(r, s.UPDATE_FILTER, function(e, t) {
+          return e.set('filter', t.payload);
+        }),
+        i()(r, s.SHOW, function(e, t) {
+          var n = t.payload.shown,
+            r = Object(a.fromJS)(t.payload.thing);
+          return e.update('shown', Object(a.fromJS)({}), function(e) {
+            return e.set(r, n);
+          });
+        }),
+        i()(r, s.UPDATE_MODE, function(e, t) {
+          var n = t.payload.thing,
+            r = t.payload.mode;
+          return e.setIn(['modes'].concat(n), (r || '') + '');
+        }),
+        r);
     },
     function(e, t, n) {
       'use strict';
@@ -15287,123 +15290,124 @@ object-assign
         h = n.n(f),
         d = n(66),
         m = n(29);
-      t.default = ((r = {}),
-      i()(r, m.UPDATE_SPEC, function(e, t) {
-        return 'string' == typeof t.payload ? e.set('spec', t.payload) : e;
-      }),
-      i()(r, m.UPDATE_URL, function(e, t) {
-        return e.set('url', t.payload + '');
-      }),
-      i()(r, m.UPDATE_JSON, function(e, t) {
-        return e.set('json', Object(p.h)(t.payload));
-      }),
-      i()(r, m.UPDATE_RESOLVED, function(e, t) {
-        return e.setIn(['resolved'], Object(p.h)(t.payload));
-      }),
-      i()(r, m.UPDATE_RESOLVED_SUBTREE, function(e, t) {
-        var n = t.payload,
-          r = n.value,
-          o = n.path;
-        return e.setIn(['resolvedSubtrees'].concat(c()(o)), Object(p.h)(r));
-      }),
-      i()(r, m.UPDATE_PARAM, function(e, t) {
-        var n = t.payload,
-          r = n.path,
-          o = n.paramName,
-          i = n.paramIn,
-          a = n.param,
-          s = n.value,
-          u = n.isXml,
-          l = a ? Object(p.z)(a) : ''.concat(i, '.').concat(o),
-          f = u ? 'value_xml' : 'value';
-        return e.setIn(['meta', 'paths'].concat(c()(r), ['parameters', l, f]), s);
-      }),
-      i()(r, m.UPDATE_EMPTY_PARAM_INCLUSION, function(e, t) {
-        var n = t.payload,
-          r = n.pathMethod,
-          o = n.paramName,
-          i = n.paramIn,
-          a = n.includeEmptyValue;
-        if (!o || !i) return console.warn('Warning: UPDATE_EMPTY_PARAM_INCLUSION could not generate a paramKey.'), e;
-        var s = ''.concat(i, '.').concat(o);
-        return e.setIn(['meta', 'paths'].concat(c()(r), ['parameter_inclusions', s]), a);
-      }),
-      i()(r, m.VALIDATE_PARAMS, function(e, t) {
-        var n = t.payload,
-          r = n.pathMethod,
-          o = n.isOAS3,
-          i = Object(d.specJsonWithResolvedSubtrees)(e).getIn(['paths'].concat(c()(r))),
-          a = Object(d.parameterValues)(e, r).toJS();
-        return e.updateIn(['meta', 'paths'].concat(c()(r), ['parameters']), Object(l.fromJS)({}), function(t) {
-          return i.get('parameters', Object(l.List)()).reduce(function(t, n) {
-            var i = Object(p.A)(n, a),
-              s = Object(d.parameterInclusionSettingFor)(e, r, n.get('name'), n.get('in')),
-              u = Object(p.I)(n, i, { bypassRequiredCheck: s, isOAS3: o });
-            return t.setIn([Object(p.z)(n), 'errors'], Object(l.fromJS)(u));
-          }, t);
-        });
-      }),
-      i()(r, m.CLEAR_VALIDATE_PARAMS, function(e, t) {
-        var n = t.payload.pathMethod;
-        return e.updateIn(['meta', 'paths'].concat(c()(n), ['parameters']), Object(l.fromJS)([]), function(e) {
-          return e.map(function(e) {
-            return e.set('errors', Object(l.fromJS)([]));
+      t.default =
+        ((r = {}),
+        i()(r, m.UPDATE_SPEC, function(e, t) {
+          return 'string' == typeof t.payload ? e.set('spec', t.payload) : e;
+        }),
+        i()(r, m.UPDATE_URL, function(e, t) {
+          return e.set('url', t.payload + '');
+        }),
+        i()(r, m.UPDATE_JSON, function(e, t) {
+          return e.set('json', Object(p.h)(t.payload));
+        }),
+        i()(r, m.UPDATE_RESOLVED, function(e, t) {
+          return e.setIn(['resolved'], Object(p.h)(t.payload));
+        }),
+        i()(r, m.UPDATE_RESOLVED_SUBTREE, function(e, t) {
+          var n = t.payload,
+            r = n.value,
+            o = n.path;
+          return e.setIn(['resolvedSubtrees'].concat(c()(o)), Object(p.h)(r));
+        }),
+        i()(r, m.UPDATE_PARAM, function(e, t) {
+          var n = t.payload,
+            r = n.path,
+            o = n.paramName,
+            i = n.paramIn,
+            a = n.param,
+            s = n.value,
+            u = n.isXml,
+            l = a ? Object(p.z)(a) : ''.concat(i, '.').concat(o),
+            f = u ? 'value_xml' : 'value';
+          return e.setIn(['meta', 'paths'].concat(c()(r), ['parameters', l, f]), s);
+        }),
+        i()(r, m.UPDATE_EMPTY_PARAM_INCLUSION, function(e, t) {
+          var n = t.payload,
+            r = n.pathMethod,
+            o = n.paramName,
+            i = n.paramIn,
+            a = n.includeEmptyValue;
+          if (!o || !i) return console.warn('Warning: UPDATE_EMPTY_PARAM_INCLUSION could not generate a paramKey.'), e;
+          var s = ''.concat(i, '.').concat(o);
+          return e.setIn(['meta', 'paths'].concat(c()(r), ['parameter_inclusions', s]), a);
+        }),
+        i()(r, m.VALIDATE_PARAMS, function(e, t) {
+          var n = t.payload,
+            r = n.pathMethod,
+            o = n.isOAS3,
+            i = Object(d.specJsonWithResolvedSubtrees)(e).getIn(['paths'].concat(c()(r))),
+            a = Object(d.parameterValues)(e, r).toJS();
+          return e.updateIn(['meta', 'paths'].concat(c()(r), ['parameters']), Object(l.fromJS)({}), function(t) {
+            return i.get('parameters', Object(l.List)()).reduce(function(t, n) {
+              var i = Object(p.A)(n, a),
+                s = Object(d.parameterInclusionSettingFor)(e, r, n.get('name'), n.get('in')),
+                u = Object(p.I)(n, i, { bypassRequiredCheck: s, isOAS3: o });
+              return t.setIn([Object(p.z)(n), 'errors'], Object(l.fromJS)(u));
+            }, t);
           });
-        });
-      }),
-      i()(r, m.SET_RESPONSE, function(e, t) {
-        var n,
-          r = t.payload,
-          o = r.res,
-          i = r.path,
-          a = r.method;
-        (n = o.error ? s()({ error: !0, name: o.err.name, message: o.err.message, statusCode: o.err.statusCode }, o.err.response) : o).headers = n.headers || {};
-        var u = e.setIn(['responses', i, a], Object(p.h)(n));
-        return h.a.Blob && o.data instanceof h.a.Blob && (u = u.setIn(['responses', i, a, 'text'], o.data)), u;
-      }),
-      i()(r, m.SET_REQUEST, function(e, t) {
-        var n = t.payload,
-          r = n.req,
-          o = n.path,
-          i = n.method;
-        return e.setIn(['requests', o, i], Object(p.h)(r));
-      }),
-      i()(r, m.SET_MUTATED_REQUEST, function(e, t) {
-        var n = t.payload,
-          r = n.req,
-          o = n.path,
-          i = n.method;
-        return e.setIn(['mutatedRequests', o, i], Object(p.h)(r));
-      }),
-      i()(r, m.UPDATE_OPERATION_META_VALUE, function(e, t) {
-        var n = t.payload,
-          r = n.path,
-          o = n.value,
-          i = n.key,
-          a = ['paths'].concat(c()(r)),
-          s = ['meta', 'paths'].concat(c()(r));
-        return e.getIn(['json'].concat(c()(a))) || e.getIn(['resolved'].concat(c()(a))) || e.getIn(['resolvedSubtrees'].concat(c()(a))) ? e.setIn([].concat(c()(s), [i]), Object(l.fromJS)(o)) : e;
-      }),
-      i()(r, m.CLEAR_RESPONSE, function(e, t) {
-        var n = t.payload,
-          r = n.path,
-          o = n.method;
-        return e.deleteIn(['responses', r, o]);
-      }),
-      i()(r, m.CLEAR_REQUEST, function(e, t) {
-        var n = t.payload,
-          r = n.path,
-          o = n.method;
-        return e.deleteIn(['requests', r, o]);
-      }),
-      i()(r, m.SET_SCHEME, function(e, t) {
-        var n = t.payload,
-          r = n.scheme,
-          o = n.path,
-          i = n.method;
-        return o && i ? e.setIn(['scheme', o, i], r) : o || i ? void 0 : e.setIn(['scheme', '_defaultScheme'], r);
-      }),
-      r);
+        }),
+        i()(r, m.CLEAR_VALIDATE_PARAMS, function(e, t) {
+          var n = t.payload.pathMethod;
+          return e.updateIn(['meta', 'paths'].concat(c()(n), ['parameters']), Object(l.fromJS)([]), function(e) {
+            return e.map(function(e) {
+              return e.set('errors', Object(l.fromJS)([]));
+            });
+          });
+        }),
+        i()(r, m.SET_RESPONSE, function(e, t) {
+          var n,
+            r = t.payload,
+            o = r.res,
+            i = r.path,
+            a = r.method;
+          (n = o.error ? s()({ error: !0, name: o.err.name, message: o.err.message, statusCode: o.err.statusCode }, o.err.response) : o).headers = n.headers || {};
+          var u = e.setIn(['responses', i, a], Object(p.h)(n));
+          return h.a.Blob && o.data instanceof h.a.Blob && (u = u.setIn(['responses', i, a, 'text'], o.data)), u;
+        }),
+        i()(r, m.SET_REQUEST, function(e, t) {
+          var n = t.payload,
+            r = n.req,
+            o = n.path,
+            i = n.method;
+          return e.setIn(['requests', o, i], Object(p.h)(r));
+        }),
+        i()(r, m.SET_MUTATED_REQUEST, function(e, t) {
+          var n = t.payload,
+            r = n.req,
+            o = n.path,
+            i = n.method;
+          return e.setIn(['mutatedRequests', o, i], Object(p.h)(r));
+        }),
+        i()(r, m.UPDATE_OPERATION_META_VALUE, function(e, t) {
+          var n = t.payload,
+            r = n.path,
+            o = n.value,
+            i = n.key,
+            a = ['paths'].concat(c()(r)),
+            s = ['meta', 'paths'].concat(c()(r));
+          return e.getIn(['json'].concat(c()(a))) || e.getIn(['resolved'].concat(c()(a))) || e.getIn(['resolvedSubtrees'].concat(c()(a))) ? e.setIn([].concat(c()(s), [i]), Object(l.fromJS)(o)) : e;
+        }),
+        i()(r, m.CLEAR_RESPONSE, function(e, t) {
+          var n = t.payload,
+            r = n.path,
+            o = n.method;
+          return e.deleteIn(['responses', r, o]);
+        }),
+        i()(r, m.CLEAR_REQUEST, function(e, t) {
+          var n = t.payload,
+            r = n.path,
+            o = n.method;
+          return e.deleteIn(['requests', r, o]);
+        }),
+        i()(r, m.SET_SCHEME, function(e, t) {
+          var n = t.payload,
+            r = n.scheme,
+            o = n.path,
+            i = n.method;
+          return o && i ? e.setIn(['scheme', o, i], r) : o || i ? void 0 : e.setIn(['scheme', '_defaultScheme'], r);
+        }),
+        r);
     },
     function(e, t, n) {
       var r = n(81),
@@ -15608,52 +15612,53 @@ object-assign
         l = n(1),
         p = n(3),
         f = n(67);
-      t.default = ((r = {}),
-      i()(r, f.SHOW_AUTH_POPUP, function(e, t) {
-        var n = t.payload;
-        return e.set('showDefinitions', n);
-      }),
-      i()(r, f.AUTHORIZE, function(e, t) {
-        var n = t.payload,
-          r = Object(l.fromJS)(n),
-          o = e.get('authorized') || Object(l.Map)();
-        return (
-          r.entrySeq().forEach(function(e) {
-            var t = c()(e, 2),
-              n = t[0],
-              r = t[1],
-              i = r.getIn(['schema', 'type']);
-            if ('apiKey' === i || 'http' === i) o = o.set(n, r);
-            else if ('basic' === i) {
-              var a = r.getIn(['value', 'username']),
-                s = r.getIn(['value', 'password']);
-              o = (o = o.setIn([n, 'value'], { username: a, header: 'Basic ' + Object(p.a)(a + ':' + s) })).setIn([n, 'schema'], r.get('schema'));
-            }
-          }),
-          e.set('authorized', o)
-        );
-      }),
-      i()(r, f.AUTHORIZE_OAUTH2, function(e, t) {
-        var n,
-          r = t.payload,
-          o = r.auth,
-          i = r.token;
-        return (o.token = s()({}, i)), (n = Object(l.fromJS)(o)), e.setIn(['authorized', n.get('name')], n);
-      }),
-      i()(r, f.LOGOUT, function(e, t) {
-        var n = t.payload,
-          r = e.get('authorized').withMutations(function(e) {
-            n.forEach(function(t) {
-              e.delete(t);
+      t.default =
+        ((r = {}),
+        i()(r, f.SHOW_AUTH_POPUP, function(e, t) {
+          var n = t.payload;
+          return e.set('showDefinitions', n);
+        }),
+        i()(r, f.AUTHORIZE, function(e, t) {
+          var n = t.payload,
+            r = Object(l.fromJS)(n),
+            o = e.get('authorized') || Object(l.Map)();
+          return (
+            r.entrySeq().forEach(function(e) {
+              var t = c()(e, 2),
+                n = t[0],
+                r = t[1],
+                i = r.getIn(['schema', 'type']);
+              if ('apiKey' === i || 'http' === i) o = o.set(n, r);
+              else if ('basic' === i) {
+                var a = r.getIn(['value', 'username']),
+                  s = r.getIn(['value', 'password']);
+                o = (o = o.setIn([n, 'value'], { username: a, header: 'Basic ' + Object(p.a)(a + ':' + s) })).setIn([n, 'schema'], r.get('schema'));
+              }
+            }),
+            e.set('authorized', o)
+          );
+        }),
+        i()(r, f.AUTHORIZE_OAUTH2, function(e, t) {
+          var n,
+            r = t.payload,
+            o = r.auth,
+            i = r.token;
+          return (o.token = s()({}, i)), (n = Object(l.fromJS)(o)), e.setIn(['authorized', n.get('name')], n);
+        }),
+        i()(r, f.LOGOUT, function(e, t) {
+          var n = t.payload,
+            r = e.get('authorized').withMutations(function(e) {
+              n.forEach(function(t) {
+                e.delete(t);
+              });
             });
-          });
-        return e.set('authorized', r);
-      }),
-      i()(r, f.CONFIGURE_AUTH, function(e, t) {
-        var n = t.payload;
-        return e.set('configs', n);
-      }),
-      r);
+          return e.set('authorized', r);
+        }),
+        i()(r, f.CONFIGURE_AUTH, function(e, t) {
+          var n = t.payload;
+          return e.set('configs', n);
+        }),
+        r);
     },
     function(e, t, n) {
       'use strict';
@@ -16002,16 +16007,17 @@ object-assign
         i = n.n(o),
         a = n(1),
         s = n(117);
-      t.default = ((r = {}),
-      i()(r, s.UPDATE_CONFIGS, function(e, t) {
-        return e.merge(Object(a.fromJS)(t.payload));
-      }),
-      i()(r, s.TOGGLE_CONFIGS, function(e, t) {
-        var n = t.payload,
-          r = e.get(n);
-        return e.set(n, !r);
-      }),
-      r);
+      t.default =
+        ((r = {}),
+        i()(r, s.UPDATE_CONFIGS, function(e, t) {
+          return e.merge(Object(a.fromJS)(t.payload));
+        }),
+        i()(r, s.TOGGLE_CONFIGS, function(e, t) {
+          var n = t.payload,
+            r = e.get(n);
+          return e.set(n, !r);
+        }),
+        r);
     },
     function(e, t, n) {
       'use strict';
@@ -16195,14 +16201,15 @@ object-assign
                 return 'operations' == r ? [o, i] : 'operations-tag' == r ? [o] : [];
               },
             },
-            reducers: ((r = {}),
-            i()(r, 'layout_scroll_to', function(e, t) {
-              return e.set('scrollToKey', m.a.fromJS(t.payload));
-            }),
-            i()(r, 'layout_clear_scroll', function(e) {
-              return e.delete('scrollToKey');
-            }),
-            r),
+            reducers:
+              ((r = {}),
+              i()(r, 'layout_scroll_to', function(e, t) {
+                return e.set('scrollToKey', m.a.fromJS(t.payload));
+              }),
+              i()(r, 'layout_clear_scroll', function(e) {
+                return e.delete('scrollToKey');
+              }),
+              r),
             wrapActions: { show: v },
           },
         },
@@ -16488,54 +16495,55 @@ object-assign
         u = n(1),
         c = n(24);
       var l,
-        p = ((l = Object(s.createSelector)(
-          function(e) {
-            return e;
-          },
-          function(e) {
-            return e.specSelectors.securityDefinitions();
-          },
-          function(e, t) {
-            var n = Object(u.List)();
-            return t
-              ? (t.entrySeq().forEach(function(e) {
-                  var t = a()(e, 2),
-                    r = t[0],
-                    i = t[1],
-                    s = i.get('type');
-                  'oauth2' === s &&
-                    i
-                      .get('flows')
-                      .entrySeq()
-                      .forEach(function(e) {
-                        var t = a()(e, 2),
-                          s = t[0],
-                          c = t[1],
-                          l = Object(u.fromJS)({ flow: s, authorizationUrl: c.get('authorizationUrl'), tokenUrl: c.get('tokenUrl'), scopes: c.get('scopes'), type: i.get('type') });
-                        n = n.push(
-                          new u.Map(
-                            o()(
-                              {},
-                              r,
-                              l.filter(function(e) {
-                                return void 0 !== e;
-                              })
+        p =
+          ((l = Object(s.createSelector)(
+            function(e) {
+              return e;
+            },
+            function(e) {
+              return e.specSelectors.securityDefinitions();
+            },
+            function(e, t) {
+              var n = Object(u.List)();
+              return t
+                ? (t.entrySeq().forEach(function(e) {
+                    var t = a()(e, 2),
+                      r = t[0],
+                      i = t[1],
+                      s = i.get('type');
+                    'oauth2' === s &&
+                      i
+                        .get('flows')
+                        .entrySeq()
+                        .forEach(function(e) {
+                          var t = a()(e, 2),
+                            s = t[0],
+                            c = t[1],
+                            l = Object(u.fromJS)({ flow: s, authorizationUrl: c.get('authorizationUrl'), tokenUrl: c.get('tokenUrl'), scopes: c.get('scopes'), type: i.get('type') });
+                          n = n.push(
+                            new u.Map(
+                              o()(
+                                {},
+                                r,
+                                l.filter(function(e) {
+                                  return void 0 !== e;
+                                })
+                              )
                             )
-                          )
-                        );
-                      }),
-                    ('http' !== s && 'apiKey' !== s) || (n = n.push(new u.Map(o()({}, r, i))));
-                }),
-                n)
-              : n;
-          }
-        )),
-        function(e, t) {
-          return function(n) {
-            for (var r = t.getSystem().specSelectors.specJson(), o = arguments.length, i = new Array(o > 1 ? o - 1 : 0), a = 1; a < o; a++) i[a - 1] = arguments[a];
-            return Object(c.isOAS3)(r) ? l.apply(void 0, [t].concat(i)) : e.apply(void 0, i);
-          };
-        });
+                          );
+                        }),
+                      ('http' !== s && 'apiKey' !== s) || (n = n.push(new u.Map(o()({}, r, i))));
+                  }),
+                  n)
+                : n;
+            }
+          )),
+          function(e, t) {
+            return function(n) {
+              for (var r = t.getSystem().specSelectors.specJson(), o = arguments.length, i = new Array(o > 1 ? o - 1 : 0), a = 1; a < o; a++) i[a - 1] = arguments[a];
+              return Object(c.isOAS3)(r) ? l.apply(void 0, [t].concat(i)) : e.apply(void 0, i);
+            };
+          });
     },
     function(e, t, n) {
       'use strict';
@@ -16559,25 +16567,26 @@ object-assign
         c = Object(r.createSelector)(s, function(e) {
           return e.get('resolved', Object(o.Map)());
         }),
-        l = ((a = Object(r.createSelector)(
-          function(e) {
-            var t = c(e);
-            return t.count() < 1 && (t = u(e)), t;
-          },
-          function(e) {
-            return e.getIn(['servers']) || Object(o.Map)();
-          }
-        )),
-        function() {
-          return function(e) {
-            var t = e.getSystem().specSelectors.specJson();
-            if (Object(i.isOAS3)(t)) {
-              for (var n = arguments.length, r = new Array(n > 1 ? n - 1 : 0), o = 1; o < n; o++) r[o - 1] = arguments[o];
-              return a.apply(void 0, r);
+        l =
+          ((a = Object(r.createSelector)(
+            function(e) {
+              var t = c(e);
+              return t.count() < 1 && (t = u(e)), t;
+            },
+            function(e) {
+              return e.getIn(['servers']) || Object(o.Map)();
             }
-            return null;
-          };
-        }),
+          )),
+          function() {
+            return function(e) {
+              var t = e.getSystem().specSelectors.specJson();
+              if (Object(i.isOAS3)(t)) {
+                for (var n = arguments.length, r = new Array(n > 1 ? n - 1 : 0), o = 1; o < n; o++) r[o - 1] = arguments[o];
+                return a.apply(void 0, r);
+              }
+              return null;
+            };
+          }),
         p = function(e, t) {
           return function() {
             var e = t.getSystem().specSelectors.specJson();
@@ -16822,56 +16831,57 @@ object-assign
         d = n.n(h),
         m = n(0),
         v = n.n(m),
-        g = (n(10),
-        n(19),
-        (function(e) {
-          function t() {
-            return a()(this, t), l()(this, f()(t).apply(this, arguments));
-          }
-          return (
-            d()(t, e),
-            u()(t, [
-              {
-                key: 'render',
-                value: function() {
-                  var e = this.props,
-                    t = e.link,
-                    n = e.name,
-                    r = (0, e.getComponent)('Markdown'),
-                    i = t.get('operationId') || t.get('operationRef'),
-                    a = t.get('parameters') && t.get('parameters').toJS(),
-                    s = t.get('description');
-                  return v.a.createElement(
-                    'div',
-                    { style: { marginBottom: '1.5em' } },
-                    v.a.createElement('div', { style: { marginBottom: '.5em' } }, v.a.createElement('b', null, v.a.createElement('code', null, n)), s ? v.a.createElement(r, { source: s }) : null),
-                    v.a.createElement(
-                      'pre',
-                      null,
-                      'Operation `',
-                      i,
-                      '`',
-                      v.a.createElement('br', null),
-                      v.a.createElement('br', null),
-                      'Parameters ',
-                      (function(e, t) {
-                        if ('string' != typeof t) return '';
-                        return t
-                          .split('\n')
-                          .map(function(t, n) {
-                            return n > 0 ? Array(e + 1).join(' ') + t : t;
-                          })
-                          .join('\n');
-                      })(0, o()(a, null, 2)) || '{}',
-                      v.a.createElement('br', null)
-                    )
-                  );
+        g =
+          (n(10),
+          n(19),
+          (function(e) {
+            function t() {
+              return a()(this, t), l()(this, f()(t).apply(this, arguments));
+            }
+            return (
+              d()(t, e),
+              u()(t, [
+                {
+                  key: 'render',
+                  value: function() {
+                    var e = this.props,
+                      t = e.link,
+                      n = e.name,
+                      r = (0, e.getComponent)('Markdown'),
+                      i = t.get('operationId') || t.get('operationRef'),
+                      a = t.get('parameters') && t.get('parameters').toJS(),
+                      s = t.get('description');
+                    return v.a.createElement(
+                      'div',
+                      { style: { marginBottom: '1.5em' } },
+                      v.a.createElement('div', { style: { marginBottom: '.5em' } }, v.a.createElement('b', null, v.a.createElement('code', null, n)), s ? v.a.createElement(r, { source: s }) : null),
+                      v.a.createElement(
+                        'pre',
+                        null,
+                        'Operation `',
+                        i,
+                        '`',
+                        v.a.createElement('br', null),
+                        v.a.createElement('br', null),
+                        'Parameters ',
+                        (function(e, t) {
+                          if ('string' != typeof t) return '';
+                          return t
+                            .split('\n')
+                            .map(function(t, n) {
+                              return n > 0 ? Array(e + 1).join(' ') + t : t;
+                            })
+                            .join('\n');
+                        })(0, o()(a, null, 2)) || '{}',
+                        v.a.createElement('br', null)
+                      )
+                    );
+                  },
                 },
-              },
-            ]),
-            t
-          );
-        })(m.Component));
+              ]),
+              t
+            );
+          })(m.Component));
       t.default = g;
     },
     function(e, t, n) {
@@ -16897,137 +16907,138 @@ object-assign
         g = n(0),
         y = n.n(g),
         b = n(1),
-        _ = (n(10),
-        n(19),
-        (function(e) {
-          function t() {
-            var e, n;
-            o()(this, t);
-            for (var r = arguments.length, i = new Array(r), a = 0; a < r; a++) i[a] = arguments[a];
-            return (
-              (n = u()(this, (e = l()(t)).call.apply(e, [this].concat(i)))),
-              v()(f()(n), 'onServerChange', function(e) {
-                n.setServer(e.target.value);
-              }),
-              v()(f()(n), 'onServerVariableValueChange', function(e) {
-                var t = n.props,
-                  r = t.setServerVariableValue,
-                  o = t.currentServer,
-                  i = e.target.getAttribute('data-variable'),
-                  a = e.target.value;
-                'function' == typeof r && r({ server: o, key: i, val: a });
-              }),
-              v()(f()(n), 'setServer', function(e) {
-                (0, n.props.setSelectedServer)(e);
-              }),
-              n
-            );
-          }
-          return (
-            d()(t, e),
-            a()(t, [
-              {
-                key: 'componentDidMount',
-                value: function() {
-                  var e = this.props,
-                    t = e.servers;
-                  e.currentServer || this.setServer(t.first().get('url'));
-                },
-              },
-              {
-                key: 'componentWillReceiveProps',
-                value: function(e) {
-                  var t = this.props,
-                    n = t.servers,
+        _ =
+          (n(10),
+          n(19),
+          (function(e) {
+            function t() {
+              var e, n;
+              o()(this, t);
+              for (var r = arguments.length, i = new Array(r), a = 0; a < r; a++) i[a] = arguments[a];
+              return (
+                (n = u()(this, (e = l()(t)).call.apply(e, [this].concat(i)))),
+                v()(f()(n), 'onServerChange', function(e) {
+                  n.setServer(e.target.value);
+                }),
+                v()(f()(n), 'onServerVariableValueChange', function(e) {
+                  var t = n.props,
                     r = t.setServerVariableValue,
-                    o = t.getServerVariable;
-                  if (this.props.currentServer !== e.currentServer) {
-                    var i = n.find(function(t) {
-                      return t.get('url') === e.currentServer;
-                    });
-                    if (!i) return this.setServer(n.first().get('url'));
-                    (i.get('variables') || Object(b.OrderedMap)()).map(function(t, n) {
-                      o(e.currentServer, n) || r({ server: e.currentServer, key: n, val: t.get('default') || '' });
-                    });
-                  }
+                    o = t.currentServer,
+                    i = e.target.getAttribute('data-variable'),
+                    a = e.target.value;
+                  'function' == typeof r && r({ server: o, key: i, val: a });
+                }),
+                v()(f()(n), 'setServer', function(e) {
+                  (0, n.props.setSelectedServer)(e);
+                }),
+                n
+              );
+            }
+            return (
+              d()(t, e),
+              a()(t, [
+                {
+                  key: 'componentDidMount',
+                  value: function() {
+                    var e = this.props,
+                      t = e.servers;
+                    e.currentServer || this.setServer(t.first().get('url'));
+                  },
                 },
-              },
-              {
-                key: 'render',
-                value: function() {
-                  var e = this,
-                    t = this.props,
-                    n = t.servers,
-                    r = t.currentServer,
-                    o = t.getServerVariable,
-                    i = t.getEffectiveServerValue,
-                    a =
-                      (
-                        n.find(function(e) {
-                          return e.get('url') === r;
-                        }) || Object(b.OrderedMap)()
-                      ).get('variables') || Object(b.OrderedMap)(),
-                    s = 0 !== a.size;
-                  return y.a.createElement(
-                    'div',
-                    { className: 'servers' },
-                    y.a.createElement(
-                      'label',
-                      { htmlFor: 'servers' },
+                {
+                  key: 'componentWillReceiveProps',
+                  value: function(e) {
+                    var t = this.props,
+                      n = t.servers,
+                      r = t.setServerVariableValue,
+                      o = t.getServerVariable;
+                    if (this.props.currentServer !== e.currentServer) {
+                      var i = n.find(function(t) {
+                        return t.get('url') === e.currentServer;
+                      });
+                      if (!i) return this.setServer(n.first().get('url'));
+                      (i.get('variables') || Object(b.OrderedMap)()).map(function(t, n) {
+                        o(e.currentServer, n) || r({ server: e.currentServer, key: n, val: t.get('default') || '' });
+                      });
+                    }
+                  },
+                },
+                {
+                  key: 'render',
+                  value: function() {
+                    var e = this,
+                      t = this.props,
+                      n = t.servers,
+                      r = t.currentServer,
+                      o = t.getServerVariable,
+                      i = t.getEffectiveServerValue,
+                      a =
+                        (
+                          n.find(function(e) {
+                            return e.get('url') === r;
+                          }) || Object(b.OrderedMap)()
+                        ).get('variables') || Object(b.OrderedMap)(),
+                      s = 0 !== a.size;
+                    return y.a.createElement(
+                      'div',
+                      { className: 'servers' },
                       y.a.createElement(
-                        'select',
-                        { onChange: this.onServerChange },
-                        n
-                          .valueSeq()
-                          .map(function(e) {
-                            return y.a.createElement('option', { value: e.get('url'), key: e.get('url') }, e.get('url'), e.get('description') && ' - '.concat(e.get('description')));
-                          })
-                          .toArray()
-                      )
-                    ),
-                    s
-                      ? y.a.createElement(
-                          'div',
-                          null,
-                          y.a.createElement('div', { className: 'computed-url' }, 'Computed URL:', y.a.createElement('code', null, i(r))),
-                          y.a.createElement('h4', null, 'Server variables'),
-                          y.a.createElement(
-                            'table',
+                        'label',
+                        { htmlFor: 'servers' },
+                        y.a.createElement(
+                          'select',
+                          { onChange: this.onServerChange },
+                          n
+                            .valueSeq()
+                            .map(function(e) {
+                              return y.a.createElement('option', { value: e.get('url'), key: e.get('url') }, e.get('url'), e.get('description') && ' - '.concat(e.get('description')));
+                            })
+                            .toArray()
+                        )
+                      ),
+                      s
+                        ? y.a.createElement(
+                            'div',
                             null,
+                            y.a.createElement('div', { className: 'computed-url' }, 'Computed URL:', y.a.createElement('code', null, i(r))),
+                            y.a.createElement('h4', null, 'Server variables'),
                             y.a.createElement(
-                              'tbody',
+                              'table',
                               null,
-                              a.map(function(t, n) {
-                                return y.a.createElement(
-                                  'tr',
-                                  { key: n },
-                                  y.a.createElement('td', null, n),
-                                  y.a.createElement(
-                                    'td',
-                                    null,
-                                    t.get('enum')
-                                      ? y.a.createElement(
-                                          'select',
-                                          { 'data-variable': n, onChange: e.onServerVariableValueChange },
-                                          t.get('enum').map(function(e) {
-                                            return y.a.createElement('option', { selected: e === o(r, n), key: e, value: e }, e);
-                                          })
-                                        )
-                                      : y.a.createElement('input', { type: 'text', value: o(r, n) || '', onChange: e.onServerVariableValueChange, 'data-variable': n })
-                                  )
-                                );
-                              })
+                              y.a.createElement(
+                                'tbody',
+                                null,
+                                a.map(function(t, n) {
+                                  return y.a.createElement(
+                                    'tr',
+                                    { key: n },
+                                    y.a.createElement('td', null, n),
+                                    y.a.createElement(
+                                      'td',
+                                      null,
+                                      t.get('enum')
+                                        ? y.a.createElement(
+                                            'select',
+                                            { 'data-variable': n, onChange: e.onServerVariableValueChange },
+                                            t.get('enum').map(function(e) {
+                                              return y.a.createElement('option', { selected: e === o(r, n), key: e, value: e }, e);
+                                            })
+                                          )
+                                        : y.a.createElement('input', { type: 'text', value: o(r, n) || '', onChange: e.onServerVariableValueChange, 'data-variable': n })
+                                    )
+                                  );
+                                })
+                              )
                             )
                           )
-                        )
-                      : null
-                  );
+                        : null
+                    );
+                  },
                 },
-              },
-            ]),
-            t
-          );
-        })(y.a.Component));
+              ]),
+              t
+            );
+          })(y.a.Component));
     },
     function(e, t, n) {
       'use strict';
@@ -17047,45 +17058,46 @@ object-assign
         f = n.n(p),
         h = n(0),
         d = n.n(h),
-        m = (n(10),
-        (function(e) {
-          function t() {
-            return o()(this, t), u()(this, l()(t).apply(this, arguments));
-          }
-          return (
-            f()(t, e),
-            a()(t, [
-              {
-                key: 'render',
-                value: function() {
-                  var e = this.props,
-                    t = e.specSelectors,
-                    n = e.oas3Selectors,
-                    r = e.oas3Actions,
-                    o = e.getComponent,
-                    i = t.servers(),
-                    a = o('Servers');
-                  return i && i.size
-                    ? d.a.createElement(
-                        'div',
-                        null,
-                        d.a.createElement('span', { className: 'servers-title' }, 'Servers'),
-                        d.a.createElement(a, {
-                          servers: i,
-                          currentServer: n.selectedServer(),
-                          setSelectedServer: r.setSelectedServer,
-                          setServerVariableValue: r.setServerVariableValue,
-                          getServerVariable: n.serverVariableValue,
-                          getEffectiveServerValue: n.serverEffectiveValue,
-                        })
-                      )
-                    : null;
+        m =
+          (n(10),
+          (function(e) {
+            function t() {
+              return o()(this, t), u()(this, l()(t).apply(this, arguments));
+            }
+            return (
+              f()(t, e),
+              a()(t, [
+                {
+                  key: 'render',
+                  value: function() {
+                    var e = this.props,
+                      t = e.specSelectors,
+                      n = e.oas3Selectors,
+                      r = e.oas3Actions,
+                      o = e.getComponent,
+                      i = t.servers(),
+                      a = o('Servers');
+                    return i && i.size
+                      ? d.a.createElement(
+                          'div',
+                          null,
+                          d.a.createElement('span', { className: 'servers-title' }, 'Servers'),
+                          d.a.createElement(a, {
+                            servers: i,
+                            currentServer: n.selectedServer(),
+                            setSelectedServer: r.setSelectedServer,
+                            setServerVariableValue: r.setServerVariableValue,
+                            getServerVariable: n.serverVariableValue,
+                            getEffectiveServerValue: n.serverEffectiveValue,
+                          })
+                        )
+                      : null;
+                  },
                 },
-              },
-            ]),
-            t
-          );
-        })(d.a.Component));
+              ]),
+              t
+            );
+          })(d.a.Component));
     },
     function(e, t, n) {
       'use strict';
@@ -17186,113 +17198,114 @@ object-assign
         y = n.n(g),
         b = n(0),
         _ = n.n(b),
-        w = (n(10),
-        (function(e) {
-          function t(e, n) {
-            var r;
-            a()(this, t),
-              (r = l()(this, f()(t).call(this, e, n))),
-              y()(d()(r), 'onChange', function(e) {
-                var t = r.props.onChange,
-                  n = e.target,
-                  i = n.value,
-                  a = n.name,
-                  s = o()({}, r.state.value);
-                a ? (s[a] = i) : (s = i),
-                  r.setState({ value: s }, function() {
-                    return t(r.state);
-                  });
-              });
-            var i = r.props,
-              s = i.name,
-              u = i.schema,
-              c = r.getValue();
-            return (r.state = { name: s, schema: u, value: c }), r;
-          }
-          return (
-            v()(t, e),
-            u()(t, [
-              {
-                key: 'getValue',
-                value: function() {
-                  var e = this.props,
-                    t = e.name,
-                    n = e.authorized;
-                  return n && n.getIn([t, 'value']);
-                },
-              },
-              {
-                key: 'render',
-                value: function() {
-                  var e = this.props,
-                    t = e.schema,
-                    n = e.getComponent,
-                    r = e.errSelectors,
-                    o = e.name,
-                    i = n('Input'),
-                    a = n('Row'),
-                    s = n('Col'),
-                    u = n('authError'),
-                    c = n('Markdown'),
-                    l = n('JumpToPath', !0),
-                    p = (t.get('scheme') || '').toLowerCase(),
-                    f = this.getValue(),
-                    h = r.allErrors().filter(function(e) {
-                      return e.get('authId') === o;
+        w =
+          (n(10),
+          (function(e) {
+            function t(e, n) {
+              var r;
+              a()(this, t),
+                (r = l()(this, f()(t).call(this, e, n))),
+                y()(d()(r), 'onChange', function(e) {
+                  var t = r.props.onChange,
+                    n = e.target,
+                    i = n.value,
+                    a = n.name,
+                    s = o()({}, r.state.value);
+                  a ? (s[a] = i) : (s = i),
+                    r.setState({ value: s }, function() {
+                      return t(r.state);
                     });
-                  if ('basic' === p) {
-                    var d = f ? f.get('username') : null;
-                    return _.a.createElement(
-                      'div',
-                      null,
-                      _.a.createElement('h4', null, _.a.createElement('code', null, o || t.get('name')), '  (http, Basic)', _.a.createElement(l, { path: ['securityDefinitions', o] })),
-                      d && _.a.createElement('h6', null, 'Authorized'),
-                      _.a.createElement(a, null, _.a.createElement(c, { source: t.get('description') })),
-                      _.a.createElement(
-                        a,
-                        null,
-                        _.a.createElement('label', null, 'Username:'),
-                        d
-                          ? _.a.createElement('code', null, ' ', d, ' ')
-                          : _.a.createElement(s, null, _.a.createElement(i, { type: 'text', required: 'required', name: 'username', onChange: this.onChange }))
-                      ),
-                      _.a.createElement(
-                        a,
-                        null,
-                        _.a.createElement('label', null, 'Password:'),
-                        d
-                          ? _.a.createElement('code', null, ' ****** ')
-                          : _.a.createElement(s, null, _.a.createElement(i, { required: 'required', autoComplete: 'new-password', name: 'password', type: 'password', onChange: this.onChange }))
-                      ),
-                      h.valueSeq().map(function(e, t) {
-                        return _.a.createElement(u, { error: e, key: t });
-                      })
-                    );
-                  }
-                  return 'bearer' === p
-                    ? _.a.createElement(
+                });
+              var i = r.props,
+                s = i.name,
+                u = i.schema,
+                c = r.getValue();
+              return (r.state = { name: s, schema: u, value: c }), r;
+            }
+            return (
+              v()(t, e),
+              u()(t, [
+                {
+                  key: 'getValue',
+                  value: function() {
+                    var e = this.props,
+                      t = e.name,
+                      n = e.authorized;
+                    return n && n.getIn([t, 'value']);
+                  },
+                },
+                {
+                  key: 'render',
+                  value: function() {
+                    var e = this.props,
+                      t = e.schema,
+                      n = e.getComponent,
+                      r = e.errSelectors,
+                      o = e.name,
+                      i = n('Input'),
+                      a = n('Row'),
+                      s = n('Col'),
+                      u = n('authError'),
+                      c = n('Markdown'),
+                      l = n('JumpToPath', !0),
+                      p = (t.get('scheme') || '').toLowerCase(),
+                      f = this.getValue(),
+                      h = r.allErrors().filter(function(e) {
+                        return e.get('authId') === o;
+                      });
+                    if ('basic' === p) {
+                      var d = f ? f.get('username') : null;
+                      return _.a.createElement(
                         'div',
                         null,
-                        _.a.createElement('h4', null, _.a.createElement('code', null, o || t.get('name')), '  (http, Bearer)', _.a.createElement(l, { path: ['securityDefinitions', o] })),
-                        f && _.a.createElement('h6', null, 'Authorized'),
+                        _.a.createElement('h4', null, _.a.createElement('code', null, o || t.get('name')), '  (http, Basic)', _.a.createElement(l, { path: ['securityDefinitions', o] })),
+                        d && _.a.createElement('h6', null, 'Authorized'),
                         _.a.createElement(a, null, _.a.createElement(c, { source: t.get('description') })),
                         _.a.createElement(
                           a,
                           null,
-                          _.a.createElement('label', null, 'Value:'),
-                          f ? _.a.createElement('code', null, ' ****** ') : _.a.createElement(s, null, _.a.createElement(i, { type: 'text', onChange: this.onChange }))
+                          _.a.createElement('label', null, 'Username:'),
+                          d
+                            ? _.a.createElement('code', null, ' ', d, ' ')
+                            : _.a.createElement(s, null, _.a.createElement(i, { type: 'text', required: 'required', name: 'username', onChange: this.onChange }))
+                        ),
+                        _.a.createElement(
+                          a,
+                          null,
+                          _.a.createElement('label', null, 'Password:'),
+                          d
+                            ? _.a.createElement('code', null, ' ****** ')
+                            : _.a.createElement(s, null, _.a.createElement(i, { required: 'required', autoComplete: 'new-password', name: 'password', type: 'password', onChange: this.onChange }))
                         ),
                         h.valueSeq().map(function(e, t) {
                           return _.a.createElement(u, { error: e, key: t });
                         })
-                      )
-                    : _.a.createElement('div', null, _.a.createElement('em', null, _.a.createElement('b', null, o), ' HTTP authentication: unsupported scheme ', "'".concat(p, "'")));
+                      );
+                    }
+                    return 'bearer' === p
+                      ? _.a.createElement(
+                          'div',
+                          null,
+                          _.a.createElement('h4', null, _.a.createElement('code', null, o || t.get('name')), '  (http, Bearer)', _.a.createElement(l, { path: ['securityDefinitions', o] })),
+                          f && _.a.createElement('h6', null, 'Authorized'),
+                          _.a.createElement(a, null, _.a.createElement(c, { source: t.get('description') })),
+                          _.a.createElement(
+                            a,
+                            null,
+                            _.a.createElement('label', null, 'Value:'),
+                            f ? _.a.createElement('code', null, ' ****** ') : _.a.createElement(s, null, _.a.createElement(i, { type: 'text', onChange: this.onChange }))
+                          ),
+                          h.valueSeq().map(function(e, t) {
+                            return _.a.createElement(u, { error: e, key: t });
+                          })
+                        )
+                      : _.a.createElement('div', null, _.a.createElement('em', null, _.a.createElement('b', null, o), ' HTTP authentication: unsupported scheme ', "'".concat(p, "'")));
+                  },
                 },
-              },
-            ]),
-            t
-          );
-        })(_.a.Component));
+              ]),
+              t
+            );
+          })(_.a.Component));
     },
     function(e, t, n) {
       'use strict';
@@ -17708,60 +17721,61 @@ object-assign
         a = n(13),
         s = n.n(a),
         u = n(59);
-      t.default = ((r = {}),
-      i()(r, u.UPDATE_SELECTED_SERVER, function(e, t) {
-        var n = t.payload,
-          r = n.selectedServerUrl,
-          o = n.namespace,
-          i = o ? [o, 'selectedServer'] : ['selectedServer'];
-        return e.setIn(i, r);
-      }),
-      i()(r, u.UPDATE_REQUEST_BODY_VALUE, function(e, t) {
-        var n = t.payload,
-          r = n.value,
-          o = n.pathMethod,
-          i = s()(o, 2),
-          a = i[0],
-          u = i[1];
-        return e.setIn(['requestData', a, u, 'bodyValue'], r);
-      }),
-      i()(r, u.UPDATE_ACTIVE_EXAMPLES_MEMBER, function(e, t) {
-        var n = t.payload,
-          r = n.name,
-          o = n.pathMethod,
-          i = n.contextType,
-          a = n.contextName,
-          u = s()(o, 2),
-          c = u[0],
-          l = u[1];
-        return e.setIn(['examples', c, l, i, a, 'activeExample'], r);
-      }),
-      i()(r, u.UPDATE_REQUEST_CONTENT_TYPE, function(e, t) {
-        var n = t.payload,
-          r = n.value,
-          o = n.pathMethod,
-          i = s()(o, 2),
-          a = i[0],
-          u = i[1];
-        return e.setIn(['requestData', a, u, 'requestContentType'], r);
-      }),
-      i()(r, u.UPDATE_RESPONSE_CONTENT_TYPE, function(e, t) {
-        var n = t.payload,
-          r = n.value,
-          o = n.path,
-          i = n.method;
-        return e.setIn(['requestData', o, i, 'responseContentType'], r);
-      }),
-      i()(r, u.UPDATE_SERVER_VARIABLE_VALUE, function(e, t) {
-        var n = t.payload,
-          r = n.server,
-          o = n.namespace,
-          i = n.key,
-          a = n.val,
-          s = o ? [o, 'serverVariableValues', r, i] : ['serverVariableValues', r, i];
-        return e.setIn(s, a);
-      }),
-      r);
+      t.default =
+        ((r = {}),
+        i()(r, u.UPDATE_SELECTED_SERVER, function(e, t) {
+          var n = t.payload,
+            r = n.selectedServerUrl,
+            o = n.namespace,
+            i = o ? [o, 'selectedServer'] : ['selectedServer'];
+          return e.setIn(i, r);
+        }),
+        i()(r, u.UPDATE_REQUEST_BODY_VALUE, function(e, t) {
+          var n = t.payload,
+            r = n.value,
+            o = n.pathMethod,
+            i = s()(o, 2),
+            a = i[0],
+            u = i[1];
+          return e.setIn(['requestData', a, u, 'bodyValue'], r);
+        }),
+        i()(r, u.UPDATE_ACTIVE_EXAMPLES_MEMBER, function(e, t) {
+          var n = t.payload,
+            r = n.name,
+            o = n.pathMethod,
+            i = n.contextType,
+            a = n.contextName,
+            u = s()(o, 2),
+            c = u[0],
+            l = u[1];
+          return e.setIn(['examples', c, l, i, a, 'activeExample'], r);
+        }),
+        i()(r, u.UPDATE_REQUEST_CONTENT_TYPE, function(e, t) {
+          var n = t.payload,
+            r = n.value,
+            o = n.pathMethod,
+            i = s()(o, 2),
+            a = i[0],
+            u = i[1];
+          return e.setIn(['requestData', a, u, 'requestContentType'], r);
+        }),
+        i()(r, u.UPDATE_RESPONSE_CONTENT_TYPE, function(e, t) {
+          var n = t.payload,
+            r = n.value,
+            o = n.path,
+            i = n.method;
+          return e.setIn(['requestData', o, i, 'responseContentType'], r);
+        }),
+        i()(r, u.UPDATE_SERVER_VARIABLE_VALUE, function(e, t) {
+          var n = t.payload,
+            r = n.server,
+            o = n.namespace,
+            i = n.key,
+            a = n.val,
+            s = o ? [o, 'serverVariableValues', r, i] : ['serverVariableValues', r, i];
+          return e.setIn(s, a);
+        }),
+        r);
     },
     function(e, t, n) {
       'use strict';
@@ -20807,45 +20821,46 @@ object-assign
       'use strict';
       var r = n(21);
       var o = n(88),
-        i = (n(15),
-        (function() {
-          function e(t) {
-            !(function(e, t) {
-              if (!(e instanceof t)) throw new TypeError('Cannot call a class as a function');
-            })(this, e),
-              (this._callbacks = null),
-              (this._contexts = null),
-              (this._arg = t);
-          }
-          return (
-            (e.prototype.enqueue = function(e, t) {
-              (this._callbacks = this._callbacks || []), this._callbacks.push(e), (this._contexts = this._contexts || []), this._contexts.push(t);
-            }),
-            (e.prototype.notifyAll = function() {
-              var e = this._callbacks,
-                t = this._contexts,
-                n = this._arg;
-              if (e && t) {
-                e.length !== t.length && r('24'), (this._callbacks = null), (this._contexts = null);
-                for (var o = 0; o < e.length; o++) e[o].call(t[o], n);
-                (e.length = 0), (t.length = 0);
-              }
-            }),
-            (e.prototype.checkpoint = function() {
-              return this._callbacks ? this._callbacks.length : 0;
-            }),
-            (e.prototype.rollback = function(e) {
-              this._callbacks && this._contexts && ((this._callbacks.length = e), (this._contexts.length = e));
-            }),
-            (e.prototype.reset = function() {
-              (this._callbacks = null), (this._contexts = null);
-            }),
-            (e.prototype.destructor = function() {
-              this.reset();
-            }),
-            e
-          );
-        })());
+        i =
+          (n(15),
+          (function() {
+            function e(t) {
+              !(function(e, t) {
+                if (!(e instanceof t)) throw new TypeError('Cannot call a class as a function');
+              })(this, e),
+                (this._callbacks = null),
+                (this._contexts = null),
+                (this._arg = t);
+            }
+            return (
+              (e.prototype.enqueue = function(e, t) {
+                (this._callbacks = this._callbacks || []), this._callbacks.push(e), (this._contexts = this._contexts || []), this._contexts.push(t);
+              }),
+              (e.prototype.notifyAll = function() {
+                var e = this._callbacks,
+                  t = this._contexts,
+                  n = this._arg;
+                if (e && t) {
+                  e.length !== t.length && r('24'), (this._callbacks = null), (this._contexts = null);
+                  for (var o = 0; o < e.length; o++) e[o].call(t[o], n);
+                  (e.length = 0), (t.length = 0);
+                }
+              }),
+              (e.prototype.checkpoint = function() {
+                return this._callbacks ? this._callbacks.length : 0;
+              }),
+              (e.prototype.rollback = function(e) {
+                this._callbacks && this._contexts && ((this._callbacks.length = e), (this._contexts.length = e));
+              }),
+              (e.prototype.reset = function() {
+                (this._callbacks = null), (this._contexts = null);
+              }),
+              (e.prototype.destructor = function() {
+                this.reset();
+              }),
+              e
+            );
+          })());
       e.exports = o.addPoolingTo(i);
     },
     function(e, t, n) {
@@ -21179,12 +21194,13 @@ object-assign
         i = n(836),
         a = n(430),
         s = n(431),
-        u = (n(837),
-        n(15),
-        n(23),
-        function(e) {
-          this.construct(e);
-        });
+        u =
+          (n(837),
+          n(15),
+          n(23),
+          function(e) {
+            this.construct(e);
+          });
       function c(e, t) {
         var n;
         if (null === e || !1 === e) n = a.create(c);
@@ -21219,15 +21235,16 @@ object-assign
       'use strict';
       var r = n(21),
         o = n(100),
-        i = (n(15),
-        {
-          HOST: 0,
-          COMPOSITE: 1,
-          EMPTY: 2,
-          getType: function(e) {
-            return null === e || !1 === e ? i.EMPTY : o.isValidElement(e) ? ('function' == typeof e.type ? i.COMPOSITE : i.HOST) : void r('26', e);
-          },
-        });
+        i =
+          (n(15),
+          {
+            HOST: 0,
+            COMPOSITE: 1,
+            EMPTY: 2,
+            getType: function(e) {
+              return null === e || !1 === e ? i.EMPTY : o.isValidElement(e) ? ('function' == typeof e.type ? i.COMPOSITE : i.HOST) : void r('26', e);
+            },
+          });
       e.exports = i;
     },
     function(e, t, n) {
@@ -26675,14 +26692,15 @@ object-assign
     function(e, t, n) {
       'use strict';
       var r = n(132),
-        o = (n(15),
-        function(e) {
-          if (this.instancePool.length) {
-            var t = this.instancePool.pop();
-            return this.call(t, e), t;
-          }
-          return new this(e);
-        }),
+        o =
+          (n(15),
+          function(e) {
+            if (this.instancePool.length) {
+              var t = this.instancePool.pop();
+              return this.call(t, e), t;
+            }
+            return new this(e);
+          }),
         i = function(e) {
           e instanceof this || r('25'), e.destructor(), this.instancePool.length < this.poolSize && this.instancePool.push(e);
         },
@@ -29498,21 +29516,22 @@ object-assign
         } catch (e) {}
       }
       var d,
-        m = ((d = c(null)),
-        function(e) {
-          for (var t, n, r = 0; d[e + (r || '')]; ) ++r;
-          return (
-            (d[(e += r || '')] = !0),
-            p(
-              f,
-              (t = '@@' + e),
-              s.gs(null, function(e) {
-                n || ((n = !0), p(this, t, s(e)), (n = !1));
-              })
-            ),
-            t
-          );
-        });
+        m =
+          ((d = c(null)),
+          function(e) {
+            for (var t, n, r = 0; d[e + (r || '')]; ) ++r;
+            return (
+              (d[(e += r || '')] = !0),
+              p(
+                f,
+                (t = '@@' + e),
+                s.gs(null, function(e) {
+                  n || ((n = !0), p(this, t, s(e)), (n = !1));
+                })
+              ),
+              t
+            );
+          });
       (i = function(e) {
         if (this instanceof i) throw new TypeError('Symbol is not a constructor');
         return o(e);
@@ -33506,15 +33525,16 @@ object-assign
         i = n(36),
         a = n(814),
         s = n(54),
-        u = (n(15),
-        {
-          dangerouslyReplaceNodeWithMarkup: function(e, t) {
-            if ((i.canUseDOM || r('56'), t || r('57'), 'HTML' === e.nodeName && r('58'), 'string' == typeof t)) {
-              var n = a(t, s)[0];
-              e.parentNode.replaceChild(n, e);
-            } else o.replaceChildWithTree(e, t);
-          },
-        });
+        u =
+          (n(15),
+          {
+            dangerouslyReplaceNodeWithMarkup: function(e, t) {
+              if ((i.canUseDOM || r('56'), t || r('57'), 'HTML' === e.nodeName && r('58'), 'string' == typeof t)) {
+                var n = a(t, s)[0];
+                e.parentNode.replaceChild(n, e);
+              } else o.replaceChildWithTree(e, t);
+            },
+          });
       e.exports = u;
     },
     function(e, t, n) {
@@ -34020,10 +34040,11 @@ object-assign
         i = (n(50), n(821), n(823)),
         a = n(824),
         s = n(826),
-        u = (n(23),
-        s(function(e) {
-          return a(e);
-        })),
+        u =
+          (n(23),
+          s(function(e) {
+            return a(e);
+          })),
         c = !1,
         l = 'cssFloat';
       if (o.canUseDOM) {
@@ -34963,18 +34984,19 @@ object-assign
         a = n(113),
         s = n(27),
         u = n(184),
-        c = (n(15),
-        n(253),
-        function(e) {
-          (this._currentElement = e),
-            (this._stringText = '' + e),
-            (this._hostNode = null),
-            (this._hostParent = null),
-            (this._domID = 0),
-            (this._mountIndex = 0),
-            (this._closingComment = null),
-            (this._commentNodes = null);
-        });
+        c =
+          (n(15),
+          n(253),
+          function(e) {
+            (this._currentElement = e),
+              (this._stringText = '' + e),
+              (this._hostNode = null),
+              (this._hostParent = null),
+              (this._domID = 0),
+              (this._mountIndex = 0),
+              (this._closingComment = null),
+              (this._commentNodes = null);
+          });
       o(c.prototype, {
         mountComponent: function(e, t, n, r) {
           var o = n._idCounter++,
@@ -40510,41 +40532,42 @@ object-assign
                   },
                 })),
                 (s.htmlParser.HtmlParser = s.Util.extend(Object, {
-                  htmlRegex: ((o = /(?:"[^"]*?"|'[^']*?'|[^'"=<>`\s]+)/),
-                  (i = /[^\s"'>\/=\x00-\x1F\x7F]+/.source + '(?:\\s*=\\s*' + o.source + ')?'),
-                  new RegExp(
-                    [
-                      '(?:',
-                      '<(!DOCTYPE)',
-                      '(?:',
-                      '\\s+',
-                      '(?:',
-                      i,
-                      '|',
-                      o.source + ')',
-                      ')*',
-                      '>',
-                      ')',
-                      '|',
-                      '(?:',
-                      '<(/)?',
-                      '(?:',
-                      /!--([\s\S]+?)--/.source,
-                      '|',
-                      '(?:',
-                      '(' + /[0-9a-zA-Z][0-9a-zA-Z:]*/.source + ')',
-                      '(?:',
-                      '(?:\\s+|\\b)',
-                      i,
-                      ')*',
-                      '\\s*/?',
-                      ')',
-                      ')',
-                      '>',
-                      ')',
-                    ].join(''),
-                    'gi'
-                  )),
+                  htmlRegex:
+                    ((o = /(?:"[^"]*?"|'[^']*?'|[^'"=<>`\s]+)/),
+                    (i = /[^\s"'>\/=\x00-\x1F\x7F]+/.source + '(?:\\s*=\\s*' + o.source + ')?'),
+                    new RegExp(
+                      [
+                        '(?:',
+                        '<(!DOCTYPE)',
+                        '(?:',
+                        '\\s+',
+                        '(?:',
+                        i,
+                        '|',
+                        o.source + ')',
+                        ')*',
+                        '>',
+                        ')',
+                        '|',
+                        '(?:',
+                        '<(/)?',
+                        '(?:',
+                        /!--([\s\S]+?)--/.source,
+                        '|',
+                        '(?:',
+                        '(' + /[0-9a-zA-Z][0-9a-zA-Z:]*/.source + ')',
+                        '(?:',
+                        '(?:\\s+|\\b)',
+                        i,
+                        ')*',
+                        '\\s*/?',
+                        ')',
+                        ')',
+                        '>',
+                        ')',
+                      ].join(''),
+                      'gi'
+                    )),
                   htmlCharacterEntitiesRegex: /(&nbsp;|&#160;|&lt;|&#60;|&gt;|&#62;|&quot;|&#34;|&#39;)/gi,
                   parse: function(e) {
                     for (var t, n, r = this.htmlRegex, o = 0, i = []; null !== (t = r.exec(e)); ) {
@@ -40792,11 +40815,12 @@ object-assign
                   parseMatches: s.Util.abstractMethod,
                 })),
                 (s.matcher.Email = s.Util.extend(s.matcher.Matcher, {
-                  matcherRegex: ((e = s.RegexLib.alphaNumericCharsStr),
-                  (t = new RegExp('[' + e + "\\-_';:&=+$.,]+@")),
-                  (n = s.RegexLib.domainNameRegex),
-                  (r = s.RegexLib.tldRegex),
-                  new RegExp([t.source, n.source, '\\.', r.source].join(''), 'gi')),
+                  matcherRegex:
+                    ((e = s.RegexLib.alphaNumericCharsStr),
+                    (t = new RegExp('[' + e + "\\-_';:&=+$.,]+@")),
+                    (n = s.RegexLib.domainNameRegex),
+                    (r = s.RegexLib.tldRegex),
+                    new RegExp([t.source, n.source, '\\.', r.source].join(''), 'gi')),
                   parseMatches: function(e) {
                     for (var t, n = this.matcherRegex, r = this.tagBuilder, o = []; null !== (t = n.exec(e)); ) {
                       var i = t[0];
@@ -43024,14 +43048,15 @@ object-assign
           _()(this, e),
             f()(this, { state: {}, plugins: [], system: { configs: {}, fn: {}, components: {}, rootInjects: {}, statePlugins: {} }, boundSystem: {}, toolbox: {} }, o),
             (this.getSystem = this._getSystem.bind(this)),
-            (this.store = ((t = L),
-            (n = Object(k.fromJS)(this.state)),
-            (r = this.getSystem),
-            (function(e, t, n) {
-              var r = [Object(D.H)(n)],
-                o = R.a.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || C.compose;
-              return Object(C.createStore)(e, t, o(C.applyMiddleware.apply(void 0, r)));
-            })(t, n, r))),
+            (this.store =
+              ((t = L),
+              (n = Object(k.fromJS)(this.state)),
+              (r = this.getSystem),
+              (function(e, t, n) {
+                var r = [Object(D.H)(n)],
+                  o = R.a.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || C.compose;
+                return Object(C.createStore)(e, t, o(C.applyMiddleware.apply(void 0, r)));
+              })(t, n, r))),
             this.buildSystem(!1),
             this.register(this.plugins);
         }
@@ -43124,18 +43149,19 @@ object-assign
                   (t = u()(e).reduce(function(t, n) {
                     var r;
                     return (
-                      (t[n] = ((r = e[n]),
-                      function() {
-                        var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : new k.Map(),
-                          t = arguments.length > 1 ? arguments[1] : void 0;
-                        if (!r) return e;
-                        var n = r[t.type];
-                        if (n) {
-                          var o = B(n)(e, t);
-                          return null === o ? e : o;
-                        }
-                        return e;
-                      })),
+                      (t[n] =
+                        ((r = e[n]),
+                        function() {
+                          var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : new k.Map(),
+                            t = arguments.length > 1 ? arguments[1] : void 0;
+                          if (!r) return e;
+                          var n = r[t.type];
+                          if (n) {
+                            var o = B(n)(e, t);
+                            return null === o ? e : o;
+                          }
+                          return e;
+                        })),
                       t
                     );
                   }, {})),
@@ -48468,18 +48494,19 @@ object-assign
         })(S.a.Component),
         An = n(479),
         Tn = n.n(An),
-        jn = (fe.a.func.isRequired,
-        fe.a.any,
-        fe.a.func,
-        fe.a.any,
-        fe.a.object.isRequired,
-        fe.a.object,
-        de.a.list,
-        fe.a.bool,
-        fe.a.bool,
-        fe.a.any,
-        fe.a.bool,
-        { value: '', onChange: function() {}, schema: {}, keyName: '', required: !1, errors: Object(k.List)() }),
+        jn =
+          (fe.a.func.isRequired,
+          fe.a.any,
+          fe.a.func,
+          fe.a.any,
+          fe.a.object.isRequired,
+          fe.a.object,
+          de.a.list,
+          fe.a.bool,
+          fe.a.bool,
+          fe.a.any,
+          fe.a.bool,
+          { value: '', onChange: function() {}, schema: {}, keyName: '', required: !1, errors: Object(k.List)() }),
         Pn = (function(e) {
           function t() {
             return _()(this, t), oe()(this, ae()(t).apply(this, arguments));

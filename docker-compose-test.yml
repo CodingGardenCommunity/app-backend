@@ -1,0 +1,27 @@
+version: '3'
+services:
+  app:
+    container_name: app-backend_test
+    build: .
+    volumes:
+      - .:/usr/src/app-backend
+    working_dir: /usr/src/app-backend
+    ports:
+      - '80:3000'
+    links:
+      - mongo
+    environment:
+      - NODE_ENV=test
+      - MONGO_URI=mongodb://mongo:27017/codinggardencommunity
+      - TEST_MONGO_URI=mongodb://mongo:27017/codinggardencommunity-test
+      - ADMIN_SECRET=${ADMIN_SECRET}
+      - YOUTUBE_API_KEY=${YOUTUBE_API_KEY}
+      - YOUTUBE_CHANNEL_ID=${YOUTUBE_CHANNEL_ID}
+      - PORT=${PORT}
+      - HOST=${HOST}
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'
