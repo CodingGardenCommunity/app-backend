@@ -1,12 +1,13 @@
 const express = require('express');
 const routes = require('./routes');
 
+const { fetchVideosJob } = require('./helpers/fetchData');
+
 // Database connection
 require('./helpers/databaseConnection');
 
-// pollYoutube Cron Job
-// eslint-disable-next-line global-require
-if (process.env.NODE_ENV !== 'test') require('../src/tasks/pollYoutube');
+// Fetch new video once when app starts.
+if (process.env.NODE_ENV !== 'test') fetchVideosJob();
 
 const { errorHandler, notFound, cors } = require('./middlewares');
 
