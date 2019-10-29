@@ -87,3 +87,16 @@ You can now visit <http://localhost:3000/> to view the APIs.
 Further, checkout [package.json](https://github.com/CodingGardenCommunity/app-backend/blob/develop/package.json) file to learn about (more) available scripts/commands.
 
 Happy coding! 🥂
+
+
+## Dependencies used
+
+- [Express](https://expressjs.com/): Web application framework designed for building web applications and APIs.
+- [mongoose](https://mongoosejs.com/): Schema based object modeling for mongoDB.
+- [joi](https://github.com/hapijs/joi): Object schema validation library.
+- [CORS](https://github.com/expressjs/cors): Express middleware to enable CORS functionalities. 
+- [dotenv](https://github.com/motdotla/dotenv): For setting environment variables. 
+- [Swagger UI Express](https://github.com/scottie1984/swagger-ui-express): Auto-generated API docs, based on a swagger.json file.
+- [ESLint](https://eslint.org/): Code linter. Analyses the code for potential errors. 
+  - This project uses ESLint in conjunction with another dependency called "eslint-config-airbnb" for implementing the [airbnb set of rules](https://github.com/airbnb/javascript) helping to write clean javascript.  
+- [Jest](https://jestjs.io/): For testing.
