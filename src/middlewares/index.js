@@ -4,7 +4,7 @@ const allowedOrigins = ['https://web.codinggarden.community', 'https://web-dev.c
 
 const corsOptions = {
   origin(origin, callback) {
-    if (process.env.NODE_ENV === 'development' || allowedOrigins.includes(origin)) {
+    if (process.env.NODE_ENV === 'development' || !origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
