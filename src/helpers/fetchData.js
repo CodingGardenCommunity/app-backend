@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 const fetch = require('node-fetch');
-const { red, green } = require('colors/safe');
 const Video = require('../api/videos/videos.model');
 const { YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID } = require('../config');
 
@@ -14,53 +13,88 @@ async function fetchLatestYoutubeVideos({ maxResults, publishedAfter }) {
     const { items, error } = await resp.json();
 
     if (error) {
-      error.errors.forEach(({ reason }) => {
-        console.error(`[fetch-error] ${reason}`);
-      });
+      // Test this line!
+      const errors = error.errors.map(err => err.reason).join(', ');
+      return {
+        error: errors,
+      };
+    }
+
+    if (!items) {
       return [];
     }
 
-    if (items) {
-      return items.map(({ id: { videoId: videoID }, snippet: { title: name, publishedAt: date, description, thumbnails: { high: { url: thumbnail } } } }) => {
-        return {
-          name,
-          date,
-          description,
-          url: `https://www.youtube.com/watch?v=${videoID}`,
-          videoID,
-          thumbnail,
-        };
-      });
-    }
-    return [];
-  } catch (err) {
-    console.error(`[error]: ${err}`);
-    return [];
+    return items.map(({ id: { videoId: videoID }, snippet: { title: name, publishedAt: date, description, thumbnails: { high: { url: thumbnail } } } }) => {
+      return {
+        name,
+        date,
+        description,
+        url: `https://www.youtube.com/watch?v=${videoID}`,
+        videoID,
+        thumbnail,
+      };
+    });
+  } catch (error) {
+    return {
+      error,
+    };
   }
 }
 
 async function fetchVideosJob() {
   try {
-    const video = await Video.findOne({}).sort({ date: -1 });
+    const video = await Video.findOne({}).sort({
+      date: -1,
+    });
     // Check if db has at least one video
-    if (video) {
-      // Transforms date format to the Youtube-API standard.
-      const lastDate = video.date.toISOString();
-
-      const fetchedVideos = await fetchLatestYoutubeVideos({ publishedAfter: lastDate });
-
-      if (fetchedVideos.length > 0) {
-        fetchedVideos.forEach(async newVideo => {
-          if (newVideo.date !== lastDate) {
-            const { name } = await new Video(newVideo).save();
-            console.log(green(`[cron-job] Added new video from Youtube: ${name}, at ${new Date().toISOString()}`));
-          }
-        });
-      }
+    if (!video) {
+      return {
+        message: `Video database is empty.`,
+      };
     }
-  } catch (err) {
-    console.error(red(`[cron-job-error] ${err}`));
+
+    // Transforms date format to the Youtube-API standard.
+    const lastDate = video.date.toISOString();
+    const fetchedVideos = await fetchLatestYoutubeVideos({
+      publishedAfter: lastDate,
+    });
+
+    if (fetchedVideos.error) {
+      return {
+        error: `Fetch error: ${fetchedVideos.error}.`,
+      };
+    }
+
+    if (fetchedVideos.length === 0) {
+      return {
+        message: `Youtube API returned an empty array.`,
+      };
+    }
+
+    let savedVideos = 0;
+
+    fetchedVideos.forEach(async newVideo => {
+      if (newVideo.date !== lastDate) {
+        savedVideos += 1;
+        await new Video(newVideo).save();
+      }
+    });
+    if (savedVideos === 0) {
+      return {
+        message: `Video DB up to date.`,
+      };
+    }
+    return {
+      message: `Saved ${savedVideos} new videos`,
+    };
+  } catch (error) {
+    return {
+      error,
+    };
   }
 }
 
-module.exports = { fetchLatestYoutubeVideos, fetchVideosJob };
+module.exports = {
+  fetchLatestYoutubeVideos,
+  fetchVideosJob,
+};

@@ -18,3 +18,11 @@ describe('POST /admin/seed', () => {
       .expect(200, done);
   });
 });
+
+describe('POST /admin/fetch-videos', () => {
+  it('Should respond with a 200 status code', done => {
+    request(app)
+      .post('/admin/fetch-videos')
+      .expect(200, done);
+  });
+});
